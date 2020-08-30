@@ -3,20 +3,22 @@ package watch
 import (
 	"fmt"
 	"github.com/fsnotify/fsnotify"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"os"
 	"path/filepath"
 )
 
 var watcher *fsnotify.Watcher
 
-func Run() {
+func Run(cmd *cobra.Command, args []string) {
 	// creates a new file watcher
 	watcher, _ = fsnotify.NewWatcher()
 	defer watcher.Close()
 
 	// starting at the root of the project, walk each file/directory searching for
 	// directories
-	if err := filepath.Walk("./sample", watchDir); err != nil {
+	if err := filepath.Walk(viper.GetString("typeSpecDir"), watchDir); err != nil {
 		fmt.Println("ERROR", err)
 	}
 
@@ -31,7 +33,8 @@ func Run() {
 			case event := <-watcher.Events:
 				// write events only
 				if event.Op == 2 {
-					fmt.Printf("EVENT! %#v\n", event)
+
+					fmt.Printf(event.Name)
 				}
 
 				// watch for errors

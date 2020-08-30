@@ -22,7 +22,6 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"fmt"
 	"github.com/theNorstroem/spectools/internal/cmd/watch"
 
 	"github.com/spf13/cobra"
@@ -35,11 +34,7 @@ var watchCmd = &cobra.Command{
 	Long: `Watch for changes in spec files and generates the corresponding proto files immediately . For example:
 
 Changes in auth.credentials.spec will generate the corresponding auth.proto files.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("starting the watcher. Press CTRL-C to stop.")
-		watch.Run()
-
-	},
+	Run: watch.Run,
 }
 
 // needed for the documentation generator
