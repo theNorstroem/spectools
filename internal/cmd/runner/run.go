@@ -24,7 +24,7 @@ func Run(cmd *cobra.Command, args []string) {
 
 }
 
-// comands are in parent
+// commands are in parent
 func collectCommands(rootCmd *cobra.Command) (commandList map[string]func(cmd *cobra.Command, args []string)) {
 	commandList = map[string]func(cmd *cobra.Command, args []string){}
 	for _, c := range rootCmd.Commands() {
