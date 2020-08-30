@@ -1,0 +1,21 @@
+typeSpecDir: "./specs/Types"
+serviceSpecDir: "./specs/Services"
+specFormat: "yaml" #set to yaml or json
+importedTypeSpecs:
+  - "./sInstalled/spec-basetypes" # The importer looks for all **/*.type.spec files recursive
+importedServieSpecs:
+  - "./sInstalled/spec-basetypes" # The importer looks for all **/*.service.spec files recursive
+muSpec:
+  types:
+    - "./sample/**types.yaml"
+  services:
+    - "./sample/**services.yaml"
+proto:
+  targetTypeDir: "./dist/protos/Messages" #Hint: add this to your proto include path
+  targetServiceDir: "./dist/protos/Services" #Hint: add this to your proto include path
+enviromentJs:
+  targetFile: "./generates/env.js"
+flows:
+  default:
+    - muType2Spec
+    - muService2Spec
