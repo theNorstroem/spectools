@@ -2,6 +2,7 @@
 
 The furo spec toolkit
 
+
 ### Synopsis
 
 Furo spectools contains helpful generators, converters, sanitizer for the furo specs.
@@ -13,3 +14,6 @@ Modify your default flow in the .spectools config file to your needs. You can se
 
 ### Documentation
 Read more in the [detailed documentation](./doc/spectools.md)
+
+### Dev
+Do not forget the export GOPRIVATE=github.com/veith,github.com/theNorstroem
