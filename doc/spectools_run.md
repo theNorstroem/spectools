@@ -10,12 +10,13 @@ To configure a flow of commands just add a "flow" in the flows section of your .
 A flow is just a list of commands which gets executed in order
 
 Example Config:
-[.spectools]
-flows:
-  type:
-    - cleanTypeProtoDir
-    - muType2Spec
-    - TypeSpec2Proto
+
+	[.spectools]
+	flows:
+	  type:
+		- cleanTypeProtoDir
+		- muType2Spec
+		- TypeSpec2Proto
 
 Command:
 
