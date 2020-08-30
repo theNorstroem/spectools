@@ -56,6 +56,7 @@ github.com/theNorstroem/spec-initializr/pkg/ast/serviceAst
 github.com/theNorstroem/spec-initializr/pkg/ast/typeAst
 github.com/theNorstroem/spec-initializr/pkg/domaintypes/furo
 github.com/theNorstroem/spec-initializr/pkg/microservices
+github.com/theNorstroem/spec-initializr/pkg/microtypes
 github.com/theNorstroem/spec-initializr/pkg/orderedmap
 github.com/theNorstroem/spec-initializr/pkg/util
 # golang.org/x/sys v0.0.0-20190624142023-c5567b49c5d0

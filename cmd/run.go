@@ -22,9 +22,8 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"fmt"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
+	"github.com/theNorstroem/spectools/internal/cmd/runner"
 )
 
 // runCmd represents the run command
@@ -48,20 +47,7 @@ Example Config:
 Command:
 
 This config will run "cleanTypeProtoDir",  muType2Spec"" and "TypeSpec2Proto" in sequence`,
-	Run: func(cmd *cobra.Command, args []string) {
-		flow := "default"
-		f := cmd.Flag("flow")
-		if f != nil {
-			flow = f.Value.String()
-		}
-
-		fmt.Println("running flow " + flow)
-		c := viper.GetStringSlice("flow." + flow)
-		fmt.Println(c)
-		muType2SpecCmd.Run(cmd, args)
-		muService2SpecCmd.Run(cmd, args)
-
-	},
+	Run: runner.Run,
 }
 
 // needed for the documentation generator

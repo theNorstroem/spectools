@@ -22,10 +22,8 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"fmt"
-	"github.com/theNorstroem/spectools/internal/cmd/muService2Spec"
-
 	"github.com/spf13/cobra"
+	"github.com/theNorstroem/spectools/internal/cmd/muService2Spec"
 )
 
 // muService2SpecCmd represents the muService2Spec command
@@ -36,10 +34,7 @@ var muService2SpecCmd = &cobra.Command{
 
 Do not forget to set your µSpec folder in the .spectools config. 
 `,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("muService2Spec called")
-		muService2Spec.Do()
-	},
+	Run: muService2Spec.Run,
 }
 
 // needed for the documentation generator

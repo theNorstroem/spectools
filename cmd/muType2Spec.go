@@ -22,9 +22,8 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
+	"github.com/theNorstroem/spectools/internal/cmd/muType2Spec"
 )
 
 // muType2SpecCmd represents the muType2Spec command
@@ -34,9 +33,7 @@ var muType2SpecCmd = &cobra.Command{
 	Long: `The converter will update your type specs and also delete specs and fields if they are not in the µSpec file anymore.
 
 Do not forget to set your µSpec folder in the .spectools config.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("muType2Spec called")
-	},
+	Run: muType2Spec.Run,
 }
 
 // needed for the documentation generator

@@ -1,6 +1,8 @@
 package muService2Spec
 
 import (
+	"fmt"
+	"github.com/spf13/cobra"
 	"github.com/theNorstroem/spec-initializr/pkg/ast/serviceAst"
 	"github.com/theNorstroem/spec-initializr/pkg/ast/typeAst"
 	"github.com/theNorstroem/spec-initializr/pkg/microservices"
@@ -13,7 +15,8 @@ import (
 	"strings"
 )
 
-func Do() {
+func Run(cmd *cobra.Command, args []string) {
+	fmt.Println("running muService2Spec")
 	microServicesList := &microservices.MicroServiceList{
 		MicroServicesByName:    map[string]*microservices.MicroService{},
 		MicroServicesASTByName: map[string]microservices.MicroServiceAst{},
