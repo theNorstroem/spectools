@@ -27,16 +27,18 @@ func Run(cmd *cobra.Command, args []string) {
 			URL:      "git://github.com/theNorstroem/furoBaseSpecs.git",
 			Progress: os.Stdout,
 		})
-		// We instantiate a new repository targeting the given path (the .git folder)
+
+		// fetch changes if we are not on the tag
 		r, err := git.PlainOpen("installedSpecs/nn")
 		r.Fetch(&git.FetchOptions{})
 
 		// Get the working directory for the repository
 		w, err := r.Worktree()
+
+		// checkout version
 		err = w.Checkout(&git.CheckoutOptions{Hash: plumbing.NewHash("v1.10.0")})
 
-		// git pull
 		fmt.Println(err)
-		// checkout version
+
 	}
 }
