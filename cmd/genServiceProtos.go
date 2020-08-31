@@ -22,33 +22,34 @@ THE SOFTWARE.
 package cmd
 
 import (
+	"github.com/theNorstroem/spectools/internal/cmd/genServiceProtos"
+
 	"github.com/spf13/cobra"
-	"github.com/theNorstroem/spectools/internal/cmd/genTypeProtos"
 )
 
-// genTypeProtosCmd represents the genTypeProtos command
-var genTypeProtosCmd = &cobra.Command{
-	Use:   "genTypeProtos",
-	Short: "Generate the messages from the type specs.",
+// genServiceProtosCmd represents the genServiceProtos command
+var genServiceProtosCmd = &cobra.Command{
+	Use:   "genServiceProtos",
+	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
-	Run: genTypeProtos.Run,
+	Run: genServiceProtos.Run,
 }
 
 func init() {
-	rootCmd.AddCommand(genTypeProtosCmd)
+	rootCmd.AddCommand(genServiceProtosCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// genTypeProtosCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// genServiceProtosCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// genTypeProtosCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// genServiceProtosCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

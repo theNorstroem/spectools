@@ -1,4 +1,4 @@
-package genTypeProtos
+package genMessageProtos
 
 import (
 	"bytes"
@@ -27,7 +27,7 @@ type singleTplData struct {
 }
 
 func Run(cmd *cobra.Command, args []string) {
-	fmt.Println("genTypeProtos called")
+	fmt.Println("running genMessageProtos")
 	allTypes := map[string]*specSpec.Type{}
 	Typelist := &typeAst.Typelist{}
 	Typelist.LoadInstalledTypeSpecsFromDir(util.GetDependencyList()...)

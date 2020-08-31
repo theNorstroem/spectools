@@ -47,11 +47,14 @@ func (l *Typelist) LoadInstalledTypeSpecsFromDir(specDir ...string) {
 		l.InstalledTypesByName = map[string]*TypeAst{}
 	}
 	for _, dir := range specDir {
+		fmt.Println("load types from", dir)
 		tlist := loadTypeSpecsFromDir(dir)
 		for tname, v := range tlist {
 			l.InstalledTypesByName[tname] = v
 		}
+
 	}
+
 }
 
 func loadTypeSpecsFromDir(specDir string) (typesMap map[string]*TypeAst) {

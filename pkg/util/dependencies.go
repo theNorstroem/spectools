@@ -1,8 +1,8 @@
 package util
 
 import (
-	"fmt"
 	"github.com/spf13/viper"
+	"os"
 	"path"
 	"strings"
 )
@@ -11,6 +11,9 @@ func GetDependencyList() []string {
 	deps := []string{}
 	for _, d := range viper.GetStringSlice("dependencies") {
 		p := path.Join(viper.GetString("dependenciesDir"), strings.Split(d, " ")[0])
+		if strings.HasSuffix(p, ".git") {
+
+		}
 		// load config to resolve Message and Service dirs to append
 
 		depconf := viper.New()
@@ -19,17 +22,20 @@ func GetDependencyList() []string {
 		depconf.SetConfigName(".spectools")
 		err := depconf.ReadInConfig()
 		if err == nil {
+
 			tdir := depconf.GetString("typeSpecDir")
 			if tdir != "" {
-				deps = append(deps, path.Join(p, tdir))
+				if _, err := os.Stat(path.Join(p, tdir)); !os.IsNotExist(err) {
+					// path/to/whatever exists
+					deps = append(deps, path.Join(p, tdir))
+				}
+
 			}
-			mdir := depconf.GetString("serviceSpecDir")
-			if mdir != "" {
-				deps = append(deps, path.Join(p, mdir))
-			}
-			// notify sub dependencies
-			for _, subdep := range depconf.GetStringSlice("dependencies") {
-				fmt.Println(p, "requires", subdep, "do not forget to add")
+			sdir := depconf.GetString("serviceSpecDir")
+			if sdir != "" {
+				if _, err := os.Stat(path.Join(p, sdir)); !os.IsNotExist(err) {
+					deps = append(deps, path.Join(p, sdir))
+				}
 			}
 
 		} else {
