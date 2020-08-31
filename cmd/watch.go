@@ -22,7 +22,7 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"github.com/theNorstroem/spectools/internal/cmd/watch"
+	"github.com/theNorstroem/spectools/internal/cmd/watcher"
 
 	"github.com/spf13/cobra"
 )
@@ -34,7 +34,7 @@ var watchCmd = &cobra.Command{
 	Long: `Watch for changes in spec files and generates the corresponding proto files immediately . For example:
 
 Changes in auth.credentials.spec will generate the corresponding auth.proto files.`,
-	Run: watch.Run,
+	Run: watcher.Run,
 }
 
 // needed for the documentation generator

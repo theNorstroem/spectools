@@ -1,7 +1,9 @@
 package util
 
 import (
+	"fmt"
 	"github.com/spf13/viper"
+	"log"
 	"os"
 	"path"
 	"strings"
@@ -10,12 +12,23 @@ import (
 func GetDependencyList() []string {
 	deps := []string{}
 	for _, d := range viper.GetStringSlice("dependencies") {
-		p := path.Join(viper.GetString("dependenciesDir"), strings.Split(d, " ")[0])
-		if strings.HasSuffix(p, ".git") {
-
+		// the version info is not needed
+		parts := strings.Split(d, " ")
+		// should only have 2 parts (repo, version)
+		if len(parts) > 2 {
+			fmt.Println(ScanForStringPosition(d, "./.spectools"), "Error")
+			log.Fatal("config error or dependency not installed. Maybe you should run spectools install")
 		}
-		// load config to resolve Message and Service dirs to append
+		p := path.Join(viper.GetString("dependenciesDir"), parts[0])
 
+		// remove .git from path, this looks nicer
+		if strings.HasSuffix(p, ".git") {
+			p = p[0 : len(p)-4]
+		}
+
+		// todo check for existence of p and give spectools install hint
+
+		// load config to resolve Message and Service dirs
 		depconf := viper.New()
 		depconf.SetConfigType("yaml") // REQUIRED if the config file does not have the extension in the name
 		depconf.AddConfigPath(p)
@@ -39,6 +52,7 @@ func GetDependencyList() []string {
 			}
 
 		} else {
+			// no .spectools config in target dir, use the complete path
 			deps = append(deps, p)
 		}
 
