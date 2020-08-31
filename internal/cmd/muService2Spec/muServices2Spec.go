@@ -3,9 +3,9 @@ package muService2Spec
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	"github.com/theNorstroem/spec-initializr/pkg/ast/serviceAst"
-	"github.com/theNorstroem/spec-initializr/pkg/ast/typeAst"
-	"github.com/theNorstroem/spec-initializr/pkg/microservices"
+	"github.com/theNorstroem/spectools/pkg/ast/serviceAst"
+	"github.com/theNorstroem/spectools/pkg/ast/typeAst"
+	"github.com/theNorstroem/spectools/pkg/microservices"
 
 	"log"
 	"path/filepath"

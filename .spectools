@@ -1,21 +1,30 @@
 typeSpecDir: "./specs/Types"
 serviceSpecDir: "./specs/Services"
 specFormat: "yaml" #set to yaml or json
-importedTypeSpecs:
-  - "./sInstalled/spec-basetypes" # The importer looks for all **/*.type.spec files recursive
-importedServieSpecs:
-  - "./sInstalled/spec-basetypes" # The importer looks for all **/*.service.spec files recursive
+dependencies:
+  - "github.com/theNorstroem/furoBaseTypes v1.0.0" # The importer looks for all **/*.type.spec files recursive The importer looks for all **/*.service.spec files recursive
+dependenciesDir: installedSpecs
 muSpec:
   types:
     - "./muspec/**types.yaml"
   services:
     - "./muspec/**services.yaml"
-proto:
-  targetTypeDir: "./dist/protos/Messages" #Hint: add this to your proto include path
-  targetServiceDir: "./dist/protos/Services" #Hint: add this to your proto include path
-enviromentJs:
-  targetFile: "./generates/env.js"
+commands:
+  taskTest: "scripts/test.sh"
+  publishNpm: "scripts/test.sh"
+  genTranscoder: "scripts/test.sh"
 flows:
   default:
     - muType2Spec
     - muService2Spec
+  muspec:
+    - muType2Spec
+    - muService2Spec
+    - taskTest
+    - nonexistent
+build:
+  proto:
+    targetTypeDir: "./dist/protos/Messages" #Hint: add this to your proto include path
+    targetServiceDir: "./dist/protos/Services" #Hint: add this to your proto include path
+  esModule:
+    targetFile: "./dist/env.js"
