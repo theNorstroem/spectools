@@ -6,24 +6,19 @@ import (
 	"log"
 	"os"
 	"path"
+	"regexp"
 	"strings"
 )
 
 func GetDependencyList() []string {
 	deps := []string{}
 	for _, d := range viper.GetStringSlice("dependencies") {
-		// the version info is not needed
-		parts := strings.Split(d, " ")
-		// should only have 2 parts (repo, version)
-		if len(parts) > 2 {
-			fmt.Println(ScanForStringPosition(d, "./.spectools"), "Error")
-			log.Fatal("config error or dependency not installed. Maybe you should run spectools install")
-		}
-		p := path.Join(viper.GetString("dependenciesDir"), parts[0])
+		dep := ParseDependency(d)
 
-		// remove .git from path, this looks nicer
-		if strings.HasSuffix(p, ".git") {
-			p = p[0 : len(p)-4]
+		// should only have 2 parts (repo, version)
+		if dep.Kind == UNKNOWN {
+			fmt.Println(ScanForStringPosition(d, "./.spectools"), "Config Error")
+			log.Fatal("Config error or dependency not installed. Maybe you should run spectools install")
 		}
 
 		// todo check for existence of p and give spectools install hint
@@ -31,31 +26,77 @@ func GetDependencyList() []string {
 		// load config to resolve Message and Service dirs
 		depconf := viper.New()
 		depconf.SetConfigType("yaml") // REQUIRED if the config file does not have the extension in the name
-		depconf.AddConfigPath(p)
+		depconf.AddConfigPath(dep.DependencyPath)
 		depconf.SetConfigName(".spectools")
 		err := depconf.ReadInConfig()
 		if err == nil {
 
 			tdir := depconf.GetString("typeSpecDir")
 			if tdir != "" {
-				if _, err := os.Stat(path.Join(p, tdir)); !os.IsNotExist(err) {
+				if _, err := os.Stat(path.Join(dep.DependencyPath, tdir)); !os.IsNotExist(err) {
 					// path/to/whatever exists
-					deps = append(deps, path.Join(p, tdir))
+					deps = append(deps, path.Join(dep.DependencyPath, tdir))
 				}
 
 			}
 			sdir := depconf.GetString("serviceSpecDir")
 			if sdir != "" {
-				if _, err := os.Stat(path.Join(p, sdir)); !os.IsNotExist(err) {
-					deps = append(deps, path.Join(p, sdir))
+				if _, err := os.Stat(path.Join(dep.DependencyPath, sdir)); !os.IsNotExist(err) {
+					deps = append(deps, path.Join(dep.DependencyPath, sdir))
 				}
 			}
 
 		} else {
 			// no .spectools config in target dir, use the complete path
-			deps = append(deps, p)
+			deps = append(deps, dep.DependencyPath)
 		}
 
 	}
 	return deps
+}
+
+type DependencyKind int
+
+const (
+	UNKNOWN DependencyKind = iota
+	GIT
+	FILESYSTEM
+)
+
+type Dependency struct {
+	Kind           DependencyKind
+	Path           string
+	DependencyPath string
+	Repository     string
+	Version        string
+	Original       string
+}
+
+func ParseDependency(dep string) Dependency {
+	d := Dependency{Original: dep, Kind: UNKNOWN}
+	// parse dep string  (.*[:]\/*(.*).git)\s(.*)  => 1:Repository, 2:Path, 3: Version
+
+	regex := regexp.MustCompile(`(.*(:\/\/|@)(.*).git)\s([^\s]*)`)
+	matches := regex.FindStringSubmatch(dep)
+	if len(matches) == 0 {
+		// is file
+		d.Kind = FILESYSTEM
+		d.DependencyPath = path.Join(viper.GetString("dependenciesDir"), dep)
+		d.Path = dep
+	}
+	if len(matches) == 5 {
+		d.Kind = GIT
+		d.Repository = matches[1]
+		if matches[2] == "@" {
+			d.DependencyPath = path.Join(viper.GetString("dependenciesDir"), strings.Replace(matches[3], ":", "/", 1))
+			d.Path = strings.Replace(matches[3], ":", "/", 1)
+		} else {
+			d.DependencyPath = path.Join(viper.GetString("dependenciesDir"), matches[3])
+			d.Path = matches[3]
+		}
+
+		d.Version = matches[4]
+	}
+
+	return d
 }

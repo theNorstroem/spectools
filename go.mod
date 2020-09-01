@@ -14,6 +14,7 @@ require (
 	github.com/imdario/mergo v0.3.11 // indirect
 	github.com/mitchellh/copystructure v1.0.0 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
+	github.com/otiai10/copy v1.2.0
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/viper v1.7.1
 	google.golang.org/protobuf v1.25.0

@@ -116,6 +116,9 @@ github.com/mitchellh/go-homedir
 github.com/mitchellh/mapstructure
 # github.com/mitchellh/reflectwalk v1.0.0
 github.com/mitchellh/reflectwalk
+# github.com/otiai10/copy v1.2.0
+## explicit
+github.com/otiai10/copy
 # github.com/pelletier/go-toml v1.2.0
 github.com/pelletier/go-toml
 # github.com/russross/blackfriday/v2 v2.0.1
