@@ -12,5 +12,5 @@ func GetGoPackageName(TargetPath string) string {
 	// 	segments[i] = p + "pb"
 	// }
 	// tp := strings.Join(segments,"/")
-	return TargetPath + ";" + path.Base(TargetPath)
+	return TargetPath + ";" + path.Base(TargetPath) + "pb"
 }
