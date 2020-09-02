@@ -1,6 +1,6 @@
 ## spectools serviceTypeProtos
 
-A brief description of your command
+Generate the type protos from the specs
 
 ### Synopsis
 

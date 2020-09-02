@@ -1,6 +1,6 @@
 ## spectools genServiceProtos
 
-A brief description of your command
+Generate service protos from the specs
 
 ### Synopsis
 

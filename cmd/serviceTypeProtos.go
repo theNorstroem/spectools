@@ -30,7 +30,7 @@ import (
 // serviceTypeProtosCmd represents the serviceTypeProtos command
 var serviceTypeProtosCmd = &cobra.Command{
 	Use:   "serviceTypeProtos",
-	Short: "A brief description of your command",
+	Short: "Generate the type protos from the specs",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
