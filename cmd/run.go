@@ -58,6 +58,8 @@ Like:
 
     # generate the type documentation...
     spectools exportAsYaml | simple-generator -t scripts/typedoc.tpl > dist/typedoc.md
+
+[example](../samples/typedoc/readme.md)
 `,
 	Run: runner.Run,
 }
