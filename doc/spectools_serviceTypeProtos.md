@@ -1,23 +1,24 @@
-## spectools init
+## spectools serviceTypeProtos
 
-Creates a initial spectools config
+A brief description of your command
 
 ### Synopsis
 
-Init creates a initial spectools config with defaults.
+A longer description that spans multiple lines and likely contains examples
+and usage of using your command. For example:
 
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.
 
 ```
-spectools init [flags]
+spectools serviceTypeProtos [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for init
+  -h, --help   help for serviceTypeProtos
 ```
 
 ### Options inherited from parent commands
