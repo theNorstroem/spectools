@@ -4,12 +4,15 @@ Generate service protos from the specs
 
 ### Synopsis
 
-A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+The generated proto services will be generated to the configured path.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.
+*.spectools config example*
+
+	build:
+	  proto:
+		targetTypeDir: "./dist/protos/Messages" #Hint: add this to your proto include path
+		targetServiceDir: "./dist/protos/Services" #Hint: add this to your proto include path
+
 
 ```
 spectools genServiceProtos [flags]
