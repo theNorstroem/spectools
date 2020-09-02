@@ -6,6 +6,7 @@ import (
 	"github.com/theNorstroem/spectools/pkg/ast/serviceAst"
 	"github.com/theNorstroem/spectools/pkg/ast/typeAst"
 	"github.com/theNorstroem/spectools/pkg/microservices"
+	"github.com/theNorstroem/spectools/pkg/util"
 
 	"log"
 	"path/filepath"
@@ -50,7 +51,7 @@ func Run(cmd *cobra.Command, args []string) {
 
 	// types are needed for import checks
 	Typelist := &typeAst.Typelist{}
-	Typelist.LoadInstalledTypeSpecsFromDir(viper.GetStringSlice("importedTypeSpecs")...)
+	Typelist.LoadInstalledTypeSpecsFromDir(util.GetDependencyList()...)
 	Typelist.LoadTypeSpecsFromDir(viper.GetString("typeSpecDir"))
 
 	// update the services ast from microspecs

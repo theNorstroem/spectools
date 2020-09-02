@@ -27,7 +27,53 @@ func CreateFromAstType(ast *specSpec.Type) (t *Type) {
 	return t
 }
 
-// Defines a type in the furo spec
+func CreateSectviceFromAstService(ast *specSpec.Service) (t *Service) {
+
+	t = &Service{
+		Name:     ast.Name,
+		Services: orderedmap.New(),
+	}
+
+	ast.Services.Map(func(iKey interface{}, iValue interface{}) {
+		astField := iValue.(*specSpec.Rpc)
+		s := &CompressedService{
+			Data: astField.Data,
+			Deeplink: &Deeplink{
+				Href:   astField.Deeplink.Href,
+				Method: astField.Deeplink.Method,
+				Rel:    astField.Deeplink.Rel,
+			},
+			Query: astField.Query,
+		}
+		t.Services.Set(iKey, s)
+	})
+
+	return t
+}
+
+type Service struct {
+	// Name of the type
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name" yaml:"name"`
+
+	// services => which is a CompressedService
+	Services *orderedmap.OrderedMap `json:"services" yaml:"services" `
+}
+
+type CompressedService struct {
+	Data     *specSpec.Servicereqres
+	Deeplink *Deeplink
+	Query    *orderedmap.OrderedMap
+}
+type Deeplink struct {
+	// The link pattern, like /api/xxx/{qp}/yyy
+	Href string `json:"href,omitempty" yaml:"href,omitempty"`
+	// method of curl
+	Method string `json:"method,omitempty" yaml:"method,omitempty"`
+	// the relationship
+	Rel string `json:"rel,omitempty" yaml:"rel,omitempty"`
+}
+
+// Defines a type in the furo env spec
 type Type struct {
 	// Name of the type
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name" yaml:"name"`

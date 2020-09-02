@@ -6,6 +6,7 @@ import (
 	"github.com/spf13/viper"
 	"github.com/theNorstroem/spectools/pkg/ast/typeAst"
 	"github.com/theNorstroem/spectools/pkg/microtypes"
+	"github.com/theNorstroem/spectools/pkg/util"
 	"io/ioutil"
 	"log"
 	"path/filepath"
@@ -24,7 +25,7 @@ func Run(cmd *cobra.Command, args []string) {
 	} // holds all muspecs
 	Typelist := &typeAst.Typelist{}
 	Typelist.LoadTypeSpecsFromDir(viper.GetString("typeSpecDir"))
-	Typelist.LoadInstalledTypeSpecsFromDir(viper.GetStringSlice("importedTypeSpecs")...)
+	Typelist.LoadInstalledTypeSpecsFromDir(util.GetDependencyList()...)
 
 	globs := viper.GetStringSlice("muSpec.types")
 	for _, glob := range globs {

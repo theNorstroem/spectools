@@ -59,7 +59,7 @@ func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist) {
 
 		AstType.TypeSpec.XProto.Package = mType.Package
 		AstType.TypeSpec.XProto.Targetfile = mType.Target
-		AstType.TypeSpec.XProto.Options["go_package"] = path.Base(mType.TargetPath) + "pb"
+		AstType.TypeSpec.XProto.Options["go_package"] = util.GetGoPackageName(mType.TargetPath)
 		AstType.TypeSpec.XProto.Options["java_package"] = "com." + mType.Package
 		AstType.TypeSpec.XProto.Options["java_outer_classname"] = strings.Title(strings.Replace(path.Base(mType.Target), ".proto", "Proto", 1))
 		AstType.TypeSpec.XProto.Options["java_multiple_files"] = "true"

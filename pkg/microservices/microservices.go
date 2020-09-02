@@ -60,7 +60,7 @@ func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist)
 
 		AstService.ServiceSpec.XProto.Package = microServiceAst.Package
 		AstService.ServiceSpec.XProto.Targetfile = microServiceAst.Target
-		AstService.ServiceSpec.XProto.Options["go_package"] = path.Base(microServiceAst.TargetPath) + "pb"
+		AstService.ServiceSpec.XProto.Options["go_package"] = util.GetGoPackageName(microServiceAst.TargetPath)
 		AstService.ServiceSpec.XProto.Options["java_package"] = "com." + microServiceAst.Package
 		AstService.ServiceSpec.XProto.Options["java_outer_classname"] = strings.Title(strings.Replace(path.Base(microServiceAst.Target), ".proto", "Proto", 1))
 		AstService.ServiceSpec.XProto.Options["java_multiple_files"] = "true"

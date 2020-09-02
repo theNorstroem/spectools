@@ -37,7 +37,7 @@ func Run(cmd *cobra.Command, args []string) {
 	Typelist.LoadTypeSpecsFromDir(viper.GetString("typeSpecDir"))
 
 	Servicelist := &serviceAst.Servicelist{}
-	Servicelist.LoadInstalledServiceSpecsFromDir(viper.GetStringSlice("importedServiceSpecs")...)
+	Servicelist.LoadInstalledServiceSpecsFromDir(util.GetDependencyList()...)
 	Servicelist.LoadServiceSpecsFromDir(viper.GetString("serviceSpecDir"))
 
 	for k, t := range Servicelist.ServicesByName {
