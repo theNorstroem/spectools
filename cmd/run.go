@@ -38,15 +38,27 @@ A flow is just a list of commands which gets executed in order
 Example Config:
 
 	[.spectools]
+	commands:
+	  publish_npm: "./scripts/test.sh"
 	flows:
 	  type:
 		- cleanTypeProtoDir
 		- muType2Spec
 		- TypeSpec2Proto
+		- publish_npm
 
 Command:
 
-This config will run "cleanTypeProtoDir",  muType2Spec"" and "TypeSpec2Proto" in sequence`,
+This config will run "cleanTypeProtoDir",  muType2Spec"" and "TypeSpec2Proto" in sequence and calling the command publish_npm
+
+Tipp: If you need the types and services in your command, just call spectools again. 
+
+Like:
+    #!/bin/bash
+
+    # generate the type documentation...
+    spectools exportAsYaml | simple-generator -t scripts/typedoc.tpl > dist/typedoc.md
+`,
 	Run: runner.Run,
 }
 
@@ -64,5 +76,5 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	runCmd.Flags().StringP("flow", "f", "all", "A configured flow from the .spectools config")
+	runCmd.Flags().StringP("flow", "f", "default", "A configured flow from the .spectools config")
 }
