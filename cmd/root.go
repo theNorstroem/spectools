@@ -40,9 +40,9 @@ Modify your default flow in the .spectools config file to your needs. You can se
 `,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
-	Run: func(cmd *cobra.Command, args []string) {
-		runCmd.Run(cmd, args)
-	},
+	//Run: func(cmd *cobra.Command, args []string) {
+	//	runCmd.Run(cmd, args)
+	//},
 	Version: "1.0.0",
 }
 
