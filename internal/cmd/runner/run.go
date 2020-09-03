@@ -27,8 +27,9 @@ func Run(cmd *cobra.Command, args []string) {
 	if len(seq) == 0 {
 		log.Fatal("flow has no sequence --flow=", flow)
 	}
-	fmt.Println("starting sequence", seq)
+	fmt.Println("sequence", seq)
 	for _, step := range seq {
+		fmt.Println("running step", step)
 		if listOfConfiguredFlows[step] != nil {
 			// configured flows go first
 			listOfConfiguredFlows[step](cmd, args)
