@@ -30,9 +30,22 @@ import (
 // exportAsYamlCmd represents the exportAsYaml command
 var exportAsYamlCmd = &cobra.Command{
 	Use:   "exportAsYaml",
-	Short: "Exports the Specs in one yaml file to stdout",
+	Short: "Exports all specs and the current config in one yaml file to stdout",
 	Long: `Use this for your chain of generators...
+	
+You will get a yaml with all types and services and the config.
+Feel free to add custom sections in the config to use them in custom commands or scripts.
 
+    services:
+       your.Service: ...
+    types:
+       your.type: ...
+    config:
+       module: mod
+       custom:
+          remoteDir: "path/to/somewhere"
+          otherCustomSetting: true
+    
 
 `,
 	Run: exportAsYaml.Run,

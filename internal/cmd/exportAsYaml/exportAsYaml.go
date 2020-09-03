@@ -40,6 +40,8 @@ func Run(cmd *cobra.Command, args []string) {
 
 	output["types"] = allTypes
 	output["services"] = allServices
+	output["config"] = viper.AllSettings()
+
 	outputstr, _ := yaml.Marshal(output)
 
 	fmt.Print(string(outputstr))
