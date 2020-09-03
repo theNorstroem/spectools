@@ -6,34 +6,56 @@ import (
 	"github.com/spf13/viper"
 	"github.com/theNorstroem/spectools/pkg/ast/serviceAst"
 	"github.com/theNorstroem/spectools/pkg/ast/typeAst"
-	"github.com/theNorstroem/spectools/pkg/specSpec"
 	"github.com/theNorstroem/spectools/pkg/util"
 	"gopkg.in/yaml.v3"
 )
 
 func Run(cmd *cobra.Command, args []string) {
+	fullExport := false
+	f := cmd.Flag("full")
+	if f != nil {
+		fullExport = f.Value.String() == "true"
+	}
 
-	allTypes := map[string]*specSpec.Type{}
+	allTypes := map[string]interface{}{}
 	Typelist := &typeAst.Typelist{}
 	Typelist.LoadTypeSpecsFromDir(viper.GetString("typeSpecDir"))
 	Typelist.LoadInstalledTypeSpecsFromDir(util.GetDependencyList()...)
 
 	for k, t := range Typelist.TypesByName {
-		allTypes[k] = &t.TypeSpec
+		if fullExport {
+			allTypes[k] = t
+		} else {
+			allTypes[k] = t.TypeSpec
+		}
+
 	}
 	for k, t := range Typelist.InstalledTypesByName {
-		allTypes[k] = &t.TypeSpec
+		if fullExport {
+			allTypes[k] = t
+		} else {
+			allTypes[k] = t.TypeSpec
+		}
 	}
 
-	allServices := map[string]*specSpec.Service{}
+	allServices := map[string]interface{}{}
 	Servicelist := &serviceAst.Servicelist{}
 	Servicelist.LoadInstalledServiceSpecsFromDir(util.GetDependencyList()...)
 	Servicelist.LoadServiceSpecsFromDir(viper.GetString("serviceSpecDir"))
-	for k, t := range Servicelist.ServicesByName {
-		allServices[k] = &t.ServiceSpec
+	for k, s := range Servicelist.ServicesByName {
+		if fullExport {
+			allServices[k] = s
+		} else {
+			allServices[k] = s.ServiceSpec
+		}
+
 	}
-	for k, t := range Servicelist.InstalledServicesByName {
-		allServices[k] = &t.ServiceSpec
+	for k, s := range Servicelist.InstalledServicesByName {
+		if fullExport {
+			allServices[k] = s
+		} else {
+			allServices[k] = s.ServiceSpec
+		}
 	}
 
 	output := map[string]interface{}{}

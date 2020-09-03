@@ -63,4 +63,5 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// exportAsYamlCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	exportAsYamlCmd.Flags().BoolP("full", "f", false, "Include the ast info")
 }
