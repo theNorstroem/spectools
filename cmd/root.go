@@ -39,7 +39,8 @@ Calling spectools without any arguments and flags will run the flow runner with 
 Modify your default flow in the .spectools config file to your needs. You can set any of the sub commands as default.
 
 > Note: Environment variables are prefixed with **FST**. 
-> To set the specformat with the environment variable use **FST_SPECFORMAT=yaml**
+>
+> To set the specformat with the environment variable use **FST_SPECFORMAT=value**
 `,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
