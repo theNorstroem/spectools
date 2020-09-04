@@ -23,7 +23,6 @@ package cmd
 
 import (
 	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
@@ -35,7 +34,8 @@ var initCmd = &cobra.Command{
 
 Comming soon...`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Init called")
+		fmt.Println("This feature is not available at the moment. Please create a .spectool config file by hand.")
+
 	},
 }
 

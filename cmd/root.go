@@ -37,6 +37,9 @@ Read more about the single commands in the see also section below.
 
 Calling spectools without any arguments and flags will run the flow runner with the default flow. 
 Modify your default flow in the .spectools config file to your needs. You can set any of the sub commands as default.
+
+> Note: Environment variables are prefixed with **FST**. 
+> To set the specformat with the environment variable use **FST_SPECFORMAT=yaml**
 `,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
@@ -84,7 +87,7 @@ func initConfig() {
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
-
+	viper.SetEnvPrefix("FST")
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err != nil {
 		fmt.Println(err)
