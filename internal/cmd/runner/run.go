@@ -19,13 +19,13 @@ func Run(cmd *cobra.Command, args []string) {
 		flow = f.Value.String()
 	}
 
-	listOfConfiguredFlows := collectCommands(cmd.Parent())
+	listOfConfiguredFlows := collectCommands(cmd)
 
 	fmt.Println("running flow " + flow)
 	seq := viper.GetStringSlice("flows." + flow)
 	// flow not found
 	if len(seq) == 0 {
-		log.Fatal("flow has no sequence --flow=", flow)
+		log.Fatal("flow is not defined or has no sequence --flow=", flow)
 	}
 	fmt.Println("sequence", seq)
 	for _, step := range seq {
@@ -53,9 +53,12 @@ func Run(cmd *cobra.Command, args []string) {
 }
 
 // commands are in parent
-func collectCommands(rootCmd *cobra.Command) (commandList map[string]func(cmd *cobra.Command, args []string)) {
+func collectCommands(cmd *cobra.Command) (commandList map[string]func(cmd *cobra.Command, args []string)) {
+	if cmd.Commands() == nil {
+		cmd = cmd.Parent()
+	}
 	commandList = map[string]func(cmd *cobra.Command, args []string){}
-	for _, c := range rootCmd.Commands() {
+	for _, c := range cmd.Commands() {
 		commandList[c.Use] = c.Run
 	}
 	return commandList

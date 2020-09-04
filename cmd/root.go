@@ -18,6 +18,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+	"github.com/theNorstroem/spectools/internal/cmd/runner"
 	"os"
 
 	"github.com/spf13/viper"
@@ -44,9 +45,9 @@ Modify your default flow in the .spectools config file to your needs. You can se
 `,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
-	//Run: func(cmd *cobra.Command, args []string) {
-	//	runCmd.Run(cmd, args)
-	//},
+	Run: func(cmd *cobra.Command, args []string) {
+		runner.Run(cmd, args)
+	},
 	Version: "1.0.0",
 }
 
