@@ -104,7 +104,7 @@ func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist) {
 							Default:  "",
 							Hint:     "",
 							Label:    strings.Join([]string{"label", mType.Package, mType.Type, mFieldname}, "."),
-							Options:  nil,
+							Options:  &furo.Fieldoption{},
 							Readonly: false,
 							Repeated: false,
 						},

@@ -100,7 +100,6 @@ func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist)
 			if found {
 				// assign original when found
 				targetRPC = m.(*specSpec.Rpc)
-
 			} else {
 				// create new if none was found in spec file
 				targetRPC = &specSpec.Rpc{

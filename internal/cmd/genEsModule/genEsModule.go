@@ -30,11 +30,11 @@ func Run(cmd *cobra.Command, args []string) {
 	Servicelist := &serviceAst.Servicelist{}
 	Servicelist.LoadInstalledServiceSpecsFromDir(util.GetDependencyList()...)
 	Servicelist.LoadServiceSpecsFromDir(viper.GetString("serviceSpecDir"))
-	for k, t := range Servicelist.ServicesByName {
-		allServices[k] = clientspec.CreateSectviceFromAstService(&t.ServiceSpec)
+	for _, t := range Servicelist.ServicesByName {
+		allServices[t.ServiceSpec.Name] = clientspec.CreateSectviceFromAstService(&t.ServiceSpec)
 	}
-	for k, t := range Servicelist.InstalledServicesByName {
-		allServices[k] = clientspec.CreateSectviceFromAstService(&t.ServiceSpec)
+	for _, t := range Servicelist.InstalledServicesByName {
+		allServices[t.ServiceSpec.Name] = clientspec.CreateSectviceFromAstService(&t.ServiceSpec)
 	}
 
 	td, _ := json.Marshal(allTypes)

@@ -60,9 +60,9 @@ type Service struct {
 }
 
 type CompressedService struct {
-	Data     *specSpec.Servicereqres
-	Deeplink *Deeplink
-	Query    *orderedmap.OrderedMap
+	Data     *specSpec.Servicereqres `json:"data,omitempty" yaml:"data,omitempty"`
+	Deeplink *Deeplink               `json:"deeplink,omitempty" yaml:"deeplink,omitempty"`
+	Query    *orderedmap.OrderedMap  `json:"query,omitempty" yaml:"query,omitempty"`
 }
 type Deeplink struct {
 	// The link pattern, like /api/xxx/{qp}/yyy
