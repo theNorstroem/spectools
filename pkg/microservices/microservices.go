@@ -213,7 +213,7 @@ func (mt MicroService) ToMicroServiceAst() MicroServiceAst {
 			},
 			Description: description,
 			Query:       queryParams,
-			RpcName:     matches[1] + mt.Name + "s",
+			RpcName:     matches[1] + mt.Name,
 		}
 		methods.Set(matches[1], r)
 

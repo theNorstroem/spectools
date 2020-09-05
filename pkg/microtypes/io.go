@@ -61,7 +61,7 @@ func (l *MicroTypelist) Unmarshal(data []byte) {
 		}
 		if makeCollection {
 			fields := orderedmap.New()
-			fields.Set("entities", "[]"+typeName+":1 #the data contains a "+typeName)
+			fields.Set("entities", "[]"+typeName+"Entity:1 #the data contains a "+typeName)
 			fields.Set("links", "[]furo.Link:2 #the Hateoas links")
 			fields.Set("meta", "furo.Meta:3 #Meta for the response")
 			collection := &MicroType{
