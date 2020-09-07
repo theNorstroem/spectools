@@ -8,9 +8,6 @@ shopt -s globstar dotglob
 cd {{.config.build.proto.targettypedir}}
 
 FILES=./**/*.proto
-for f in $FILES
-do
-  echo "Processing $f file..."
 
 protoc --proto_path=./ \
 -I. \
@@ -27,10 +24,11 @@ protoc --proto_path=./ \
 {{- range $k,$v := $myDict}}
 {{- $k}}={{$v}}
 {{end -}}
+Mgoogle/type/date.proto=google.golang.org/genproto/googleapis/type/date,\
+Mgoogle/type/money.proto=google.golang.org/genproto/googleapis/type/money,\
 Mgoogle/protobuf/any.proto=github.com/golang/protobuf/ptypes/any,\
 Mgoogle/protobuf/empty.proto=github.com/golang/protobuf/ptypes/empty,\
 Mgoogle/protobuf/wrappers.proto=github.com/golang/protobuf/ptypes/wrappers,\
-Mgoogle/protobuf/field_mask.proto=google.golang.org/genproto/protobuf/field_mask,\
-:$TARGETDIR $f
+Mgoogle/protobuf/types/known/field_mask.proto=google.golang.org/genproto/protobuf/field_mask,\
+:$TARGETDIR $FILES
 
-done

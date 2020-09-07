@@ -39,7 +39,7 @@ Mgoogle/type/money.proto=google.golang.org/genproto/googleapis/type/money,\
 Mgoogle/protobuf/any.proto=github.com/golang/protobuf/ptypes/any,\
 Mgoogle/protobuf/empty.proto=github.com/golang/protobuf/ptypes/empty,\
 Mgoogle/protobuf/wrappers.proto=github.com/golang/protobuf/ptypes/wrappers,\
-Mgoogle/protobuf/field_mask.proto=google.golang.org/genproto/protobuf/field_mask,\
+Mgoogle/protobuf/types/known/field_mask.proto=google.golang.org/genproto/protobuf/field_mask,\
 plugins=grpc:$TARGETDIR \
 --grpc-gateway_out=logtostderr=true:$TARGETDIR/  $f
 

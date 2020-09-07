@@ -92,6 +92,11 @@ func readAndUnmarshalSpec(fpath string) (s specSpec.Type) {
 		log.Fatal(readError)
 	}
 	parseError := yaml.Unmarshal(dataBytes, &s) //reads yaml and json because json is just a subset of yaml
+	if parseError != nil {
+		fmt.Println(fpath + ":1:1")
+		log.Fatal(parseError)
+	}
+
 	// convert fields from yaml.Node to Field type
 	for pair := s.Fields.Oldest(); pair != nil; pair = pair.Next() {
 		fieldYamlNode := pair.Value.(*yaml.Node)
@@ -100,9 +105,6 @@ func readAndUnmarshalSpec(fpath string) (s specSpec.Type) {
 		pair.Value = AstField
 	}
 
-	if parseError != nil {
-		log.Fatal(parseError)
-	}
 	return s
 }
 

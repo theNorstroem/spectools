@@ -77,7 +77,8 @@ func loadServiceSpecsFromDir(specDir string) (servicesMap map[string]*ServiceAst
 			return nil
 		})
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
+		return servicesMap
 	}
 	return servicesMap
 }
