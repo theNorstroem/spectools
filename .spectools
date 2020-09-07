@@ -1,3 +1,5 @@
+module: "github.com/sample/repo" #the name of the git repo where your spec project resides
+version: "v0.0.1"
 typeSpecDir: "./specs/Types"
 serviceSpecDir: "./specs/Services"
 specFormat: "yaml" #set to yaml or json
@@ -17,11 +19,16 @@ flows:
   default:
     - muType2Spec
     - muService2Spec
-  muspec:
+  prototyping:
     - muType2Spec
     - muService2Spec
-    - taskTest
-    - nonexistent
+    - genMessageProtos
+    - genServiceProtos
+    - gen_protoc_commands
+    - exec_protoc_messages
+    - exec_protoc_services
+    - gen_transcoder
+    - genEsModule
 build:
   proto:
     targetTypeDir: "./dist/protos/Messages" #Hint: add this to your proto include path
