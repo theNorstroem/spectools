@@ -1,9 +1,9 @@
 package clientspec
 
 import (
-	"github.com/theNorstroem/spectools/pkg/domaintypes/furo"
 	"github.com/theNorstroem/spectools/pkg/orderedmap"
 	"github.com/theNorstroem/spectools/pkg/specSpec"
+	"github.com/theNorstroem/spectools/pkg/specSpec/furo"
 )
 
 func CreateFromAstType(ast *specSpec.Type) (t *Type) {

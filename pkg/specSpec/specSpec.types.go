@@ -10,8 +10,8 @@ package specSpec
 
 import (
 	proto "github.com/golang/protobuf/proto"
-	furo "github.com/theNorstroem/spectools/pkg/domaintypes/furo"
 	"github.com/theNorstroem/spectools/pkg/orderedmap"
+	furo "github.com/theNorstroem/spectools/pkg/specSpec/furo"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
