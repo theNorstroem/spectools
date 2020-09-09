@@ -12,6 +12,8 @@ import (
 
 func Run(cmd *cobra.Command, args []string) {
 	fullExport := false
+	// todo implement flag
+	exportInstalled := false
 	f := cmd.Flag("full")
 	if f != nil {
 		fullExport = f.Value.String() == "true"
@@ -30,11 +32,14 @@ func Run(cmd *cobra.Command, args []string) {
 		}
 
 	}
-	for k, t := range Typelist.InstalledTypesByName {
-		if fullExport {
-			allTypes[k] = t
-		} else {
-			allTypes[k] = t.TypeSpec
+
+	if exportInstalled {
+		for k, t := range Typelist.InstalledTypesByName {
+			if fullExport {
+				allTypes[k] = t
+			} else {
+				allTypes[k] = t.TypeSpec
+			}
 		}
 	}
 
@@ -50,11 +55,13 @@ func Run(cmd *cobra.Command, args []string) {
 		}
 
 	}
-	for k, s := range Servicelist.InstalledServicesByName {
-		if fullExport {
-			allServices[k] = s
-		} else {
-			allServices[k] = s.ServiceSpec
+	if exportInstalled {
+		for k, s := range Servicelist.InstalledServicesByName {
+			if fullExport {
+				allServices[k] = s
+			} else {
+				allServices[k] = s.ServiceSpec
+			}
 		}
 	}
 

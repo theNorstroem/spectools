@@ -30,6 +30,9 @@ type singleServiceTplData struct {
 func Run(cmd *cobra.Command, args []string) {
 	fmt.Println("genServiceProtos called")
 
+	// todo implement flag
+	withInstalled := false
+
 	allServices := map[string]*specSpec.Service{}
 	// types are needed for import checks
 	Typelist := &typeAst.Typelist{}
@@ -43,8 +46,10 @@ func Run(cmd *cobra.Command, args []string) {
 	for k, t := range Servicelist.ServicesByName {
 		allServices[k] = &t.ServiceSpec
 	}
-	for k, t := range Servicelist.InstalledServicesByName {
-		allServices[k] = &t.ServiceSpec
+	if withInstalled {
+		for k, t := range Servicelist.InstalledServicesByName {
+			allServices[k] = &t.ServiceSpec
+		}
 	}
 
 	// prepare templating

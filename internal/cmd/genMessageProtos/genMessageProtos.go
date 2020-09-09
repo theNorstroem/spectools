@@ -27,6 +27,9 @@ type singleTplData struct {
 }
 
 func Run(cmd *cobra.Command, args []string) {
+	// todo implement flag
+	withInstalled := false
+
 	fmt.Println("running genMessageProtos")
 	allTypes := map[string]*specSpec.Type{}
 	Typelist := &typeAst.Typelist{}
@@ -36,8 +39,10 @@ func Run(cmd *cobra.Command, args []string) {
 	for k, t := range Typelist.TypesByName {
 		allTypes[k] = &t.TypeSpec
 	}
-	for k, t := range Typelist.InstalledTypesByName {
-		allTypes[k] = &t.TypeSpec
+	if withInstalled {
+		for k, t := range Typelist.InstalledTypesByName {
+			allTypes[k] = &t.TypeSpec
+		}
 	}
 
 	protoTplData := map[string]*singleTplData{}
