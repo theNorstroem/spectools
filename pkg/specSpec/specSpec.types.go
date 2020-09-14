@@ -135,6 +135,14 @@ type Servicereqres struct {
 	Request string `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
 	// Define the response type, leave this field empty if not needed
 	Response string `protobuf:"bytes,2,opt,name=response,proto3" json:"response,omitempty"`
+	// Define the body field in request the type
+	// The name of the request field whose value is mapped to the HTTP request
+	// body, or `*` for mapping all request fields not captured by the path
+	// pattern to the HTTP body, or omitted for not having any HTTP request body.
+	//
+	// NOTE: the referred field must be present at the top-level of the request
+	// message type.
+	BodyField string `protobuf:"bytes,3,opt,name=response,proto3" json:"body_field,omitempty"`
 }
 
 func (x *Servicereqres) Reset() {
