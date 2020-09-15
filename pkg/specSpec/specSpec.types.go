@@ -142,7 +142,7 @@ type Servicereqres struct {
 	//
 	// NOTE: the referred field must be present at the top-level of the request
 	// message type.
-	BodyField string `protobuf:"bytes,3,opt,name=response,proto3" json:"body_field,omitempty"`
+	BodyField string `protobuf:"bytes,3,opt,name=response,proto3" json:"bodyfield" yaml:"bodyfield"`
 }
 
 func (x *Servicereqres) Reset() {

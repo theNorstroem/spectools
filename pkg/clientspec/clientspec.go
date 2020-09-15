@@ -6,7 +6,7 @@ import (
 	"github.com/theNorstroem/spectools/pkg/specSpec/furo"
 )
 
-func CreateFromAstType(ast *specSpec.Type) (t *Type) {
+func CreateClientTypeFromAstType(ast *specSpec.Type) (t *Type) {
 
 	t = &Type{
 		Name:   ast.Name,
@@ -27,7 +27,7 @@ func CreateFromAstType(ast *specSpec.Type) (t *Type) {
 	return t
 }
 
-func CreateSectviceFromAstService(ast *specSpec.Service) (t *Service) {
+func CreateServiceFromAstService(ast *specSpec.Service) (t *Service) {
 
 	t = &Service{
 		Name:     ast.Name,
