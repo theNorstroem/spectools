@@ -61,6 +61,7 @@ func CleanCPlusPlusStyleForServices(services map[string]*clientspec.Service, ser
 		service.Services.Map(func(iKey interface{}, iValue interface{}) {
 			servivename := iKey.(string)
 			rpc := iValue.(*clientspec.CompressedService)
+			//todo make a better resolution for services
 			if strings.HasPrefix(rpc.Data.Request, ".") {
 				// type starts from root, just remove the .
 				rpc.Data.Request = rpc.Data.Request[1:len(rpc.Data.Request)]
