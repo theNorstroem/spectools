@@ -27,7 +27,7 @@ func CreateClientTypeFromAstType(ast *specSpec.Type) (t *Type) {
 	return t
 }
 
-func CreateServiceFromAstService(ast *specSpec.Service) (t *Service) {
+func CreateServiceFromAstService(ast *specSpec.Service, fullname string) (t *Service) {
 
 	t = &Service{
 		Name:     ast.Name,
@@ -37,7 +37,11 @@ func CreateServiceFromAstService(ast *specSpec.Service) (t *Service) {
 	ast.Services.Map(func(iKey interface{}, iValue interface{}) {
 		astField := iValue.(*specSpec.Rpc)
 		s := &CompressedService{
-			Data: astField.Data,
+			Data: &specSpec.Servicereqres{
+				Request:   resolve(astField.Data.Request, fullname),
+				Response:  resolve(astField.Data.Response, fullname),
+				BodyField: astField.Data.BodyField,
+			},
 			Deeplink: &Deeplink{
 				Href:   astField.Deeplink.Href,
 				Method: astField.Deeplink.Method,
