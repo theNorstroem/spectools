@@ -15,6 +15,14 @@ import (
 )
 
 func Run(cmd *cobra.Command, args []string) {
+
+	freshInstall := false
+	f := cmd.Flag("fresh")
+	if f != nil {
+		freshInstall = f.Value.String() == "true"
+		fmt.Println("Fresh install requested")
+	}
+
 	fmt.Println("Installing dependencies")
 	deps := viper.GetStringSlice("dependencies")
 	fmt.Println(deps)
@@ -33,6 +41,10 @@ func Run(cmd *cobra.Command, args []string) {
 			mkdirRecursive(dep.DependencyPath)
 		}
 		if dep.Kind == util.GIT {
+			// removie repodir if freshInstall is requested
+			if freshInstall {
+				os.RemoveAll(packageRepoDir)
+			}
 			// create path if it does not exist
 			if !util.DirExists(packageRepoDir) {
 				// create
@@ -40,6 +52,7 @@ func Run(cmd *cobra.Command, args []string) {
 				// clone if it is new
 
 				_, err := git.PlainClone(packageRepoDir, false, &git.CloneOptions{
+
 					URL:      dep.Repository,
 					Depth:    1,
 					Progress: os.Stdout,
