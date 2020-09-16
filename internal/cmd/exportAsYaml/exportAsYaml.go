@@ -21,7 +21,7 @@ func Run(cmd *cobra.Command, args []string) {
 
 	allTypes := map[string]interface{}{}
 	Typelist := &typeAst.Typelist{}
-	Typelist.LoadTypeSpecsFromDir(viper.GetString("typeSpecDir"))
+	Typelist.LoadTypeSpecsFromDir(viper.GetString("specDir"))
 	Typelist.LoadInstalledTypeSpecsFromDir(util.GetDependencyList()...)
 
 	for k, t := range Typelist.TypesByName {
@@ -46,7 +46,7 @@ func Run(cmd *cobra.Command, args []string) {
 	allServices := map[string]interface{}{}
 	Servicelist := &serviceAst.Servicelist{}
 	Servicelist.LoadInstalledServiceSpecsFromDir(util.GetDependencyList()...)
-	Servicelist.LoadServiceSpecsFromDir(viper.GetString("serviceSpecDir"))
+	Servicelist.LoadServiceSpecsFromDir(viper.GetString("specDir"))
 	for k, s := range Servicelist.ServicesByName {
 		if fullExport {
 			allServices[k] = s

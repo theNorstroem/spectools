@@ -19,6 +19,7 @@ import (
 type Typelist struct {
 	TypesByName          map[string]*TypeAst
 	InstalledTypesByName map[string]*TypeAst
+	AllAvailabeTypes     map[string]*TypeAst // installed and project types together
 	SpecDir              string
 }
 
@@ -38,6 +39,13 @@ func (l *Typelist) setStorageFormat(format string) {
 // loads a spec directory and installed specs to the typelist
 func (l *Typelist) LoadTypeSpecsFromDir(specDir string) {
 	l.TypesByName = loadTypeSpecsFromDir(specDir)
+
+	if l.AllAvailabeTypes == nil {
+		l.AllAvailabeTypes = map[string]*TypeAst{}
+	}
+	for k, t := range l.TypesByName {
+		l.AllAvailabeTypes[k] = t
+	}
 }
 
 // loads a spec directory and installed specs to the typelist
@@ -51,6 +59,13 @@ func (l *Typelist) LoadInstalledTypeSpecsFromDir(specDir ...string) {
 		for tname, v := range tlist {
 			l.InstalledTypesByName[tname] = v
 		}
+	}
+
+	if l.AllAvailabeTypes == nil {
+		l.AllAvailabeTypes = map[string]*TypeAst{}
+	}
+	for k, t := range l.InstalledTypesByName {
+		l.AllAvailabeTypes[k] = t
 	}
 }
 
@@ -157,7 +172,14 @@ func (l *Typelist) SaveAllTypeSpecsToDir(specDir string) {
 }
 
 //
-func (l *Typelist) ResolveProtoImportForType(fqTypeName string) (imp string, typeFound bool) {
+func (l *Typelist) ResolveProtoImportForType(typeName string, pkg string) (imp string, typeFound bool) {
+
+	fqTypeName := l.ResolveFullQualifiedTypeName(typeName, pkg)
+	// remove leading dot
+	if strings.HasPrefix(fqTypeName, ".") {
+		fqTypeName = fqTypeName[1:len(fqTypeName)]
+	}
+
 	//check on installed and spec tpelist
 	imp = ""
 	if l.TypesByName[fqTypeName] == nil && l.InstalledTypesByName[fqTypeName] == nil {
@@ -169,7 +191,6 @@ func (l *Typelist) ResolveProtoImportForType(fqTypeName string) (imp string, typ
 	if l.InstalledTypesByName[fqTypeName] != nil {
 		imp = l.InstalledTypesByName[fqTypeName].GetProtoTarget()
 	}
-
 	return imp, true
 }
 
@@ -181,28 +202,28 @@ func (a *TypeAst) GetProtoTarget() (proto string) {
 // updates the imports on each type
 func (l *Typelist) UpdateImports() {
 	for t, v := range l.TypesByName {
-		self, _ := l.ResolveProtoImportForType(t)
+		self, _ := l.ResolveProtoImportForType(t, v.TypeSpec.XProto.Package)
 		imports := []string{}
 		v.TypeSpec.Fields.Map(func(iFieldname interface{}, iField interface{}) {
 			field := iField.(*specSpec.Field)
-			fileToImport := field.Type
+			typeToImport := field.Type
 			// map imports
-			if strings.HasPrefix(fileToImport, "map") {
+			if strings.HasPrefix(typeToImport, "map") {
 				regex := regexp.MustCompile(`,([^>]*)`)
-				matches := regex.FindStringSubmatch(fileToImport)
-				fileToImport = strings.TrimSpace(matches[1])
+				matches := regex.FindStringSubmatch(typeToImport)
+				typeToImport = strings.TrimSpace(matches[1])
 			}
 
 			// string, uint,... does not need to be imported
-			f := strings.Split(fileToImport, ".")
+			f := strings.Split(typeToImport, ".")
 			if len(f) > 1 {
-				i, found := l.ResolveProtoImportForType(fileToImport)
+				i, found := l.ResolveProtoImportForType(typeToImport, v.TypeSpec.XProto.Package)
 				if found && i != self {
 					imports = append(imports, i)
 				} else {
 					if i != self {
-						fmt.Println(util.ScanForStringPosition(fileToImport, path.Join(viper.GetString("typeSpecDir"), l.TypesByName[t].Path, l.TypesByName[t].FileName))+":Import", fileToImport, "not found in type", t, "on field", iFieldname)
-						fmt.Println(util.ScanForStringPosition(fileToImport, viper.GetString("muSpec.types"))+":Import not found. Check your muSpec types if you came from there. Field:", iFieldname)
+						fmt.Println(util.ScanForStringPosition(typeToImport, path.Join(viper.GetString("specDir"), l.TypesByName[t].Path, l.TypesByName[t].FileName))+":Import", typeToImport, "not found in type", t, "on field", iFieldname)
+						fmt.Println(util.ScanForStringPosition(typeToImport, viper.GetString("muSpec.types"))+":Import not found. Check your muSpec types if you came from there. Field:", iFieldname)
 					}
 				}
 			}
@@ -215,7 +236,7 @@ func (l *Typelist) UpdateImports() {
 // Deletes the spec from disk and removes the element from List
 func (l *Typelist) DeleteType(typename string) {
 	// delete the file
-	filepath := path.Join(viper.GetString("typeSpecDir"), l.TypesByName[typename].Path, l.TypesByName[typename].FileName)
+	filepath := path.Join(viper.GetString("specDir"), l.TypesByName[typename].Path, l.TypesByName[typename].FileName)
 	err := os.Remove(filepath)
 	if err != nil {
 		fmt.Println(err)
@@ -225,4 +246,38 @@ func (l *Typelist) DeleteType(typename string) {
 
 	delete(l.TypesByName, typename)
 
+}
+
+// full name from c++ style name
+func (l Typelist) ResolveFullQualifiedTypeName(typename string, pkg string) string {
+	// absolut type given, nothing special to do
+	if strings.HasPrefix(typename, ".") {
+		// type starts from root, just remove the .
+		return typename[1:len(typename)]
+	}
+
+	pathArr := strings.Split(pkg, ".")
+	// if we are in type a.b.c.d and want type x.y we look for
+	// a.b.c.d.x.y
+	// a.b.c.x.y
+	// a.b.x.y
+	// a.x.y
+	// x.y
+	for i := len(pathArr); i >= 0; i-- {
+		sub := strings.Join(pathArr[0:i], ".")
+		ftype := sub + "." + typename
+
+		if l.AllAvailabeTypes[ftype] != nil {
+			// match
+			return ftype
+			i = 0
+		}
+		// we are at root
+		if i == 0 && strings.HasPrefix(ftype, ".") {
+			// remove .
+			return ftype[1:len(ftype)]
+		}
+	}
+
+	return typename
 }

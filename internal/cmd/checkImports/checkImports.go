@@ -11,20 +11,20 @@ import (
 func Run(cmd *cobra.Command, args []string) {
 	Typelist := &typeAst.Typelist{}
 	Typelist.LoadInstalledTypeSpecsFromDir(util.GetDependencyList()...)
-	Typelist.LoadTypeSpecsFromDir(viper.GetString("typeSpecDir"))
+	Typelist.LoadTypeSpecsFromDir(viper.GetString("specDir"))
 
 	Typelist.UpdateImports()
 
 	typeAst.Format = viper.GetString("specFormat")
-	Typelist.SaveAllTypeSpecsToDir(viper.GetString("typeSpecDir"))
+	//Typelist.SaveAllTypeSpecsToDir(viper.GetString("specDir"))
 
 	Servicelist := &serviceAst.Servicelist{}
 	Servicelist.LoadInstalledServiceSpecsFromDir(util.GetDependencyList()...)
-	Servicelist.LoadServiceSpecsFromDir(viper.GetString("serviceSpecDir"))
+	Servicelist.LoadServiceSpecsFromDir(viper.GetString("specDir"))
 
 	Servicelist.UpdateAllImports(Typelist)
 
 	serviceAst.Format = viper.GetString("specFormat")
 
-	Servicelist.SaveAllServiceSpecsToDir(viper.GetString("serviceSpecDir"))
+	Servicelist.SaveAllServiceSpecsToDir(viper.GetString("specDir"))
 }

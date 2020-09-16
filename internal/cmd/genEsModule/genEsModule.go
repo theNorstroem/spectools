@@ -16,7 +16,7 @@ import (
 func Run(cmd *cobra.Command, args []string) {
 
 	Typelist := &typeAst.Typelist{}
-	Typelist.LoadTypeSpecsFromDir(viper.GetString("typeSpecDir"))
+	Typelist.LoadTypeSpecsFromDir(viper.GetString("specDir"))
 	Typelist.LoadInstalledTypeSpecsFromDir(util.GetDependencyList()...)
 
 	clientspec.AddTypesToResolver(Typelist.TypesByName)
@@ -27,7 +27,7 @@ func Run(cmd *cobra.Command, args []string) {
 
 	Servicelist := &serviceAst.Servicelist{}
 	Servicelist.LoadInstalledServiceSpecsFromDir(util.GetDependencyList()...)
-	Servicelist.LoadServiceSpecsFromDir(viper.GetString("serviceSpecDir"))
+	Servicelist.LoadServiceSpecsFromDir(viper.GetString("specDir"))
 	clientspec.AddServicesToResolver(Servicelist.ServicesByName)
 	clientspec.AddServicesToResolver(Servicelist.InstalledServicesByName)
 	allServices := clientspec.GetAllServices()

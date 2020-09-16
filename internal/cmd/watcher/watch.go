@@ -18,7 +18,7 @@ func Run(cmd *cobra.Command, args []string) {
 
 	// starting at the root of the project, walk each file/directory searching for
 	// directories
-	if err := filepath.Walk(viper.GetString("typeSpecDir"), watchDir); err != nil {
+	if err := filepath.Walk(viper.GetString("specDir"), watchDir); err != nil {
 		fmt.Println("ERROR", err)
 	}
 

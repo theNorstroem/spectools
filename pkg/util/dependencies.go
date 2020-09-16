@@ -31,7 +31,7 @@ func GetDependencyList() []string {
 		err := depconf.ReadInConfig()
 		if err == nil {
 
-			tdir := depconf.GetString("typeSpecDir")
+			tdir := depconf.GetString("specDir")
 			if tdir != "" {
 				if _, err := os.Stat(path.Join(dep.DependencyPath, tdir)); !os.IsNotExist(err) {
 					// path/to/whatever exists
@@ -39,7 +39,7 @@ func GetDependencyList() []string {
 				}
 
 			}
-			sdir := depconf.GetString("serviceSpecDir")
+			sdir := depconf.GetString("specDir")
 			if sdir != "" {
 				if _, err := os.Stat(path.Join(dep.DependencyPath, sdir)); !os.IsNotExist(err) {
 					deps = append(deps, path.Join(dep.DependencyPath, sdir))

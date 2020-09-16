@@ -24,7 +24,7 @@ func Run(cmd *cobra.Command, args []string) {
 		MicroServices:          []*microservices.MicroService{},
 	} // holds all muspecs
 	Servicelist := &serviceAst.Servicelist{}
-	Servicelist.LoadServiceSpecsFromDir(viper.GetString("serviceSpecDir"))
+	Servicelist.LoadServiceSpecsFromDir(viper.GetString("specDir"))
 	Servicelist.LoadInstalledServiceSpecsFromDir(viper.GetStringSlice("importedServiceSpecs")...)
 
 	globs := viper.GetStringSlice("muSpec.services")
@@ -52,7 +52,7 @@ func Run(cmd *cobra.Command, args []string) {
 	// types are needed for import checks
 	Typelist := &typeAst.Typelist{}
 	Typelist.LoadInstalledTypeSpecsFromDir(util.GetDependencyList()...)
-	Typelist.LoadTypeSpecsFromDir(viper.GetString("typeSpecDir"))
+	Typelist.LoadTypeSpecsFromDir(viper.GetString("specDir"))
 
 	// update the services ast from microspecs
 	microServicesList.UpateServicelist(Servicelist)
@@ -60,7 +60,7 @@ func Run(cmd *cobra.Command, args []string) {
 	Servicelist.UpdateAllImports(Typelist)
 
 	typeAst.Format = viper.GetString("specFormat")
-	Servicelist.SaveAllServiceSpecsToDir(viper.GetString("serviceSpecDir"))
+	Servicelist.SaveAllServiceSpecsToDir(viper.GetString("specDir"))
 }
 
 func LoadServices(list []string, bigList *microservices.MicroServiceList) {

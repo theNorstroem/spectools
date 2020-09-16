@@ -24,7 +24,7 @@ func Run(cmd *cobra.Command, args []string) {
 		MicroTypes:          []*microtypes.MicroType{},
 	} // holds all muspecs
 	Typelist := &typeAst.Typelist{}
-	Typelist.LoadTypeSpecsFromDir(viper.GetString("typeSpecDir"))
+	Typelist.LoadTypeSpecsFromDir(viper.GetString("specDir"))
 	Typelist.LoadInstalledTypeSpecsFromDir(util.GetDependencyList()...)
 
 	globs := viper.GetStringSlice("muSpec.types")
@@ -56,7 +56,7 @@ func Run(cmd *cobra.Command, args []string) {
 
 	Typelist.UpdateImports()
 	typeAst.Format = viper.GetString("specFormat")
-	Typelist.SaveAllTypeSpecsToDir(viper.GetString("typeSpecDir"))
+	Typelist.SaveAllTypeSpecsToDir(viper.GetString("specDir"))
 }
 
 func LoadTypes(list []string, bigList *microtypes.MicroTypelist) {

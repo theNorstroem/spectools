@@ -34,7 +34,7 @@ func Run(cmd *cobra.Command, args []string) {
 	allTypes := map[string]*specSpec.Type{}
 	Typelist := &typeAst.Typelist{}
 	Typelist.LoadInstalledTypeSpecsFromDir(util.GetDependencyList()...)
-	Typelist.LoadTypeSpecsFromDir(viper.GetString("typeSpecDir"))
+	Typelist.LoadTypeSpecsFromDir(viper.GetString("specDir"))
 
 	for k, t := range Typelist.TypesByName {
 		allTypes[k] = &t.TypeSpec
@@ -89,14 +89,14 @@ func Run(cmd *cobra.Command, args []string) {
 
 	// clean the directory
 	if viper.GetBool("proto.cleanBuild") {
-		err := os.RemoveAll("./" + viper.GetString("build.proto.targetTypeDir")) // ./ is for safety purposes
+		err := os.RemoveAll("./" + viper.GetString("build.proto.targetDir")) // ./ is for safety purposes
 		if err != nil {
 			fmt.Println(err)
 		}
 	}
 	// make the type protos
 	for key, tplData := range protoTplData {
-		filename := path.Join(viper.GetString("build.proto.targetTypeDir"), key)
+		filename := path.Join(viper.GetString("build.proto.targetDir"), key)
 		// create target dir => kann optimiert werden
 		util.MkdirRelative(path.Dir(filename))
 

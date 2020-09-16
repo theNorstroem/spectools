@@ -36,8 +36,8 @@ var genMessageProtosCmd = &cobra.Command{
 
 	build:
 	  proto:
-		targetTypeDir: "./dist/protos/Messages" #Hint: add this to your proto include path
-		targetServiceDir: "./dist/protos/Services" #Hint: add this to your proto include path
+		targetDir: "./dist/protos/Messages" #Hint: add this to your proto include path
+		
 
 `,
 	Run: genMessageProtos.Run,

@@ -60,10 +60,7 @@ func loadServiceSpecsFromDir(specDir string) (servicesMap map[string]*ServiceAst
 
 			if !info.IsDir() && strings.HasSuffix(fpath, "service.spec") {
 				filename := path.Base(fpath)
-				sdlen := len(strings.Split(specDir, "/"))
-				if strings.HasPrefix(specDir, "./") {
-					sdlen--
-				}
+				sdlen := len(strings.Split(path.Dir(specDir), "/"))
 
 				relativePath := path.Dir(strings.Join(strings.Split(fpath, "/")[sdlen:], "/"))
 				AstService := &ServiceAst{
@@ -178,14 +175,14 @@ func (ast ServiceAst) UpdateImports(typelist *typeAst.Typelist) {
 		rpc.Query.Map(func(qkey interface{}, qvalue interface{}) {
 			qp := qvalue.(*specSpec.Queryparam)
 			if qp.Type != "string" {
-				imp, found := typelist.ResolveProtoImportForType(qp.Type)
+				imp, found := typelist.ResolveProtoImportForType(qp.Type, ast.ServiceSpec.XProto.Package)
 				if found {
 					// just add the imports, duplicates will be removed later
 					ast.ServiceSpec.XProto.Imports = append(ast.ServiceSpec.XProto.Imports, imp)
 				} else {
 
 					fmt.Println(util.ScanForStringPosition(qp.Type,
-						path.Join(viper.GetString("serviceSpecDir"), ast.FileName)), ":Import",
+						path.Join(viper.GetString("specDir"), ast.FileName)), ":Import",
 						qp.Type, "not found in Service",
 						ast.ServiceSpec.Name, "on param", qkey.(string))
 				}
@@ -194,14 +191,14 @@ func (ast ServiceAst) UpdateImports(typelist *typeAst.Typelist) {
 		// data.request types
 		// rpc.Data.Request
 		if rpc.Data.Request != "" {
-			imp, found := typelist.ResolveProtoImportForType(rpc.Data.Request)
+			imp, found := typelist.ResolveProtoImportForType(rpc.Data.Request, ast.ServiceSpec.XProto.Package)
 			if found {
 				// just add the imports, duplicates will be removed later
 				ast.ServiceSpec.XProto.Imports = append(ast.ServiceSpec.XProto.Imports, imp)
 			} else {
 
 				fmt.Println(util.ScanForStringPosition(rpc.Data.Request,
-					path.Join(viper.GetString("serviceSpecDir"), ast.FileName)), ":Import",
+					path.Join(viper.GetString("specDir"), ast.FileName)), ":Import",
 					rpc.Data.Request, "not found in Service",
 					ast.ServiceSpec.Name, "on param", rpc.RpcName)
 			}
@@ -210,14 +207,14 @@ func (ast ServiceAst) UpdateImports(typelist *typeAst.Typelist) {
 		// data.response types
 		// rpc.Data.Response
 		if rpc.Data.Response != "" {
-			imp, found := typelist.ResolveProtoImportForType(rpc.Data.Response)
+			imp, found := typelist.ResolveProtoImportForType(rpc.Data.Response, ast.ServiceSpec.XProto.Package)
 			if found {
 				// just add the imports, duplicates will be removed later
 				ast.ServiceSpec.XProto.Imports = append(ast.ServiceSpec.XProto.Imports, imp)
 			} else {
 
 				fmt.Println(util.ScanForStringPosition(rpc.Data.Response,
-					path.Join(viper.GetString("serviceSpecDir"), ast.FileName)), ":Import",
+					path.Join(viper.GetString("specDir"), ast.FileName)), ":Import",
 					rpc.Data.Response, "not found in Service",
 					ast.ServiceSpec.Name, "on param", rpc.RpcName)
 			}
@@ -237,13 +234,12 @@ func (ast ServiceAst) UpdateImports(typelist *typeAst.Typelist) {
 
 	})
 
-	typelist.ResolveProtoImportForType("string")
 }
 
 // Deletes the spec from disk and removes the element from List
 func (l *Servicelist) DeleteService(servicename string) {
 	// delete the file
-	filepath := path.Join(viper.GetString("serviceSpecDir"), l.ServicesByName[servicename].Path, l.ServicesByName[servicename].FileName)
+	filepath := path.Join(viper.GetString("specDir"), l.ServicesByName[servicename].Path, l.ServicesByName[servicename].FileName)
 	err := os.Remove(filepath)
 	if err != nil {
 		fmt.Println(err)

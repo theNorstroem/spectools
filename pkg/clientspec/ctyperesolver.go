@@ -32,7 +32,43 @@ func GetAllServices() ClientServiceList {
 	return availableServices
 }
 
-func resolve(typename string, pkg string) string {
+func TransformCPlusStyleToAbsolutTypes() {
+
+	// https://developers.google.com/protocol-buffers/docs/proto3
+	// Packages and Name Resolution
+	// Type name resolution in the protocol buffer language works like C++: first the innermost scope is searched, then the next-innermost, and so on, with each package considered to be "inner" to its parent package. A leading '.' (for example, .foo.bar.Baz) means to start from the outermost scope instead.
+
+	// The protocol buffer compiler resolves all type names by parsing the imported .proto files. The code generator for each language knows how to refer to each type in that language, even if it has different scoping rules.
+
+	// resolves the c++ notation to client notation which is always from root
+
+	// check all fields in all types
+	for fullQualifiedName, typeordermap := range availableTypes { //fullQualifiedName contains the package..
+
+		typeordermap.Fields.Map(func(iFname interface{}, iField interface{}) {
+			fieldname := iFname.(string)
+			iEnvField, _ := availableTypes[fullQualifiedName].Fields.Get(fieldname)
+			es6Field := iEnvField.(*Field)
+
+			if strings.HasPrefix(es6Field.Type, ".") {
+				// type starts from root, just remove the .
+				es6Field.Type = es6Field.Type[1:len(es6Field.Type)]
+			} else {
+				// find first occurrence which can match the field
+
+				es6Field.Type = resolveFullQualifiedTypename(es6Field.Type, fullQualifiedName)
+
+			}
+
+			availableTypes[fullQualifiedName].Fields.Set(fieldname, es6Field)
+
+		})
+
+	}
+
+}
+
+func resolveFullQualifiedTypename(typename string, pkg string) string {
 	// absolut type given, nothing special to do
 	if strings.HasPrefix(typename, ".") {
 		// type starts from root, just remove the .
@@ -63,40 +99,4 @@ func resolve(typename string, pkg string) string {
 	}
 
 	return typename
-}
-
-func TransformCPlusStyleToAbsolutTypes() {
-
-	// https://developers.google.com/protocol-buffers/docs/proto3
-	// Packages and Name Resolution
-	// Type name resolution in the protocol buffer language works like C++: first the innermost scope is searched, then the next-innermost, and so on, with each package considered to be "inner" to its parent package. A leading '.' (for example, .foo.bar.Baz) means to start from the outermost scope instead.
-
-	// The protocol buffer compiler resolves all type names by parsing the imported .proto files. The code generator for each language knows how to refer to each type in that language, even if it has different scoping rules.
-
-	// resolves the c++ notation to client notation which is always from root
-
-	// check all fields in all types
-	for fullQualifiedName, typeordermap := range availableTypes { //fullQualifiedName contains the package..
-
-		typeordermap.Fields.Map(func(iFname interface{}, iField interface{}) {
-			fieldname := iFname.(string)
-			iEnvField, _ := availableTypes[fullQualifiedName].Fields.Get(fieldname)
-			es6Field := iEnvField.(*Field)
-
-			if strings.HasPrefix(es6Field.Type, ".") {
-				// type starts from root, just remove the .
-				es6Field.Type = es6Field.Type[1:len(es6Field.Type)]
-			} else {
-				// find first occurrence which can match the field
-
-				es6Field.Type = resolve(es6Field.Type, fullQualifiedName)
-
-			}
-
-			availableTypes[fullQualifiedName].Fields.Set(fieldname, es6Field)
-
-		})
-
-	}
-
 }

@@ -38,8 +38,8 @@ func CreateServiceFromAstService(ast *specSpec.Service, fullname string) (t *Ser
 		astField := iValue.(*specSpec.Rpc)
 		s := &CompressedService{
 			Data: &specSpec.Servicereqres{
-				Request:   resolve(astField.Data.Request, fullname),
-				Response:  resolve(astField.Data.Response, fullname),
+				Request:   resolveFullQualifiedTypename(astField.Data.Request, fullname),
+				Response:  resolveFullQualifiedTypename(astField.Data.Response, fullname),
 				BodyField: astField.Data.BodyField,
 			},
 			Deeplink: &Deeplink{

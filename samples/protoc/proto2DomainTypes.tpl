@@ -5,7 +5,7 @@ TARGETDIR="../../../pkg/domaintypes/"
 # enable recursion for /**/*.xxx
 shopt -s globstar dotglob
 
-cd {{.config.build.proto.targettypedir}}
+cd {{.config.build.proto.targetDir}}
 
 FILES=./**/*.proto
 

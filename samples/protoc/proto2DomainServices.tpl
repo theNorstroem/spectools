@@ -5,7 +5,7 @@ TARGETDIR="../../../pkg/grpcservices/"
 # enable recursion for /**/*.xxx
 shopt -s globstar dotglob
 
-cd {{.config.build.proto.targetservicedir}}
+cd {{.config.build.proto.targetDir}}
 
 FILES=./**/*.proto
 for f in $FILES

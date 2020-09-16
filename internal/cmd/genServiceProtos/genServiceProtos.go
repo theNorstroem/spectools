@@ -37,11 +37,11 @@ func Run(cmd *cobra.Command, args []string) {
 	// types are needed for import checks
 	Typelist := &typeAst.Typelist{}
 	Typelist.LoadInstalledTypeSpecsFromDir(util.GetDependencyList()...)
-	Typelist.LoadTypeSpecsFromDir(viper.GetString("typeSpecDir"))
+	Typelist.LoadTypeSpecsFromDir(viper.GetString("specDir"))
 
 	Servicelist := &serviceAst.Servicelist{}
 	Servicelist.LoadInstalledServiceSpecsFromDir(util.GetDependencyList()...)
-	Servicelist.LoadServiceSpecsFromDir(viper.GetString("serviceSpecDir"))
+	Servicelist.LoadServiceSpecsFromDir(viper.GetString("specDir"))
 
 	for k, t := range Servicelist.ServicesByName {
 		allServices[k] = &t.ServiceSpec
@@ -61,7 +61,7 @@ func Run(cmd *cobra.Command, args []string) {
 
 	// clean the directory
 	if viper.GetBool("proto.cleanBuild") {
-		err := os.RemoveAll("./" + viper.GetString("build.proto.targetServiceDir"))
+		err := os.RemoveAll("./" + viper.GetString("build.proto.targetDir"))
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -103,7 +103,7 @@ func Run(cmd *cobra.Command, args []string) {
 
 	// make the  protos
 	for serviceName, tplData := range protoTplData {
-		filename := path.Join(viper.GetString("build.proto.targetServiceDir"), serviceName)
+		filename := path.Join(viper.GetString("build.proto.targetDir"), serviceName)
 		// create target dir => kann optimiert werden
 		util.MkdirRelative(path.Dir(filename))
 
