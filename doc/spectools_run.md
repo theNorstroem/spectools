@@ -17,13 +17,13 @@ Example Config:
 	flows:
 	  type:
 		- cleanTypeProtoDir
-		- muType2Spec
+		- muSpec2Spec
 		- TypeSpec2Proto
 		- publish_npm
 
 Command:
 
-This config will run "cleanTypeProtoDir",  muType2Spec"" and "TypeSpec2Proto" in sequence and calling the command publish_npm
+This config will run "cleanTypeProtoDir",  muSpec2Spec"" and "TypeSpec2Proto" in sequence and calling the command publish_npm
 
 Tipp: If you need the types and services in your command, just call spectools again. 
 

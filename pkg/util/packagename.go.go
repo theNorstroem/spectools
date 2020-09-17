@@ -1,6 +1,7 @@
 package util
 
 import (
+	"github.com/spf13/viper"
 	"path"
 )
 
@@ -12,5 +13,5 @@ func GetGoPackageName(TargetPath string) string {
 	// 	segments[i] = p + "pb"
 	// }
 	// tp := strings.Join(segments,"/")
-	return TargetPath + ";" + path.Base(TargetPath) + "pb"
+	return viper.GetString("muSpec.goPackageBase") + TargetPath + ";" + path.Base(TargetPath) + "pb"
 }

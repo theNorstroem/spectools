@@ -1,4 +1,4 @@
-## spectools muType2Spec
+## spectools muSpec2Spec
 
 Updates the type specs with the definitions from the type µSpecs.
 
@@ -9,13 +9,13 @@ The converter will update your type specs and also delete specs and fields if th
 Do not forget to set your µSpec folder in the .spectools config.
 
 ```
-spectools muType2Spec [flags]
+spectools muSpec2Spec [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for muType2Spec
+  -h, --help   help for muSpec2Spec
 ```
 
 ### Options inherited from parent commands

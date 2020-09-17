@@ -36,7 +36,7 @@ spectools [flags]
 * [spectools init](spectools_init.md)	 - Creates a initial spectools config
 * [spectools install](spectools_install.md)	 - Installs the dependencies
 * [spectools muService2Spec](spectools_muService2Spec.md)	 - Updates the service specs with the definitions from the service µSpecs.
-* [spectools muType2Spec](spectools_muType2Spec.md)	 - Updates the type specs with the definitions from the type µSpecs.
+* [spectools muSpec2Spec](spectools_muSpec2Spec.md)	 - Updates the type specs with the definitions from the type µSpecs.
 * [spectools run](spectools_run.md)	 - Runs a configured flow.
 * [spectools watch](spectools_watch.md)	 - Watch spec changes and generate protos.
 

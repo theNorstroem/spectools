@@ -23,33 +23,32 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/theNorstroem/spectools/internal/cmd/muService2Spec"
+	"github.com/theNorstroem/spectools/internal/cmd/muSpec2Spec"
 )
 
-// muService2SpecCmd represents the muService2Spec command
-var muService2SpecCmd = &cobra.Command{
-	Use:   "muService2Spec",
-	Short: "Updates the service specs with the definitions from the service µSpecs.",
-	Long: `The converter will update your service specs and also delete specs if they are not in the µSpec file anymore.
+// muSpec2SpecCmd represents the muSpec2Spec command
+var muSpec2SpecCmd = &cobra.Command{
+	Use:   "muSpec2Spec",
+	Short: "Updates the type specs with the definitions from the type µSpecs.",
+	Long: `The converter will update your type specs and also delete specs and fields if they are not in the µSpec file anymore.
 
-Do not forget to set your µSpec folder in the .spectools config. 
-`,
-	Run: muService2Spec.Run,
+Do not forget to set your µSpec folder in the .spectools config.`,
+	Run: muSpec2Spec.Run,
 }
 
 // needed for the documentation generator
-var MuService2SpecCmd = muService2SpecCmd
+var MuSpec2SpecCmd = muSpec2SpecCmd
 
 func init() {
-	rootCmd.AddCommand(muService2SpecCmd)
+	rootCmd.AddCommand(muSpec2SpecCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// muService2SpecCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// muSpec2SpecCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// muService2SpecCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	muSpec2SpecCmd.Flags().BoolP("delete", "d", false, "Delete specs which are not in muTypes")
 }

@@ -216,6 +216,7 @@ func (l *Typelist) UpdateImports() {
 
 			// string, uint,... does not need to be imported
 			f := strings.Split(typeToImport, ".")
+			// todo: do a better check, sometimes typos exists. stirng is not a valid type ==> string
 			if len(f) > 1 {
 				i, found := l.ResolveProtoImportForType(typeToImport, v.TypeSpec.XProto.Package)
 				if found && i != self {

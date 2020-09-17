@@ -20,7 +20,7 @@ type MicroTypelist struct {
 	MicroTypes          []*MicroType `yaml:"types"`
 }
 
-func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist) {
+func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist, deleteSpecs bool) {
 	// build list to delete specs which are not types.yaml
 	deleteList := map[string]bool{}
 	for typeName, _ := range typelist.TypesByName {
@@ -149,7 +149,11 @@ func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist) {
 	// delete the item
 	for typename, del := range deleteList {
 		if del {
-			typelist.DeleteType(typename)
+			if deleteSpecs {
+				typelist.DeleteType(typename)
+				fmt.Println(typename, "deleted")
+			}
+
 		}
 	}
 }

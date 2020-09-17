@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/spf13/viper"
 	"github.com/theNorstroem/spectools/pkg/ast/serviceAst"
+	"github.com/theNorstroem/spectools/pkg/microtypes"
 	"github.com/theNorstroem/spectools/pkg/orderedmap"
 	"github.com/theNorstroem/spectools/pkg/specSpec"
 	"github.com/theNorstroem/spectools/pkg/util"
@@ -21,7 +22,7 @@ type MicroServiceList struct {
 }
 
 // updates the core ast list
-func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist) {
+func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist, deleteSpecs bool, microTypelist *microtypes.MicroTypelist) {
 	// build list to delete specs which are not Services.yaml
 	deleteList := map[string]bool{}
 	for serviceName, _ := range servicelist.ServicesByName {
@@ -66,6 +67,7 @@ func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist)
 		AstService.ServiceSpec.XProto.Options["java_multiple_files"] = "true"
 
 		AstService.ServiceSpec.XProto.Imports = append(AstService.ServiceSpec.XProto.Imports, "google/api/annotations.proto")
+		AstService.ServiceSpec.XProto.Imports = append(AstService.ServiceSpec.XProto.Imports, microServiceAst.TargetPath+"/reqmsgs.proto")
 		rpcServiceDeleteList := map[string]bool{}
 		if AstService.ServiceSpec.Services != nil {
 			AstService.ServiceSpec.Services.Map(func(iKey interface{}, iValue interface{}) {
@@ -118,18 +120,48 @@ func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist)
 				}
 			}
 
-			// update target
-			sourceRPC.Query.Map(func(iKey interface{}, iValue interface{}) {
-				qpname := iKey.(string)
-				s := iValue.(specSpec.Queryparam)
-				targetRPC.Query.Set(qpname, &s)
-			})
-
-			targetRPC.RpcName = sourceRPC.RpcName
+			// update only if target rpc name was not set
+			if targetRPC.RpcName == "" {
+				targetRPC.RpcName = sourceRPC.RpcName
+			}
 			targetRPC.Deeplink = sourceRPC.Deeplink
 			targetRPC.Data.Request = sourceRPC.Data.Request
 			targetRPC.Data.Response = sourceRPC.Data.Response
 			targetRPC.Description = sourceRPC.Description
+
+			// set body to data if not defined
+			if targetRPC.Data.BodyField == "" {
+				targetRPC.Data.BodyField = "data"
+			}
+
+			// make Request Type
+			fields := orderedmap.New()
+			fields.Set(targetRPC.Data.BodyField, "."+targetRPC.Data.Request+":1 #Body with "+targetRPC.Data.Request)
+
+			if sourceRPC.Query.Len() > 0 {
+				number := 1
+				sourceRPC.Query.Map(func(iKey interface{}, iValue interface{}) {
+					// Todo: remove in later version, keep it for compatibility at the moment
+					qpname := iKey.(string)
+					qp := iValue.(specSpec.Queryparam)
+					if targetRPC.Query != nil {
+						targetRPC.Query.Set(qpname, &qp)
+					}
+
+					// add "qp" to fields of request
+					number++
+					fields.Set(qpname, qp.Type+":"+strconv.Itoa(number)+" #"+qp.Description)
+				})
+
+			}
+
+			requestType := &microtypes.MicroType{
+				Type:   microServiceAst.Package + "." + targetRPC.RpcName + "Request #request message for " + targetRPC.RpcName,
+				Fields: fields,
+				Target: "reqmsgs.proto",
+			}
+			microTypelist.MicroTypes = append(microTypelist.MicroTypes, requestType)
+
 			AstService.ServiceSpec.Services.Set(rpcname, targetRPC)
 
 		})
@@ -138,7 +170,13 @@ func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist)
 	// delete the item
 	for serviceName, del := range deleteList {
 		if del {
-			servicelist.DeleteService(serviceName)
+			if deleteSpecs {
+				servicelist.DeleteService(serviceName)
+
+			} else {
+				fmt.Println(serviceName, "is not in muSpec")
+			}
+
 		}
 	}
 }

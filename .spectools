@@ -17,10 +17,10 @@ commands:
   genTranscoder: "scripts/test.sh"
 flows:
   default:
-    - muType2Spec
+    - muSpec2Spec
     - muService2Spec
   prototyping:
-    - muType2Spec
+    - muSpec2Spec
     - muService2Spec
     - genMessageProtos
     - genServiceProtos
