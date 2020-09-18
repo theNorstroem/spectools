@@ -13,6 +13,8 @@ import (
 	"github.com/theNorstroem/spectools/pkg/util"
 	"log"
 	"path/filepath"
+	"regexp"
+	"strings"
 )
 
 func Run(cmd *cobra.Command, args []string) {
@@ -23,16 +25,17 @@ func Run(cmd *cobra.Command, args []string) {
 	}
 
 	fmt.Println("running spec2muSpec")
+	assocList := NewUTShadowList()
 
 	microTypesList := &microtypes.MicroTypelist{
 		MicroTypesByName:    map[string]*microtypes.MicroType{},
-		MicroTypesASTByName: map[string]microtypes.MicroTypeAst{},
+		MicroTypesASTByName: map[string]*microtypes.MicroTypeAst{},
 		MicroTypes:          []*microtypes.MicroType{},
 	} // holds all muspecs
 
 	microServicesList := &microservices.MicroServiceList{
 		MicroServicesByName:    map[string]*microservices.MicroService{},
-		MicroServicesASTByName: map[string]microservices.MicroServiceAst{},
+		MicroServicesASTByName: map[string]*microservices.MicroServiceAst{},
 		MicroServices:          []*microservices.MicroService{},
 	} // holds all muspecs
 
@@ -43,6 +46,16 @@ func Run(cmd *cobra.Command, args []string) {
 	Typelist := &typeAst.Typelist{}
 	Typelist.LoadTypeSpecsFromDir(viper.GetString("specDir"))
 	Typelist.LoadInstalledTypeSpecsFromDir(util.GetDependencyList()...)
+
+	// fill assoc
+	for _, ast := range Servicelist.ServicesByName {
+		assocList.AddServiceNode(ast)
+	}
+
+	// fill assoc
+	for typename, ast := range Typelist.TypesByName {
+		assocList.AddTypeNode(typename, ast)
+	}
 
 	serviceglobs := viper.GetStringSlice("muSpec.services")
 	typeglobs := viper.GetStringSlice("muSpec.types")
@@ -61,32 +74,34 @@ func Run(cmd *cobra.Command, args []string) {
 		muSpec2Spec.LoadServices(list, microServicesList)
 	}
 
-	var graph Graph
-	a := &Node{
-		value: "type a",
-		Kind:  Service,
-	}
-	b := &Node{
-		value: "mutype a",
-		Kind:  Service,
-	}
-	c := &Node{
-		value: "Entity a",
-		Kind:  Type,
-	}
-	d := &Node{
-		value: "Collection a",
-		Kind:  Type,
-	}
-	graph.AddNode(a)
-	graph.AddNode(b)
-	graph.AddNode(c)
-	graph.AddDirctedEdge(a, c)
-	graph.AddDirctedEdge(a, d)
-	graph.AddUndirectedEdge(b, a)
+	// build the service name and ast map
+	for _, t := range microServicesList.MicroServices {
 
-	l := graph.GetConnectedNodes(a)
-	fmt.Println(l)
+		serviceName := strings.TrimSpace(t.Package) + "." + strings.TrimSpace(t.Name)
+		microServicesList.MicroServicesByName[serviceName] = t
+		microServicesList.MicroServicesASTByName[serviceName] = t.ToMicroServiceAst()
 
-	fmt.Println(deleteMuSpecs)
+		assocList.AddMicroServiceNode(microServicesList.MicroServicesASTByName[serviceName])
+	}
+
+	// build the new name and ast map
+	for _, t := range microTypesList.MicroTypes {
+		regex := regexp.MustCompile(`^([^#(]*):?([^#]*)?(#(.*))?$`)
+		matches := regex.FindStringSubmatch(t.Type)
+		if len(matches) == 0 {
+			fmt.Println("typeline not parseable", t.Type)
+		}
+
+		typeName := strings.TrimSpace(matches[1])
+		microTypesList.MicroTypesByName[typeName] = t
+		microTypesList.MicroTypesASTByName[typeName] = t.ToMicroTypeAst()
+		assocList.AddMicroTypeNode(microTypesList.MicroTypesASTByName[typeName])
+	}
+
+	// transfer every type assocList.TypeItemsByName
+
+	// transfer every service assocList.ServiceItemsByName
+
+	e := assocList.GetUnconnectedMicroTypes()
+	fmt.Println(e, deleteMuSpecs)
 }

@@ -17,7 +17,7 @@ import (
 
 type MicroServiceList struct {
 	MicroServicesByName    map[string]*MicroService
-	MicroServicesASTByName map[string]MicroServiceAst
+	MicroServicesASTByName map[string]*MicroServiceAst
 	MicroServices          []*MicroService `yaml:"Services"`
 }
 
@@ -195,7 +195,7 @@ type MicroService struct {
 	Description string     `yaml:"description"`
 }
 
-func (mt MicroService) ToMicroServiceAst() MicroServiceAst {
+func (mt MicroService) ToMicroServiceAst() *MicroServiceAst {
 
 	// make the rpcMaps
 	methods := orderedmap.New() //was map[string]RpcMap{}
@@ -266,7 +266,7 @@ func (mt MicroService) ToMicroServiceAst() MicroServiceAst {
 		Description:  mt.Description,
 	}
 
-	return mAst
+	return &mAst
 }
 
 func NewRpcMap() RpcMap {

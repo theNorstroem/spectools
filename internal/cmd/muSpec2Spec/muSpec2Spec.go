@@ -26,13 +26,13 @@ func Run(cmd *cobra.Command, args []string) {
 
 	microList := &microtypes.MicroTypelist{
 		MicroTypesByName:    map[string]*microtypes.MicroType{},
-		MicroTypesASTByName: map[string]microtypes.MicroTypeAst{},
+		MicroTypesASTByName: map[string]*microtypes.MicroTypeAst{},
 		MicroTypes:          []*microtypes.MicroType{},
 	} // holds all muspecs
 
 	microServicesList := &microservices.MicroServiceList{
 		MicroServicesByName:    map[string]*microservices.MicroService{},
-		MicroServicesASTByName: map[string]microservices.MicroServiceAst{},
+		MicroServicesASTByName: map[string]*microservices.MicroServiceAst{},
 		MicroServices:          []*microservices.MicroService{},
 	} // holds all muspecs
 

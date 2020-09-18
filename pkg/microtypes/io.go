@@ -16,7 +16,7 @@ func (l *MicroTypelist) Unmarshal(data []byte) {
 		log.Fatal(parseError)
 	}
 	l.MicroTypesByName = map[string]*MicroType{}
-	l.MicroTypesASTByName = map[string]MicroTypeAst{}
+	l.MicroTypesASTByName = map[string]*MicroTypeAst{}
 	// build the map
 	for _, t := range l.MicroTypes {
 		regex := regexp.MustCompile(`^([^#(]*):?([^#]*)?(#(.*))?$`)

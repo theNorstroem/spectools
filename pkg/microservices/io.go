@@ -12,6 +12,6 @@ func (l *MicroServiceList) Unmarshal(data []byte) {
 		log.Fatal(parseError)
 	}
 	l.MicroServicesByName = map[string]*MicroService{}
-	l.MicroServicesASTByName = map[string]MicroServiceAst{}
+	l.MicroServicesASTByName = map[string]*MicroServiceAst{}
 
 }

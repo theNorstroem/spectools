@@ -16,7 +16,7 @@ import (
 
 type MicroTypelist struct {
 	MicroTypesByName    map[string]*MicroType
-	MicroTypesASTByName map[string]MicroTypeAst
+	MicroTypesASTByName map[string]*MicroTypeAst
 	MicroTypes          []*MicroType `yaml:"types"`
 }
 
@@ -165,7 +165,7 @@ type MicroType struct {
 	Target string                 `yaml:"target,omitempty"`
 }
 
-func (mt MicroType) ToMicroTypeAst() MicroTypeAst {
+func (mt MicroType) ToMicroTypeAst() *MicroTypeAst {
 
 	// make the fieldmaps
 	fields := orderedmap.New() //was map[string]FieldMap{}
@@ -216,7 +216,7 @@ func (mt MicroType) ToMicroTypeAst() MicroTypeAst {
 		Target:      targetname,
 	}
 
-	return mAst
+	return &mAst
 }
 
 func NewFieldMap() FieldMap {

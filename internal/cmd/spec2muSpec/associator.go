@@ -1,71 +1,191 @@
 package spec2muSpec
 
 import (
-	"sync"
+	"github.com/theNorstroem/spectools/pkg/ast/serviceAst"
+	"github.com/theNorstroem/spectools/pkg/ast/typeAst"
+	"github.com/theNorstroem/spectools/pkg/microservices"
+	"github.com/theNorstroem/spectools/pkg/microtypes"
+	"strings"
 )
 
-const (
-	Service = iota + 1
-	Type
-	MuService
-	MuType
-)
-
-type Graph struct {
-	nodes    []*Node
-	edges    map[*Node][]*Node // undirected
-	edgesIn  map[*Node][]*Node
-	edgesOut map[*Node][]*Node
-	lock     sync.RWMutex
+type UTshadowNode struct {
+	IdentifierP            string // package part used to idenitify all edges
+	IdentifierT            string // typename part used to idenitify all edges
+	edgeEntityTypeNode     *typeAst.TypeAst
+	edgeCollectionTypeNode *typeAst.TypeAst
+	edgeRequestTypeNode    []*typeAst.TypeAst
+	edgeTypeNode           *typeAst.TypeAst
+	edgeServiceNode        *serviceAst.ServiceAst
+	edgeMicroTypeNode      *microtypes.MicroTypeAst
+	edgeMicroServiceNode   *microservices.MicroServiceAst
 }
 
-type Node struct {
-	value interface{}
-	Kind  int
+type UTShadowList struct {
+	Items                 []*UTshadowNode
+	TypeItemsByName       map[string]*UTshadowNode
+	ServiceItemsByName    map[string]*UTshadowNode
+	ServiceRequestsByName map[string]*UTshadowNode
 }
 
-func (g Graph) GetConnectedNodes(n *Node) []*Node {
-
-	return g.edges[n]
+func NewUTShadowList() UTShadowList {
+	return UTShadowList{
+		Items:                 []*UTshadowNode{},
+		TypeItemsByName:       map[string]*UTshadowNode{},
+		ServiceItemsByName:    map[string]*UTshadowNode{},
+		ServiceRequestsByName: map[string]*UTshadowNode{},
+	}
 }
 
-// AddNode adds a node to the graph
-func (g *Graph) AddNode(n *Node) {
-	g.lock.Lock()
-	g.nodes = append(g.nodes, n)
-	g.lock.Unlock()
+func (s *UTShadowList) AddTypeNode(fullTypeName string, ast *typeAst.TypeAst) *UTshadowNode {
+	// Triage -> regular | entity | collection | request
+	if strings.HasSuffix(fullTypeName, "Entity") {
+		return s.AddEntityTypeNode(fullTypeName[0:len(fullTypeName)-6], ast)
+	}
+
+	if strings.HasSuffix(fullTypeName, "Collection") {
+		return s.AddCollectionTypeNode(fullTypeName[0:len(fullTypeName)-10], ast)
+	}
+
+	if strings.HasSuffix(fullTypeName, "Request") {
+		return s.AddRequestTypeNode(ast)
+	}
+
+	return s.AddRegularTypeNode(fullTypeName, ast)
 }
 
-// AddEdge adds an edge to the graph
-func (g *Graph) AddUndirectedEdge(n1, n2 *Node) {
-	g.lock.Lock()
-	if g.edges == nil {
-		g.edges = make(map[*Node][]*Node)
+func (s *UTShadowList) AddRegularTypeNode(fullTypeName string, ast *typeAst.TypeAst) *UTshadowNode {
+	var node *UTshadowNode
+	// find item by name, nok => create
+	if s.TypeItemsByName[fullTypeName] == nil {
+		node = s.CreateShadowTypeItem(fullTypeName)
+	} else {
+		node = s.TypeItemsByName[fullTypeName]
 	}
-	if g.edgesOut == nil {
-		g.edgesOut = make(map[*Node][]*Node)
+	node.edgeTypeNode = ast
+	return node
+}
+func (s *UTShadowList) AddEntityTypeNode(fullTypeName string, ast *typeAst.TypeAst) *UTshadowNode {
+	var node *UTshadowNode
+	// find item by name, nok => create
+	if s.TypeItemsByName[fullTypeName] == nil {
+		node = s.CreateShadowTypeItem(fullTypeName)
+	} else {
+		node = s.TypeItemsByName[fullTypeName]
 	}
-	if g.edgesIn == nil {
-		g.edgesIn = make(map[*Node][]*Node)
+	node.edgeEntityTypeNode = ast
+	return node
+}
+func (s *UTShadowList) AddCollectionTypeNode(fullTypeName string, ast *typeAst.TypeAst) *UTshadowNode {
+	var node *UTshadowNode
+	// find item by name, nok => create
+	if s.TypeItemsByName[fullTypeName] == nil {
+		node = s.CreateShadowTypeItem(fullTypeName)
+	} else {
+		node = s.TypeItemsByName[fullTypeName]
 	}
-	g.edges[n1] = append(g.edges[n1], n2)
-	g.edges[n2] = append(g.edges[n2], n1)
-	g.lock.Unlock()
+	node.edgeCollectionTypeNode = ast
+	return node
+
+}
+func (s *UTShadowList) AddRequestTypeNode(ast *typeAst.TypeAst) *UTshadowNode {
+	fullTypeName := ast.TypeSpec.XProto.Package + "." + ast.TypeSpec.Name[0:len(ast.TypeSpec.Name)-7]
+
+	var node *UTshadowNode
+	// find item by name, nok => create
+
+	node = s.ServiceRequestsByName[fullTypeName]
+
+	node.edgeRequestTypeNode = append(node.edgeRequestTypeNode, ast)
+	return node
+}
+func (s *UTShadowList) AddMicroTypeNode(ast *microtypes.MicroTypeAst) *UTshadowNode {
+	// check for names without package
+
+	fullTypeName := ast.Package + "." + ast.Type
+
+	if strings.HasSuffix(fullTypeName, "Entity") {
+		return nil
+	}
+	if strings.HasSuffix(fullTypeName, "Collection") {
+		return nil
+	}
+
+	var node *UTshadowNode
+	// find item by name, nok => create
+	if s.TypeItemsByName[fullTypeName] == nil {
+		node = s.CreateShadowTypeItem(fullTypeName)
+	} else {
+		node = s.TypeItemsByName[fullTypeName]
+	}
+	node.edgeMicroTypeNode = ast
+	return node
 }
 
-//  adds a directed edge to the graph. N1 -> N2
-func (g *Graph) AddDirctedEdge(n1, n2 *Node) {
-	g.lock.Lock()
-	if g.edges == nil {
-		g.edges = make(map[*Node][]*Node)
+func (s *UTShadowList) AddMicroServiceNode(ast *microservices.MicroServiceAst) *UTshadowNode {
+	var node *UTshadowNode
+	fullTypeName := ast.Package + "." + ast.Name
+
+	// find item by name, nok => create
+	if s.ServiceItemsByName[fullTypeName] == nil {
+		node = s.CreateShadowServiceItem(fullTypeName)
+	} else {
+		node = s.ServiceItemsByName[fullTypeName]
 	}
-	if g.edgesOut == nil {
-		g.edgesOut = make(map[*Node][]*Node)
+	node.edgeMicroServiceNode = ast
+	return node
+}
+func (s *UTShadowList) AddServiceNode(ast *serviceAst.ServiceAst) *UTshadowNode {
+	var node *UTshadowNode
+	fullTypeName := ast.ServiceSpec.XProto.Package + "." + ast.ServiceSpec.Name
+	// find item by name, nok => create
+	if s.ServiceItemsByName[fullTypeName] == nil {
+		node = s.CreateShadowServiceItem(fullTypeName)
+	} else {
+		node = s.ServiceItemsByName[fullTypeName]
 	}
-	if g.edgesIn == nil {
-		g.edgesIn = make(map[*Node][]*Node)
+
+	node.edgeServiceNode = ast
+
+	ast.ServiceSpec.Services.Map(func(iKey interface{}, iValue interface{}) {
+		s.ServiceRequestsByName[ast.ServiceSpec.XProto.Package+"."+iKey.(string)+ast.ServiceSpec.Name] = node
+	})
+
+	return node
+}
+
+// get all microtypes without any connection to something
+func (s *UTShadowList) GetUnconnectedMicroTypes() []*microtypes.MicroTypeAst {
+	l := []*microtypes.MicroTypeAst{}
+	for _, item := range s.Items {
+		if item.edgeMicroTypeNode != nil &&
+			item.edgeTypeNode == nil &&
+			item.edgeEntityTypeNode == nil &&
+			item.edgeCollectionTypeNode == nil &&
+			item.edgeServiceNode == nil &&
+			item.edgeRequestTypeNode == nil {
+			l = append(l, item.edgeMicroTypeNode)
+		}
 	}
-	g.edgesOut[n1] = append(g.edges[n1], n2)
-	g.edgesIn[n2] = append(g.edges[n2], n1)
-	g.lock.Unlock()
+	return l
+}
+
+func (s *UTShadowList) CreateShadowTypeItem(name string) *UTshadowNode {
+	n := &UTshadowNode{}
+	s.TypeItemsByName[name] = n
+	s.Items = append(s.Items, n)
+	ta := strings.Split(name, ".")
+
+	n.IdentifierP = strings.Join(ta[0:len(ta)-1], ".")
+	n.IdentifierT = strings.Join(ta[len(ta)-1:], ".")
+	return n
+}
+func (s *UTShadowList) CreateShadowServiceItem(name string) *UTshadowNode {
+	n := &UTshadowNode{}
+	s.ServiceItemsByName[name] = n
+	s.Items = append(s.Items, n)
+	ta := strings.Split(name, ".")
+
+	n.IdentifierP = strings.Join(ta[0:len(ta)-1], ".")
+	n.IdentifierT = strings.Join(ta[len(ta)-1:], ".")
+	return n
 }
