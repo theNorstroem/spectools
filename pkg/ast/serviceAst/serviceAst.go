@@ -109,7 +109,8 @@ func readAndUnmarshalSpec(fpath string) (s specSpec.Service) {
 	}
 
 	if parseError != nil {
-		log.Fatal(parseError)
+		fmt.Println(fpath + ":1:1")
+		log.Fatal(fpath, parseError)
 	}
 	return s
 }

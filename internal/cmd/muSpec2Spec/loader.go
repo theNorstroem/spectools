@@ -12,7 +12,7 @@ func LoadServices(list []string, bigList *microservices.MicroServiceList) {
 	for _, muSpecFile := range list {
 		dataBytes, readError := ioutil.ReadFile(muSpecFile)
 		if readError != nil {
-			log.Fatal(readError)
+			log.Fatal(muSpecFile, readError)
 		}
 		microServicesList := microservices.MicroServiceList{}
 		microServicesList.Unmarshal(dataBytes)
@@ -30,7 +30,7 @@ func LoadTypes(list []string, bigList *microtypes.MicroTypelist) {
 	for _, muSpecFile := range list {
 		dataBytes, readError := ioutil.ReadFile(muSpecFile)
 		if readError != nil {
-			log.Fatal(readError)
+			log.Fatal(muSpecFile, readError)
 		}
 		microList := microtypes.MicroTypelist{}
 		microList.Unmarshal(dataBytes)
