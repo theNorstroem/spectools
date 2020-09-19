@@ -18,6 +18,7 @@ func LoadServices(list []string, bigList *microservices.MicroServiceList) {
 		microServicesList.Unmarshal(dataBytes)
 		// add types to global list
 		for _, mt := range microServicesList.MicroServices {
+			mt.SourceFile = muSpecFile
 			bigList.MicroServices = append(bigList.MicroServices, mt)
 		}
 	}

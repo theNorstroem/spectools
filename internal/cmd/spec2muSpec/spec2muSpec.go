@@ -100,6 +100,7 @@ func Run(cmd *cobra.Command, args []string) {
 
 	// this is the main part :-)
 	updateAndStoreMicroTypes(assocList.TypeItemsByName)
+	updateAndStoreMicroServices(assocList.ServiceItemsByName)
 
 	e := assocList.GetUnconnectedMicroTypes()
 	fmt.Println(e, deleteMuSpecs)

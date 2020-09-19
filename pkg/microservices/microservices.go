@@ -131,7 +131,7 @@ func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist,
 
 			// set body to data if not defined
 			if targetRPC.Data.BodyField == "" {
-				targetRPC.Data.BodyField = "data"
+				targetRPC.Data.BodyField = "body"
 			}
 
 			// make Request Type
@@ -183,16 +183,17 @@ func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist,
 
 type MicroRPC struct {
 	Md string                 `yaml:"md"`
-	Qp *orderedmap.OrderedMap `yaml:"qp"`
+	Qp *orderedmap.OrderedMap `yaml:"qp,omitempty"`
 }
 
 // holds a single service from microspec
 type MicroService struct {
 	Name        string     `yaml:"name"`
-	Services    []MicroRPC `yaml:"services,omitempty"` //RPCs
-	Target      string     `yaml:"target,omitempty"`
-	Package     string     `yaml:"package,omitempty"`
 	Description string     `yaml:"description"`
+	Package     string     `yaml:"package,omitempty"`
+	Target      string     `yaml:"target,omitempty"`
+	Services    []MicroRPC `yaml:"services,omitempty"` //RPCs
+	SourceFile  string     `yaml:"_,omitempty"`
 }
 
 func (mt MicroService) ToMicroServiceAst() *MicroServiceAst {
@@ -264,6 +265,7 @@ func (mt MicroService) ToMicroServiceAst() *MicroServiceAst {
 		ProtoImports: imports, // not supported in service.yaml at the moment => empty list
 		TargetPath:   strings.Join(strings.Split(mt.Package, "."), "/"),
 		Description:  mt.Description,
+		SourceFile:   mt.SourceFile,
 	}
 
 	return &mAst
@@ -281,6 +283,7 @@ type MicroServiceAst struct {
 	Description  string                 `yaml:"description"`
 	Services     *orderedmap.OrderedMap `yaml:"services,omitempty"` // with RPC
 	Target       string                 `yaml:"target,omitempty"`
+	SourceFile   string
 }
 
 // field string will be converted to this type
