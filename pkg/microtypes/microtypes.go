@@ -160,9 +160,10 @@ func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist, deleteSpecs bo
 
 // holds a single type from microspec
 type MicroType struct {
-	Type   string                 `yaml:"type"`
-	Fields *orderedmap.OrderedMap `yaml:"fields,omitempty"`
-	Target string                 `yaml:"target,omitempty"`
+	Type       string                 `yaml:"type"`
+	Fields     *orderedmap.OrderedMap `yaml:"fields,omitempty"`
+	Target     string                 `yaml:"target,omitempty"`
+	SourceFile string                 `yaml:"_,omitempty"`
 }
 
 func (mt MicroType) ToMicroTypeAst() *MicroTypeAst {
@@ -193,6 +194,7 @@ func (mt MicroType) ToMicroTypeAst() *MicroTypeAst {
 	targetpath := strings.ToLower(typeArr[0])
 	packagename := strings.ToLower(typeArr[0])
 	targetname := strings.ToLower(typeArr[0]) + ".proto"
+
 	if len(typeArr) > 1 {
 		// last segement is typename
 		typeName = strings.TrimSpace(typeArr[len(typeArr)-1])
@@ -214,6 +216,7 @@ func (mt MicroType) ToMicroTypeAst() *MicroTypeAst {
 		Description: typedescription,
 		Fields:      fields,
 		Target:      targetname,
+		SourceFile:  mt.SourceFile,
 	}
 
 	return &mAst
@@ -233,10 +236,15 @@ type MicroTypeAst struct {
 	Target         string                 `yaml:"target,omitempty"`
 	MakeEntity     bool
 	makeCollection bool
+	SourceFile     string
 }
 
 // updates a type ast
 func (mAst MicroTypeAst) UpdateTypeAst(ast typeAst.TypeAst) {
+
+}
+
+func (mAst MicroTypeAst) Save() {
 
 }
 

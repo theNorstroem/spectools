@@ -35,6 +35,7 @@ func LoadTypes(list []string, bigList *microtypes.MicroTypelist) {
 		microList.Unmarshal(dataBytes)
 		// add types to global list
 		for _, mt := range microList.MicroTypes {
+			mt.SourceFile = muSpecFile
 			bigList.MicroTypes = append(bigList.MicroTypes, mt)
 		}
 	}

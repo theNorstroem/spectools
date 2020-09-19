@@ -98,9 +98,8 @@ func Run(cmd *cobra.Command, args []string) {
 		assocList.AddMicroTypeNode(microTypesList.MicroTypesASTByName[typeName])
 	}
 
-	// transfer every type assocList.TypeItemsByName
-
-	// transfer every service assocList.ServiceItemsByName
+	// this is the main part :-)
+	updateAndStoreMicroTypes(assocList.TypeItemsByName)
 
 	e := assocList.GetUnconnectedMicroTypes()
 	fmt.Println(e, deleteMuSpecs)
