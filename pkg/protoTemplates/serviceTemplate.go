@@ -19,7 +19,7 @@ service {{$serviceName}} {
 	{{if $method.Deeplink.Description}}//{{$method.Deeplink.Description | replace "\n" "\n// "}}{{else}}// developer was to lazy to describe the rpc, sorry{{end}}
 	option (google.api.http) = {
 		{{ lower $method.Deeplink.Method}}: "{{$method.Deeplink.Href}}"{{ if $method.Data.Request}}
-		{{ if or (eq $method.Deeplink.Method "POST") (eq $method.Deeplink.Method "PATCH") (eq $method.Deeplink.Method "PUT")}}body: "data"{{end}}{{end}}
+		{{ if or (eq $method.Deeplink.Method "POST") (eq $method.Deeplink.Method "PATCH") (eq $method.Deeplink.Method "PUT")}}body: "{{$method.Data.BodyField}}"{{end}}{{end}}
 	};
   }
 {{end}}
