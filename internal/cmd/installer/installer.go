@@ -10,6 +10,7 @@ import (
 	"github.com/theNorstroem/spectools/pkg/util"
 	"log"
 	"os"
+	"os/exec"
 	"path"
 	"strings"
 )
@@ -50,15 +51,20 @@ func Run(cmd *cobra.Command, args []string) {
 				// create
 				mkdirRecursive(packageRepoDir)
 				// clone if it is new
-
 				_, err := git.PlainClone(packageRepoDir, false, &git.CloneOptions{
-
 					URL:      dep.Repository,
 					Depth:    1,
 					Progress: os.Stdout,
 				})
+
 				if err != nil {
-					log.Fatal(err)
+					// use exec
+					log.Println(err)
+					log.Println("switching to git executable")
+					e := CloneWithGitCommand(packageRepoDir, dep.Repository)
+					if e != nil {
+						log.Fatal(err)
+					}
 				}
 			}
 
@@ -70,6 +76,11 @@ func Run(cmd *cobra.Command, args []string) {
 			err = r.Fetch(&git.FetchOptions{Tags: git.AllTags})
 			if err != nil {
 				fmt.Println(dep.Repository, err.Error())
+				log.Println("switching to git executable")
+				e := FetchWithGitCommand(packageRepoDir)
+				if e != nil {
+					log.Fatal(err)
+				}
 			}
 
 			// Get the working directory for the repository
@@ -108,6 +119,22 @@ func Run(cmd *cobra.Command, args []string) {
 		}
 
 	}
+}
+
+func FetchWithGitCommand(packageRepoDir string) error {
+	cmd := exec.Command("git", "fetch", "--depth=1")
+	cmd.Dir = packageRepoDir
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	return cmd.Run()
+}
+
+func CloneWithGitCommand(packageRepoDir string, repository string) error {
+	cmd := exec.Command("git", "clone", "--depth=1", repository, ".")
+	cmd.Dir = packageRepoDir
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	return cmd.Run()
 }
 
 func mkdirRecursive(subdir string) {
