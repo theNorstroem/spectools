@@ -99,8 +99,8 @@ func CheckoutWithGitCommand(packageRepoDir string, version string) error {
 	return cmd.Run()
 }
 func FetchWithGitCommand(packageRepoDir string) error {
-	fmt.Println("git fetch --depth=-1")
-	cmd := exec.Command("git", "fetch", "--depth=1")
+	fmt.Println("git fetch")
+	cmd := exec.Command("git", "fetch")
 	cmd.Dir = packageRepoDir
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -108,8 +108,8 @@ func FetchWithGitCommand(packageRepoDir string) error {
 }
 
 func CloneWithGitCommand(packageRepoDir string, repository string) error {
-	fmt.Println("git clone --depth=-1", repository, ".")
-	cmd := exec.Command("git", "clone", "--depth=1", repository, ".")
+	fmt.Println("git clone ", repository, ".")
+	cmd := exec.Command("git", "clone", repository, ".")
 	cmd.Dir = packageRepoDir
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
