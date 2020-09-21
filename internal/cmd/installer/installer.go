@@ -2,8 +2,6 @@ package installer
 
 import (
 	"fmt"
-	"github.com/go-git/go-git/v5"
-	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/otiai10/copy"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -51,51 +49,22 @@ func Run(cmd *cobra.Command, args []string) {
 				// create
 				mkdirRecursive(packageRepoDir)
 				// clone if it is new
-				_, err := git.PlainClone(packageRepoDir, false, &git.CloneOptions{
-					URL:      dep.Repository,
-					Depth:    1,
-					Progress: os.Stdout,
-				})
-
+				err := CloneWithGitCommand(packageRepoDir, dep.Repository)
 				if err != nil {
-					// use exec
-					log.Println(err)
-					log.Println("switching to git executable")
-					e := CloneWithGitCommand(packageRepoDir, dep.Repository)
-					if e != nil {
-						log.Fatal(err)
-					}
+					log.Fatal(err)
 				}
 			}
 
 			// fetch the changes
-			r, err := git.PlainOpen(packageRepoDir)
+			err := FetchWithGitCommand(packageRepoDir)
 			if err != nil {
 				log.Fatal(err)
-			}
-			err = r.Fetch(&git.FetchOptions{Tags: git.AllTags})
-			if err != nil && err != git.NoErrAlreadyUpToDate {
-				fmt.Println(dep.Repository, err.Error())
-				log.Println("switching to git executable")
-				e := FetchWithGitCommand(packageRepoDir)
-				if e != nil {
-					log.Fatal(err)
-				}
 			}
 
-			// Get the working directory for the repository
-			w, err := r.Worktree()
+			// checkout requested version
+			err = CheckoutWithGitCommand(packageRepoDir, dep.Version)
 			if err != nil {
 				log.Fatal(err)
-			}
-			// checkout version
-			err = w.Checkout(&git.CheckoutOptions{Branch: plumbing.NewTagReferenceName(dep.Version)})
-			if err != nil {
-				// try branch
-				err = w.Checkout(&git.CheckoutOptions{Branch: plumbing.NewBranchReferenceName(dep.Version)})
-				if err != nil {
-					log.Fatal(err)
-				}
 			}
 
 			// clear dep path
@@ -121,6 +90,14 @@ func Run(cmd *cobra.Command, args []string) {
 	}
 }
 
+func CheckoutWithGitCommand(packageRepoDir string, version string) error {
+	fmt.Println("git checkout", version)
+	cmd := exec.Command("git", "checkout", version)
+	cmd.Dir = packageRepoDir
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	return cmd.Run()
+}
 func FetchWithGitCommand(packageRepoDir string) error {
 	fmt.Println("git fetch --depth=-1")
 	cmd := exec.Command("git", "fetch", "--depth=1")

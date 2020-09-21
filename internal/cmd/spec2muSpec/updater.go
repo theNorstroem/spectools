@@ -57,10 +57,10 @@ func updateAndStoreMicroTypes(typeItems map[string]*UTshadowNode) {
 				if f.Constraints["required"] != nil {
 					fieldline = append(fieldline, "*")
 				}
-				if f.Meta.Readonly {
+				if f.Meta != nil && f.Meta.Readonly {
 					fieldline = append(fieldline, "-")
 				}
-				if f.Meta.Repeated {
+				if f.Meta != nil && f.Meta.Repeated {
 					fieldline = append(fieldline, "[]")
 				}
 				fieldline = append(fieldline, f.Type+":"+strconv.Itoa(int(f.XProto.Number)))
