@@ -122,6 +122,7 @@ func Run(cmd *cobra.Command, args []string) {
 }
 
 func FetchWithGitCommand(packageRepoDir string) error {
+	fmt.Println("git fetch --depth=-1")
 	cmd := exec.Command("git", "fetch", "--depth=1")
 	cmd.Dir = packageRepoDir
 	cmd.Stdout = os.Stdout
@@ -130,6 +131,7 @@ func FetchWithGitCommand(packageRepoDir string) error {
 }
 
 func CloneWithGitCommand(packageRepoDir string, repository string) error {
+	fmt.Println("git clone --depth=-1", repository, ".")
 	cmd := exec.Command("git", "clone", "--depth=1", repository, ".")
 	cmd.Dir = packageRepoDir
 	cmd.Stdout = os.Stdout
@@ -138,6 +140,7 @@ func CloneWithGitCommand(packageRepoDir string, repository string) error {
 }
 
 func mkdirRecursive(subdir string) {
+
 	pathSegments := strings.Split(subdir, "/")
 	p := "./"
 	if pathSegments[0] == "" {
