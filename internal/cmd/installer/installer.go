@@ -74,7 +74,7 @@ func Run(cmd *cobra.Command, args []string) {
 				log.Fatal(err)
 			}
 			err = r.Fetch(&git.FetchOptions{Tags: git.AllTags})
-			if err != nil {
+			if err != nil && err != git.NoErrAlreadyUpToDate {
 				fmt.Println(dep.Repository, err.Error())
 				log.Println("switching to git executable")
 				e := FetchWithGitCommand(packageRepoDir)
