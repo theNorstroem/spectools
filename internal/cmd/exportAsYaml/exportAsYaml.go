@@ -13,13 +13,14 @@ import (
 func Run(cmd *cobra.Command, args []string) {
 	fullExport := false
 	// todo implement flag
-	exportInstalled := false
+	exportInstalled := true
 	f := cmd.Flag("full")
 	if f != nil {
 		fullExport = f.Value.String() == "true"
 	}
 
 	allTypes := map[string]interface{}{}
+	installedTypes := map[string]interface{}{}
 	Typelist := &typeAst.Typelist{}
 	Typelist.LoadTypeSpecsFromDir(viper.GetString("specDir"))
 	Typelist.LoadInstalledTypeSpecsFromDir(util.GetDependencyList()...)
@@ -36,14 +37,15 @@ func Run(cmd *cobra.Command, args []string) {
 	if exportInstalled {
 		for k, t := range Typelist.InstalledTypesByName {
 			if fullExport {
-				allTypes[k] = t
+				installedTypes[k] = t
 			} else {
-				allTypes[k] = t.TypeSpec
+				installedTypes[k] = t.TypeSpec
 			}
 		}
 	}
 
 	allServices := map[string]interface{}{}
+	installedServices := map[string]interface{}{}
 	Servicelist := &serviceAst.Servicelist{}
 	Servicelist.LoadInstalledServiceSpecsFromDir(util.GetDependencyList()...)
 	Servicelist.LoadServiceSpecsFromDir(viper.GetString("specDir"))
@@ -58,18 +60,20 @@ func Run(cmd *cobra.Command, args []string) {
 	if exportInstalled {
 		for k, s := range Servicelist.InstalledServicesByName {
 			if fullExport {
-				allServices[k] = s
+				installedServices[k] = s
 			} else {
-				allServices[k] = s.ServiceSpec
+				installedServices[k] = s.ServiceSpec
 			}
 		}
 	}
 
 	output := map[string]interface{}{}
 
-	output["types"] = allTypes
-	output["services"] = allServices
 	output["config"] = viper.AllSettings()
+	output["installedServices"] = installedServices
+	output["installedTypes"] = installedTypes
+	output["services"] = allServices
+	output["types"] = allTypes
 
 	outputstr, _ := yaml.Marshal(output)
 
