@@ -42,7 +42,7 @@ type Service struct {
 
 	// RPCs for the service ==> will contains *Rpc
 	Services   *orderedmap.OrderedMap `protobuf:"bytes,6,rep,name=services,proto3" json:"services" yaml:"services" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	Extensions map[string]interface{} `yaml:"extensions"`
+	Extensions *orderedmap.OrderedMap `yaml:"extensions"`
 }
 
 func (x *Service) Reset() {
@@ -923,6 +923,8 @@ type Type struct {
 
 	// fields of a type
 	Fields *orderedmap.OrderedMap `protobuf:"bytes,5,rep,name=fields,proto3" json:"fields,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+
+	Extensions *orderedmap.OrderedMap `yaml:"extensions"`
 
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
