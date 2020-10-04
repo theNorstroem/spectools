@@ -20,11 +20,12 @@ import (
 )
 
 type singleServiceTplData struct {
-	Services  []specSpec.Service `json:"services,omitempty"`
-	Imports   []string           `json:"imports,omitempty"`
-	Package   string             `json:"package,omitempty"`
-	preImport map[string]bool
-	Options   map[string]string `json:"options,omitempty"`
+	Services             []specSpec.Service `json:"services,omitempty"`
+	Imports              []string           `json:"imports,omitempty"`
+	Package              string             `json:"package,omitempty"`
+	preImport            map[string]bool
+	Options              map[string]string `json:"options,omitempty"`
+	GenAdditionalBinding bool
 }
 
 func Run(cmd *cobra.Command, args []string) {
@@ -60,7 +61,7 @@ func Run(cmd *cobra.Command, args []string) {
 	}
 
 	// clean the directory
-	if viper.GetBool("proto.cleanBuild") {
+	if viper.GetBool("build.proto.cleanBuild") {
 		err := os.RemoveAll("./" + viper.GetString("build.proto.targetDir"))
 		if err != nil {
 			fmt.Println(err)
@@ -88,10 +89,32 @@ func Run(cmd *cobra.Command, args []string) {
 		for _, imp := range serviceData.XProto.Imports {
 			protoTplData[filepath].preImport[imp] = true
 		}
-		// sort types by name
+		// sort services by name
 		sort.Slice(protoTplData[filepath].Services, func(i, j int) bool {
 			return protoTplData[filepath].Services[i].Name < protoTplData[filepath].Services[j].Name
 		})
+
+		// check if additional bindings should be created
+		// if the request type has a field update_mask and method  PUT => set to true
+		protoTplData[filepath].GenAdditionalBinding = false
+
+		for _, s := range protoTplData[filepath].Services {
+			r, found := s.Services.Get("Update")
+			if found {
+				rpc := r.(*specSpec.Rpc)
+				reqType := protoTplData[filepath].Package + "." + rpc.RpcName + "Request"
+				// Services.sampleservice.UpdateSampleRequest
+				f, ok := Typelist.AllAvailabeTypes[reqType].TypeSpec.Fields.Get("update_mask")
+				if ok {
+					fmt.Println(f)
+					protoTplData[filepath].GenAdditionalBinding = true
+				}
+
+			}
+
+			//{{$rpckey}}{{$serviceName}}Request
+		}
+
 	}
 
 	// process ipmports

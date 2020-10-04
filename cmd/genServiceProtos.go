@@ -37,7 +37,8 @@ var genServiceProtosCmd = &cobra.Command{
 
 	build:
 	  proto:
-		targetDir: "./dist/protos/Messages" #Hint: add this to your proto include path
+		targetDir: "./dist/proto" #Hint: add this to your proto include path
+		cleanBuild: true #Clears the proto directory 
 		
 `,
 	Run: genServiceProtos.Run,

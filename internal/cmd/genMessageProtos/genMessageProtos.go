@@ -88,7 +88,7 @@ func Run(cmd *cobra.Command, args []string) {
 	}
 
 	// clean the directory
-	if viper.GetBool("proto.cleanBuild") {
+	if viper.GetBool("build.proto.cleanBuild") {
 		err := os.RemoveAll("./" + viper.GetString("build.proto.targetDir")) // ./ is for safety purposes
 		if err != nil {
 			fmt.Println(err)

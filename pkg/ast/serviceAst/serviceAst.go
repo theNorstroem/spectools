@@ -175,7 +175,7 @@ func (ast ServiceAst) UpdateImports(typelist *typeAst.Typelist) {
 		rpc := iValue.(*specSpec.Rpc)
 		rpc.Query.Map(func(qkey interface{}, qvalue interface{}) {
 			qp := qvalue.(*specSpec.Queryparam)
-			if qp.Type != "string" {
+			if !typeAst.IsScalar(qp.Type) {
 				imp, found := typelist.ResolveProtoImportForType(qp.Type, ast.ServiceSpec.XProto.Package)
 				if found {
 					// just add the imports, duplicates will be removed later
