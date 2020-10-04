@@ -13,7 +13,6 @@ import (
 	"html/template"
 	"io/ioutil"
 	"log"
-	"os"
 	"path"
 	"sort"
 	"strings"
@@ -60,13 +59,6 @@ func Run(cmd *cobra.Command, args []string) {
 		log.Fatal(templateError)
 	}
 
-	// clean the directory
-	if viper.GetBool("build.proto.cleanBuild") {
-		err := os.RemoveAll("./" + viper.GetString("build.proto.targetDir"))
-		if err != nil {
-			fmt.Println(err)
-		}
-	}
 	protoTplData := map[string]*singleServiceTplData{}
 
 	// collect all types that belongs to one file
@@ -104,15 +96,12 @@ func Run(cmd *cobra.Command, args []string) {
 				rpc := r.(*specSpec.Rpc)
 				reqType := protoTplData[filepath].Package + "." + rpc.RpcName + "Request"
 				// Services.sampleservice.UpdateSampleRequest
-				f, ok := Typelist.AllAvailabeTypes[reqType].TypeSpec.Fields.Get("update_mask")
+				_, ok := Typelist.AllAvailabeTypes[reqType].TypeSpec.Fields.Get("update_mask")
 				if ok {
-					fmt.Println(f)
 					protoTplData[filepath].GenAdditionalBinding = true
 				}
 
 			}
-
-			//{{$rpckey}}{{$serviceName}}Request
 		}
 
 	}

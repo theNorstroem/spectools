@@ -12,7 +12,6 @@ import (
 	"html/template"
 	"io/ioutil"
 	"log"
-	"os"
 	"path"
 	"sort"
 	"strings"
@@ -87,13 +86,6 @@ func Run(cmd *cobra.Command, args []string) {
 		log.Fatal(templateError)
 	}
 
-	// clean the directory
-	if viper.GetBool("build.proto.cleanBuild") {
-		err := os.RemoveAll("./" + viper.GetString("build.proto.targetDir")) // ./ is for safety purposes
-		if err != nil {
-			fmt.Println(err)
-		}
-	}
 	// make the type protos
 	for key, tplData := range protoTplData {
 		filename := path.Join(viper.GetString("build.proto.targetDir"), key)
