@@ -56,7 +56,9 @@ func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist, deleteSpecs bo
 				Targetfile: "",
 			}
 		}
-
+		if AstType.TypeSpec.XProto.Options == nil {
+			AstType.TypeSpec.XProto.Options = map[string]string{}
+		}
 		AstType.TypeSpec.XProto.Package = mType.Package
 		AstType.TypeSpec.XProto.Targetfile = mType.Target
 		AstType.TypeSpec.XProto.Options["go_package"] = util.GetGoPackageName(mType.TargetPath)
@@ -123,6 +125,9 @@ func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist, deleteSpecs bo
 			// check for __proto
 
 			if mField.Required {
+				if AstField.Constraints == nil {
+					AstField.Constraints = map[string]*furo.FieldConstraint{}
+				}
 				AstField.Constraints["required"] = &furo.FieldConstraint{
 					Is:      "true",
 					Message: mFieldname + " is required",
@@ -132,6 +137,9 @@ func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist, deleteSpecs bo
 				delete(AstField.Constraints, "required")
 			}
 
+			if AstField.Meta == nil {
+				AstField.Meta = &furo.FieldMeta{}
+			}
 			AstField.Meta.Default = mField.DefaultValue
 			AstField.Meta.Readonly = mField.Readonly
 			AstField.Meta.Repeated = mField.Repeated
@@ -261,7 +269,7 @@ type FieldMap struct {
 }
 
 func (m *FieldMap) ParseFieldString(s string) {
-	regex := regexp.MustCompile(`^(-*)?(\**)?(\[.?])?([^#=:]*):?([^=#]*)(=([^#]*))?(#(.*))?$`)
+	regex := regexp.MustCompile(`^(\**)? ?(-*)? ?(\[.?])? ?([^#=:]*):?([^=#]*)(=([^#]*))?(#(.*))?$`)
 	matches := regex.FindStringSubmatch(s)
 	if len(matches) == 0 {
 		fmt.Println("field not parsed", s)

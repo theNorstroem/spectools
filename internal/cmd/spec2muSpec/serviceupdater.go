@@ -39,6 +39,9 @@ func updateAndStoreMicroServices(serviceItems map[string]*UTshadowNode) {
 				mdLine = append(mdLine, iKey.(string)+":")
 				mdLine = append(mdLine, rpc.Deeplink.Method)
 				mdLine = append(mdLine, rpc.Deeplink.Href)
+				if rpc.Data.Request == "" {
+					rpc.Data.Request = "google.protobuf.Empty"
+				}
 				mdLine = append(mdLine, rpc.Data.Request)
 				mdLine = append(mdLine, ",")
 

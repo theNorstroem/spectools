@@ -65,10 +65,23 @@ func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist,
 		if AstService.ServiceSpec.XProto.Options == nil {
 			AstService.ServiceSpec.XProto.Options = map[string]string{}
 		}
-		AstService.ServiceSpec.XProto.Options["go_package"] = util.GetGoPackageName(microServiceAst.TargetPath)
-		AstService.ServiceSpec.XProto.Options["java_package"] = "com." + microServiceAst.Package
-		AstService.ServiceSpec.XProto.Options["java_outer_classname"] = strings.Title(strings.Replace(path.Base(microServiceAst.Target), ".proto", "Proto", 1))
-		AstService.ServiceSpec.XProto.Options["java_multiple_files"] = "true"
+		// set option only if it does not exist
+		_, ok = AstService.ServiceSpec.XProto.Options["go_package"]
+		if !ok {
+			AstService.ServiceSpec.XProto.Options["go_package"] = util.GetGoPackageName(microServiceAst.TargetPath)
+		}
+		_, ok = AstService.ServiceSpec.XProto.Options["java_package"]
+		if !ok {
+			AstService.ServiceSpec.XProto.Options["java_package"] = "com." + microServiceAst.Package
+		}
+		_, ok = AstService.ServiceSpec.XProto.Options["java_outer_classname"]
+		if !ok {
+			AstService.ServiceSpec.XProto.Options["java_outer_classname"] = strings.Title(strings.Replace(path.Base(microServiceAst.Target), ".proto", "Proto", 1))
+		}
+		_, ok = AstService.ServiceSpec.XProto.Options["java_multiple_files"]
+		if !ok {
+			AstService.ServiceSpec.XProto.Options["java_multiple_files"] = "true"
+		}
 
 		AstService.ServiceSpec.XProto.Imports = append(AstService.ServiceSpec.XProto.Imports, "google/api/annotations.proto")
 		AstService.ServiceSpec.XProto.Imports = append(AstService.ServiceSpec.XProto.Imports, microServiceAst.TargetPath+"/reqmsgs.proto")
@@ -303,7 +316,8 @@ type RpcMap struct {
 }
 
 func (m *RpcMap) ParseServicestring(s string) {
-	regex := regexp.MustCompile(`^(-*)?(\**)?(\[.?])?([^#=:]*):?([^=#]*)(=([^#]*))?(#(.*))?$`)
+
+	regex := regexp.MustCompile(`^(\**)? ?(-*)? ?(\[.?])? ?([^#=:]*):?([^=#]*)(=([^#]*))?(#(.*))?$`)
 	matches := regex.FindStringSubmatch(s)
 	if len(matches) == 0 {
 		fmt.Println("field not parsed", s)

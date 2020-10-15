@@ -173,6 +173,9 @@ func (l *Typelist) SaveAllTypeSpecsToDir(specDir string) {
 
 //
 func (l *Typelist) ResolveProtoImportForType(typeName string, pkg string) (imp string, typeFound bool) {
+	if strings.HasPrefix(typeName, "[] ") {
+		typeName = typeName[3:]
+	}
 
 	fqTypeName := l.ResolveFullQualifiedTypeName(typeName, pkg)
 	// remove leading dot

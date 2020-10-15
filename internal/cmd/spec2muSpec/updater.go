@@ -33,7 +33,7 @@ func updateAndStoreMicroTypes(typeItems map[string]*UTshadowNode) {
 			}
 
 			typeLine := []string{}
-			typeLine = append(typeLine, shadowNode.edgeTypeNode.TypeSpec.XProto.Package+"."+shadowNode.edgeTypeNode.TypeSpec.Name)
+			typeLine = append(typeLine, shadowNode.edgeTypeNode.TypeSpec.XProto.Package+"."+shadowNode.edgeTypeNode.TypeSpec.Type)
 			ce := ""
 			if shadowNode.edgeCollectionTypeNode != nil {
 				// add the c

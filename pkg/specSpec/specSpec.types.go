@@ -843,7 +843,7 @@ type Rpc struct {
 	// was a map[string]*Queryparam
 	Query *orderedmap.OrderedMap `protobuf:"bytes,4,rep,name=query,proto3" json:"query,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// RPC name https://developers.google.com/protocol-buffers/docs/proto3#services
-	RpcName    string                 `protobuf:"bytes,2,opt,name=rpc_name,json=rpcName,proto3" json:"rpc_name,omitempty"`
+	RpcName    string                 `protobuf:"bytes,2,opt,name=rpc_name,json=rpcName,proto3" json:"rpc_name,omitempty"  yaml:"rpc_name,omitempty"`
 	Extensions *orderedmap.OrderedMap `json:"extensions,omitempty"  yaml:"extensions,omitempty"`
 }
 
