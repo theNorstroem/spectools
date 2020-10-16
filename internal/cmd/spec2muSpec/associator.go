@@ -5,6 +5,7 @@ import (
 	"github.com/theNorstroem/spectools/pkg/ast/typeAst"
 	"github.com/theNorstroem/spectools/pkg/microservices"
 	"github.com/theNorstroem/spectools/pkg/microtypes"
+	"github.com/theNorstroem/spectools/pkg/specSpec"
 	"strings"
 )
 
@@ -147,7 +148,8 @@ func (s *UTShadowList) AddServiceNode(ast *serviceAst.ServiceAst) *UTshadowNode 
 	node.edgeServiceNode = ast
 
 	ast.ServiceSpec.Services.Map(func(iKey interface{}, iValue interface{}) {
-		s.ServiceRequestsByName[ast.ServiceSpec.XProto.Package+"."+iKey.(string)+ast.ServiceSpec.Name] = node
+		rpc := iValue.(*specSpec.Rpc)
+		s.ServiceRequestsByName[ast.ServiceSpec.XProto.Package+"."+rpc.RpcName] = node
 	})
 
 	return node

@@ -317,7 +317,7 @@ type RpcMap struct {
 
 func (m *RpcMap) ParseServicestring(s string) {
 
-	regex := regexp.MustCompile(`^(\**)? ?(-*)? ?(\[.?])? ?([^#=:]*):?([^=#]*)(=([^#]*))?(#(.*))?$`)
+	regex := regexp.MustCompile(`^(-*)? ?(\**)? ?(\[.?])? ?([^#=:]*):?([^=#]*)(=([^#]*))?(#(.*))?$`)
 	matches := regex.FindStringSubmatch(s)
 	if len(matches) == 0 {
 		fmt.Println("field not parsed", s)
