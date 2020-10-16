@@ -54,12 +54,14 @@ func updateAndStoreMicroTypes(typeItems map[string]*UTshadowNode) {
 				f := iValue.(*specSpec.Field) //*string:1 # A * before the type means required
 				fieldline := []string{}
 
-				if f.Constraints["required"] != nil {
-					fieldline = append(fieldline, "*")
-				}
 				if f.Meta != nil && f.Meta.Readonly {
 					fieldline = append(fieldline, "-")
 				}
+
+				if f.Constraints["required"] != nil {
+					fieldline = append(fieldline, "*")
+				}
+
 				if f.Meta != nil && f.Meta.Repeated {
 					fieldline = append(fieldline, "[]")
 				}
