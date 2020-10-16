@@ -72,7 +72,7 @@ func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist,
 		}
 		_, ok = AstService.ServiceSpec.XProto.Options["java_package"]
 		if !ok {
-			AstService.ServiceSpec.XProto.Options["java_package"] = "com." + microServiceAst.Package
+			AstService.ServiceSpec.XProto.Options["java_package"] = viper.GetString("muSpec.javaPackagePrefix") + microServiceAst.Package
 		}
 		_, ok = AstService.ServiceSpec.XProto.Options["java_outer_classname"]
 		if !ok {

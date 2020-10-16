@@ -59,12 +59,30 @@ func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist, deleteSpecs bo
 		if AstType.TypeSpec.XProto.Options == nil {
 			AstType.TypeSpec.XProto.Options = map[string]string{}
 		}
+
 		AstType.TypeSpec.XProto.Package = mType.Package
 		AstType.TypeSpec.XProto.Targetfile = mType.Target
-		AstType.TypeSpec.XProto.Options["go_package"] = util.GetGoPackageName(mType.TargetPath)
-		AstType.TypeSpec.XProto.Options["java_package"] = "com." + mType.Package
-		AstType.TypeSpec.XProto.Options["java_outer_classname"] = strings.Title(strings.Replace(path.Base(mType.Target), ".proto", "Proto", 1))
-		AstType.TypeSpec.XProto.Options["java_multiple_files"] = "true"
+		// check for empty options
+		if AstType.TypeSpec.XProto.Options == nil {
+			AstType.TypeSpec.XProto.Options = map[string]string{}
+		}
+		// set option only if it does not exist
+		_, ok = AstType.TypeSpec.XProto.Options["go_package"]
+		if !ok {
+			AstType.TypeSpec.XProto.Options["go_package"] = util.GetGoPackageName(mType.TargetPath)
+		}
+		_, ok = AstType.TypeSpec.XProto.Options["java_package"]
+		if !ok {
+			AstType.TypeSpec.XProto.Options["java_package"] = viper.GetString("muSpec.javaPackagePrefix") + mType.Package
+		}
+		_, ok = AstType.TypeSpec.XProto.Options["java_outer_classname"]
+		if !ok {
+			AstType.TypeSpec.XProto.Options["java_outer_classname"] = strings.Title(strings.Replace(path.Base(mType.Target), ".proto", "Proto", 1))
+		}
+		_, ok = AstType.TypeSpec.XProto.Options["java_multiple_files"]
+		if !ok {
+			AstType.TypeSpec.XProto.Options["java_multiple_files"] = "true"
+		}
 
 		fieldDeleteList := map[string]bool{}
 		if AstType.TypeSpec.Fields != nil {
