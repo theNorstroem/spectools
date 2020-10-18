@@ -141,7 +141,9 @@ func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist,
 			if targetRPC.RpcName == "" {
 				targetRPC.RpcName = sourceRPC.RpcName
 			}
+			//todo: check if it is needed to build in a check on setted rels
 			targetRPC.Deeplink = sourceRPC.Deeplink
+
 			targetRPC.Data.Request = sourceRPC.Data.Request
 			targetRPC.Data.Response = sourceRPC.Data.Response
 			targetRPC.Description = sourceRPC.Description
@@ -269,6 +271,9 @@ func (mt MicroService) ToMicroServiceAst() *MicroServiceAst {
 			Description: description,
 			Query:       queryParams,
 			RpcName:     matches[1] + mt.Name,
+		}
+		if r.Deeplink.Rel == "get" {
+			r.Deeplink.Rel = "self"
 		}
 		methods.Set(matches[1], r)
 
