@@ -19,6 +19,11 @@ func Run(cmd *cobra.Command, args []string) {
 		flow = f.Value.String()
 	}
 
+	// use argument as flow if set
+	if len(args) == 1 && flow == "default" {
+		flow = args[0]
+	}
+
 	listOfConfiguredFlows := collectCommands(cmd)
 
 	fmt.Println("running flow " + flow)
