@@ -11,15 +11,10 @@ spectools exportAsYaml | simple-generator -t scripts/grpcgateway/gateway.tpl > $
 # the registration of the services..
 spectools exportAsYaml | simple-generator -t scripts/grpcgateway/autoregister.tpl > $TARGETDIR/autoregister/autoregister.go
 
-echo "gateway sources generated
-"
+# beautify
+go fmt $TARGETDIR/cmd/cmd.go
+go fmt $TARGETDIR/gateway.go
+go fmt $TARGETDIR/autoregister/autoregister.go
 
-#go run pkg/grpc-gateway/cmd/cmd.go
-echo "run your grpc gateway with
-go run pkg/grpc-gateway/cmd/cmd.go
-"
-
-#go build pkg/grpc-gateway/cmd/cmd.go
-echo "build your grpc gateway with
-go build pkg/grpc-gateway/cmd/cmd.go
-"
+echo "gateway sources generated"
+echo "do not forget to add external dependencies to your go.mod and run a go mod vendor"
