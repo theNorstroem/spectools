@@ -31,14 +31,6 @@ func GetDependencyList() []string {
 		err := depconf.ReadInConfig()
 		if err == nil {
 
-			tdir := depconf.GetString("specDir")
-			if tdir != "" {
-				if _, err := os.Stat(path.Join(dep.DependencyPath, tdir)); !os.IsNotExist(err) {
-					// path/to/whatever exists
-					deps = append(deps, path.Join(dep.DependencyPath, tdir))
-				}
-
-			}
 			sdir := depconf.GetString("specDir")
 			if sdir != "" {
 				if _, err := os.Stat(path.Join(dep.DependencyPath, sdir)); !os.IsNotExist(err) {

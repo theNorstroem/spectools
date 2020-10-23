@@ -26,7 +26,7 @@ func Run(cmd *cobra.Command, args []string) {
 
 	listOfConfiguredFlows := collectCommands(cmd)
 
-	fmt.Println("running flow " + flow)
+	fmt.Println("START FLOW: " + flow)
 	seq := viper.GetStringSlice("flows." + flow)
 	// flow not found
 	if len(seq) == 0 {
@@ -34,7 +34,7 @@ func Run(cmd *cobra.Command, args []string) {
 	}
 	fmt.Println("sequence", seq)
 	for _, step := range seq {
-		fmt.Println("running step", step)
+		fmt.Println("RUNNING STEP: ", step)
 		if listOfConfiguredFlows[step] != nil {
 			// configured flows go first
 			listOfConfiguredFlows[step](cmd, args)

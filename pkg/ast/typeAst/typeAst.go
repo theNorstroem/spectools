@@ -24,6 +24,7 @@ type Typelist struct {
 }
 
 type TypeAst struct {
+	SpecDir  string // the base path, like specDir or dependencies/x.y.com/specDir
 	Path     string // relative path of spec file to SpecDir
 	FileName string
 	TypeSpec specSpec.Type
@@ -85,8 +86,10 @@ func loadTypeSpecsFromDir(specDir string) (typesMap map[string]*TypeAst) {
 				}
 
 				relativePath := path.Dir(strings.Join(strings.Split(fpath, "/")[sdlen:], "/"))
+
 				AstType := &TypeAst{
 					Path:     relativePath, // store Path without specDir
+					SpecDir:  specDir,      // store Path without specDir
 					FileName: filename,
 					TypeSpec: readAndUnmarshalSpec(fpath),
 				}

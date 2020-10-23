@@ -24,6 +24,7 @@ type Servicelist struct {
 }
 
 type ServiceAst struct {
+	SpecDir     string // the base path, like specDir or dependencies/x.y.com/specDir
 	Path        string // relative path of spec file to SpecDir
 	FileName    string
 	ServiceSpec specSpec.Service
@@ -65,6 +66,7 @@ func loadServiceSpecsFromDir(specDir string) (servicesMap map[string]*ServiceAst
 				relativePath := path.Dir(strings.Join(strings.Split(fpath, "/")[sdlen:], "/"))
 				AstService := &ServiceAst{
 					Path:        relativePath, // store Path without specDir
+					SpecDir:     specDir,
 					FileName:    filename,
 					ServiceSpec: readAndUnmarshalSpec(fpath),
 				}
