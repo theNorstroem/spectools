@@ -33,8 +33,9 @@ var muSrvSanitizeCmd = &cobra.Command{
 	Short: "Sanitize muServices",
 	Long: `Sanitizing includes:
 
-- adding of query params which are part of the url
-.`,
+- Adding of query params which are part of the url.
+
+`,
 	Run: muSrvSanitize.Run,
 }
 

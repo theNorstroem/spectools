@@ -31,7 +31,7 @@ import (
 var checkImportsCmd = &cobra.Command{
 	Use:   "checkImports",
 	Short: "Checks and correct the imports",
-	Long:  `Use this command after moving of types. It will check and correct all imports and save the specs`,
+	Long:  `Use this command after moving of types. It will check and correct all imports and update the specs`,
 	Run:   checkImports.Run,
 }
 
