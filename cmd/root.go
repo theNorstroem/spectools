@@ -48,7 +48,7 @@ Modify your default flow in the .spectools config file to your needs. You can se
 	Run: func(cmd *cobra.Command, args []string) {
 		runner.Run(cmd, args)
 	},
-	Version: "1.14.1",
+	Version: "1.15.0",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
