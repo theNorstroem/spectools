@@ -13,6 +13,7 @@ import (
 	"path"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"strings"
 )
 
@@ -236,8 +237,22 @@ func (l *Typelist) UpdateImports() {
 			}
 
 		})
+		// remove duplicate imports and sort them alphabetical
+		imports = distinctStringArray(imports)
+		sort.Strings(imports)
 		v.TypeSpec.XProto.Imports = imports
 	}
+}
+func distinctStringArray(stringSlice []string) []string {
+	keys := make(map[string]bool)
+	list := []string{}
+	for _, entry := range stringSlice {
+		if _, value := keys[entry]; !value {
+			keys[entry] = true
+			list = append(list, entry)
+		}
+	}
+	return list
 }
 
 // Deletes the spec from disk and removes the element from List
