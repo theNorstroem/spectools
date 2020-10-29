@@ -19,6 +19,8 @@ import (
 	"fmt"
 	"github.com/spf13/cobra"
 	"github.com/theNorstroem/spectools/internal/cmd/runner"
+	"golang.org/x/mod/semver"
+	"log"
 	"os"
 
 	"github.com/spf13/viper"
@@ -48,7 +50,7 @@ Modify your default flow in the .spectools config file to your needs. You can se
 	Run: func(cmd *cobra.Command, args []string) {
 		runner.Run(cmd, args)
 	},
-	Version: "1.15.0",
+	Version: "1.15.1",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -94,4 +96,12 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err != nil {
 		fmt.Println(err)
 	}
+
+	// read the spectools version, abort if the project version is higher
+	projectVersion := ("v" + viper.GetString("spectools"))
+	toolVersion := ("v" + rootCmd.Version)
+	if semver.Max(projectVersion, toolVersion) != toolVersion {
+		log.Fatal("The project requires a newer version of spectools. \n Spectools ", toolVersion, " is installed, ", projectVersion, " is required")
+	}
+
 }

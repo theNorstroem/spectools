@@ -17,6 +17,7 @@ require (
 	github.com/otiai10/copy v1.2.0
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/viper v1.7.1
+	golang.org/x/mod v0.1.0
 	google.golang.org/protobuf v1.25.0
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776
 
