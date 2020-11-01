@@ -33,11 +33,11 @@ func Run(cmd *cobra.Command, args []string) {
 	allServices := clientspec.GetAllServices()
 
 	td, _ := json.Marshal(allTypes)
-	typeLine := "export const Types = JSON.parse(`" + string(td) + "`)"
+	typeLine := "export const Types = JSON.parse(`" + string(td) + "`);"
 	sd, _ := json.Marshal(allServices)
-	serviceLine := "export const Services = JSON.parse(`" + string(sd) + "`)"
+	serviceLine := "export const Services = JSON.parse(`" + string(sd) + "`);"
 
-	err := ioutil.WriteFile(viper.GetString("build.esModule.targetFile"), []byte(typeLine+"\n"+serviceLine), 0644)
+	err := ioutil.WriteFile(viper.GetString("build.esModule.targetFile"), []byte("/* eslint-disable */\n"+typeLine+"\n"+serviceLine), 0644)
 	if err != nil {
 		panic(err)
 	}
