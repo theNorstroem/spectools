@@ -72,15 +72,41 @@ func Run(cmd *cobra.Command, args []string) {
 			if err != nil {
 				fmt.Println(err)
 			}
-			// copy from packageRepoDir to dep.DependencyPath
-			copy.Copy(packageRepoDir, dep.DependencyPath, copy.Options{
-				OnSymlink: nil,
-				Skip: func(src string) (bool, error) {
-					return path.Base(src) == ".git", nil
-				},
-				AddPermission: 0,
-				Sync:          false,
-			})
+			iconf := viper.New()
+			iconf.AddConfigPath(packageRepoDir)
+			iconf.SetConfigType("yaml") // REQUIRED if the config file does not have the extension in the name
+			iconf.SetConfigName(".spectools")
+			// If a config file is found, read it in.
+			if err := iconf.ReadInConfig(); err != nil {
+				fmt.Println(err)
+				// copy all files, because no spectools was found
+				copyAllfiles(packageRepoDir, dep)
+			} else {
+				// copy from packageRepoDir to dep.DependencyPath
+				filelist := iconf.GetStringSlice("dist.files")
+
+				if len(filelist) > 0 {
+					for _, fileOrDir := range filelist {
+						src := path.Join(packageRepoDir, fileOrDir)
+						target := path.Join(dep.DependencyPath, fileOrDir)
+						err := copy.Copy(src, target, copy.Options{
+							OnSymlink: nil,
+							Skip: func(src string) (bool, error) {
+								return path.Base(src) == ".git", nil
+							},
+							AddPermission: 0,
+							Sync:          false,
+						})
+						if err != nil {
+							fmt.Println(err)
+						}
+					}
+
+				} else {
+					// copy all files, because no specific files was given with dist
+					copyAllfiles(packageRepoDir, dep)
+				}
+			}
 
 		} else {
 			// todo discuss to implement file system dep ???
@@ -88,6 +114,17 @@ func Run(cmd *cobra.Command, args []string) {
 		}
 
 	}
+}
+
+func copyAllfiles(packageRepoDir string, dep util.Dependency) {
+	copy.Copy(packageRepoDir, dep.DependencyPath, copy.Options{
+		OnSymlink: nil,
+		Skip: func(src string) (bool, error) {
+			return path.Base(src) == ".git", nil
+		},
+		AddPermission: 0,
+		Sync:          false,
+	})
 }
 
 func CheckoutWithGitCommand(packageRepoDir string, version string) error {
