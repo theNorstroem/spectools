@@ -9,8 +9,8 @@ import (
 	"github.com/theNorstroem/spectools/pkg/ast/typeAst"
 	"github.com/theNorstroem/spectools/pkg/clientspec"
 	"github.com/theNorstroem/spectools/pkg/util"
-
 	"io/ioutil"
+	"strings"
 )
 
 func Run(cmd *cobra.Command, args []string) {
@@ -33,9 +33,15 @@ func Run(cmd *cobra.Command, args []string) {
 	allServices := clientspec.GetAllServices()
 
 	td, _ := json.Marshal(allTypes)
-	typeLine := "export const Types = JSON.parse(`" + string(td) + "`);"
+
+	// only escape " \n and \t and not just \ because we have strings like \u003c which is a <
+	escapedType := strings.ReplaceAll(string(td), "\\\"", "\\\\\"")
+	escapedType = strings.ReplaceAll(escapedType, "\\n", "\\\\n")
+	escapedType = strings.ReplaceAll(escapedType, "\\t", "\\\\t")
+
+	typeLine := "export const Types = JSON.parse(\n`" + escapedType + "`,\n);\n"
 	sd, _ := json.Marshal(allServices)
-	serviceLine := "export const Services = JSON.parse(`" + string(sd) + "`);"
+	serviceLine := "export const Services = JSON.parse(\n`" + string(sd) + "`,\n);\n"
 
 	err := ioutil.WriteFile(viper.GetString("build.esModule.targetFile"), []byte("/* eslint-disable */\n"+typeLine+"\n"+serviceLine), 0644)
 	if err != nil {
