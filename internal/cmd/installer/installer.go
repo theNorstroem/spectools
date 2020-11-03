@@ -86,6 +86,8 @@ func Run(cmd *cobra.Command, args []string) {
 				filelist := iconf.GetStringSlice("dist.files")
 
 				if len(filelist) > 0 {
+					// ensure that the .spectools file is installed
+					filelist = append(filelist, ".spectools")
 					for _, fileOrDir := range filelist {
 						src := path.Join(packageRepoDir, fileOrDir)
 						target := path.Join(dep.DependencyPath, fileOrDir)
