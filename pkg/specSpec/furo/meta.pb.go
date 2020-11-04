@@ -164,7 +164,7 @@ type Fieldoption struct {
 	//
 	Flags []string `protobuf:"bytes,2,rep,name=flags,proto3" json:"flags,omitempty"`
 	// a list with options, use furo.optionitem or your own
-	List []*any.Any `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	List []*map[string]interface{} `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty" yaml:"list,omitempty"`
 }
 
 func (x *Fieldoption) Reset() {
@@ -202,13 +202,6 @@ func (*Fieldoption) Descriptor() ([]byte, []int) {
 func (x *Fieldoption) GetFlags() []string {
 	if x != nil {
 		return x.Flags
-	}
-	return nil
-}
-
-func (x *Fieldoption) GetList() []*any.Any {
-	if x != nil {
-		return x.List
 	}
 	return nil
 }
@@ -275,13 +268,13 @@ type FieldMeta struct {
 	// The label
 	Label string `protobuf:"bytes,1,opt,name=label,proto3" json:"label"`
 	// Fieldoptions
-	Options *Fieldoption `protobuf:"bytes,6,opt,name=options,proto3" json:"options"`
+	Options *Fieldoption `protobuf:"bytes,6,opt,name=options,proto3" json:"options" yaml:"options"`
 	// readonly
 	Readonly bool `protobuf:"varint,4,opt,name=readonly,proto3" json:"readonly"`
 	// repeated
 	Repeated bool `protobuf:"varint,5,opt,name=repeated,proto3" json:"repeated"`
-	// Put in type specific metas for your fields here
-	Typespecific *any.Any `protobuf:"bytes,7,opt,name=typespecific,proto3" json:"typespecific"`
+	// Put in type specific metas for your fields here => is google.type.Any
+	Typespecific *map[string]interface{} `protobuf:"bytes,7,opt,name=typespecific,proto3" json:"typespecific"`
 }
 
 func (x *FieldMeta) Reset() {
@@ -356,13 +349,6 @@ func (x *FieldMeta) GetRepeated() bool {
 		return x.Repeated
 	}
 	return false
-}
-
-func (x *FieldMeta) GetTypespecific() *any.Any {
-	if x != nil {
-		return x.Typespecific
-	}
-	return nil
 }
 
 // a single fieldconstraint
