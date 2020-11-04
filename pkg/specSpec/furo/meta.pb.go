@@ -162,9 +162,9 @@ type Fieldoption struct {
 	// Add flags for your field. This can be something like &#34;searchable&#34;.
 	// //The flags can be used by generators, ui components,...
 	//
-	Flags []string `protobuf:"bytes,2,rep,name=flags,proto3" json:"flags,omitempty"`
+	Flags []string `protobuf:"bytes,2,rep,name=flags,proto3" json:"flags,omitempty" yaml:"flags"`
 	// a list with options, use furo.optionitem or your own
-	List []*map[string]interface{} `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty" yaml:"list,omitempty"`
+	List []*map[string]interface{} `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty" yaml:"list"`
 }
 
 func (x *Fieldoption) Reset() {
