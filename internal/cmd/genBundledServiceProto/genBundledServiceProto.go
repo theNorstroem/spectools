@@ -44,7 +44,7 @@ func Run(cmd *cobra.Command, args []string) {
 	}
 
 	// todo implement flag
-	withInstalled := false
+	withInstalled := true
 
 	allServices := map[string]*specSpec.Service{}
 	// types are needed for import checks
