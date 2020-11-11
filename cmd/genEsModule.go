@@ -31,7 +31,7 @@ import (
 var genEsModuleCmd = &cobra.Command{
 	Use:   "genEsModule",
 	Short: "generate es6 spec module",
-	Long: `The furo data objects relys on the server specs. 
+	Long: `The furo data objects relays on the server specs. 
 `,
 	Run: genEsModule.Run,
 }

@@ -22,6 +22,7 @@ func Run(cmd *cobra.Command, args []string) {
 	clientspec.AddTypesToResolver(Typelist.TypesByName)
 	clientspec.AddTypesToResolver(Typelist.InstalledTypesByName)
 	// after adding all types we can build up the type resolutions
+	// in the es module we use absolute type names only
 	clientspec.TransformCPlusStyleToAbsolutTypes()
 	allTypes := clientspec.GetAllTypes()
 
