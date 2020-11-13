@@ -212,6 +212,7 @@ type MicroService struct {
 	Package     string     `yaml:"package,omitempty"`
 	Target      string     `yaml:"target,omitempty"`
 	Services    []MicroRPC `yaml:"services,omitempty"` //RPCs
+	Methods     []MicroRPC `yaml:"methods,omitempty"`  //RPCs
 	SourceFile  string     `yaml:"_,omitempty"`
 }
 
@@ -223,9 +224,13 @@ func (mt MicroService) ToMicroServiceAst() *MicroServiceAst {
 
 	imports = append(imports, "google/api/annotations.proto")
 
+	// compatibility for version < 1.20.0
+	// methods was in Services
+	if mt.Methods == nil {
+		mt.Methods = mt.Services
+	}
 	// build the map
-
-	for _, def := range mt.Services {
+	for _, def := range mt.Methods {
 		// "List: GET /auth/{user} request.Type, response.Type #List eds with pagination"
 		regex := regexp.MustCompile(`^([^:]+):\s?([A-Z]*)\s?([^\s]*) ?([^,\s]*)\s?,\s?([^#\s]*)\s?#?(.*)$`)
 		matches := regex.FindStringSubmatch(def.Md)

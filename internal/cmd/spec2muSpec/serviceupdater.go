@@ -92,7 +92,7 @@ func updateAndStoreMicroServices(serviceItems map[string]*UTshadowNode) {
 
 			muService := &microservices.MicroService{
 				Name:        shadowNode.edgeServiceNode.ServiceSpec.Name,
-				Services:    serviceList,
+				Methods:     serviceList,
 				Target:      shadowNode.edgeServiceNode.ServiceSpec.XProto.Targetfile,
 				Package:     shadowNode.edgeServiceNode.ServiceSpec.XProto.Package,
 				Description: shadowNode.edgeServiceNode.ServiceSpec.Description,
