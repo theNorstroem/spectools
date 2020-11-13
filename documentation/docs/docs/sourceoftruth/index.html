@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Source of Truth #  The different specification formats can be used as a source or a sink or both of them, but never use sources as source of the specs.
+ mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) graph LR µSpec -- Spec Spec -- Proto Proto -- µSpec Spec -- µSpec Some transitions will loose information
+ Spec --&gt; *  some transitions are destructive
+ Proto -&gt; µSpec Spec -&gt; Proto  and some are updating the sinks">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Source of Truth" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://fidl.furo.pro/docs/sourceoftruth/" />
+
+<title>Source of Truth | フロー FIDL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.09a284f5a03730d86dde350d2c062b1514e48fdfebba7763941c0674ef65748f.css" integrity="sha256-CaKE9aA3MNht3jUNLAYrFRTkj9/rundjlBwGdO9ldI8=">
+<script defer src="/en.search.min.b1b7a6f7c7e596c4c7a6dc15b084171dd3d7e9dce25ed834c77b194e2ee63338.js" integrity="sha256-sbem98fllsTHptwVsIQXHdPX6dziXtg0x3sZTi7mMzg="></script>
+<link rel="alternate" type="application/rss+xml" href="http://fidl.furo.pro/docs/sourceoftruth/index.xml" title="フロー FIDL" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <div ></div>
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>フロー FIDL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/" class="">Overview</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/define_type/" class="">Defining a Type</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/define_service/" class="">Defining a Service</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/default_values/" class="">Default Values</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/scalar_value_types/" class="">Scalar Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/using_other_types/" class="">Using Other Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/enums/" class="">Enumerations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/oneof/" class="">Oneof</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/maps/" class="">Maps</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/packages/" class="">Packages</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5a49e98448c138f3defcd1ff480166f2" class="toggle"  />
+    <label for="section-5a49e98448c138f3defcd1ff480166f2" class="flex justify-between">
+      <a href="http://fidl.furo.pro/docs/overview/extensions/" class="">Extensions</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/extensions/extension_proto/" class="">Protobuf Extension</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/extensions/extension_ui/" class="">UI Extension</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/style_guide/" class="">Style Guide</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-02a2f2578aa199d9ce0d19ad7b4e5ba3" class="toggle"  />
+    <label for="section-02a2f2578aa199d9ce0d19ad7b4e5ba3" class="flex justify-between">
+      <a href="http://fidl.furo.pro/docs/%C2%B5Specs/" class="">µSpecs</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/%C2%B5Specs/types/" class="">Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/%C2%B5Specs/services/" class="">Services</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-172dfd5e06b2f7615d5de2eefeeb4335" class="toggle"  />
+    <label for="section-172dfd5e06b2f7615d5de2eefeeb4335" class="flex justify-between">
+      <a href="http://fidl.furo.pro/docs/specs/" class="">Specs</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/specs/types/" class="">Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/specs/services/" class="">Services</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a432bb056edf769c9f15f6893988f152" class="toggle"  />
+    <label for="section-a432bb056edf769c9f15f6893988f152" class="flex justify-between">
+      <a href="http://fidl.furo.pro/docs/tools/" class="">Tools</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/tools/BEC/" class="">B E C</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/sourceoftruth/" class=" active">Source of Truth</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/theNorstroem/fidl-docs" target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://furo.pro/" target="_blank" rel="noopener">
+        furo.pro
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Source of Truth</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#source-of-truth">Source of Truth</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#sources-and-sink">Sources AND Sink</a></li>
+            <li><a href="#sinks-only">Sinks only</a></li>
+          </ul>
+        </li>
+        <li><a href="#spec-as-source">Spec as source</a></li>
+        <li><a href="#µspec-as-source">µSpec as source</a>
+          <ul>
+            <li><a href="#proto-as-source">Proto as source</a></li>
+          </ul>
+        </li>
+        <li><a href="#advanced-setup">Advanced Setup</a></li>
+        <li><a href="#multiple-sources-of-truth">Multiple Sources of Truth</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="source-of-truth">
+  Source of Truth
+  <a class="anchor" href="#source-of-truth">#</a>
+</h1>
+<p>The different specification formats can be used as a source or a sink or both of them, but never use sources as source of the specs.</p>
+
+
+<script src="/mermaid.min.js"></script>
+
+  <script>mermaid.initialize({
+  "flowchart": {
+    "useMaxWidth":true
+  },
+  "theme": "default"
+}
+)</script>
+
+
+
+
+<p class="mermaid">
+graph LR
+µSpec --> Spec
+Spec --> Proto
+Proto --> µSpec
+Spec --> µSpec
+</p>
+
+<p>Some transitions will loose information</p>
+<ul>
+<li><code>Spec --&gt; *</code></li>
+</ul>
+<p>some transitions are destructive</p>
+<ul>
+<li><code>Proto -&gt; µSpec</code></li>
+<li><code>Spec -&gt; Proto</code></li>
+</ul>
+<p>and some are updating the sinks</p>
+<ul>
+<li><code>µSpec -&gt; Spec</code></li>
+<li><code>Spec -&gt; µSpec</code></li>
+</ul>
+<p>You should choose <strong>one</strong> source of truth and stick to it when possible. It is always possible to change.</p>
+<h3 id="sources-and-sink">
+  Sources AND Sink
+  <a class="anchor" href="#sources-and-sink">#</a>
+</h3>
+<ul>
+<li>Spec</li>
+<li>µSpec</li>
+<li>Proto</li>
+</ul>
+<h3 id="sinks-only">
+  Sinks only
+  <a class="anchor" href="#sinks-only">#</a>
+</h3>
+<ul>
+<li>Es6Module (by design)</li>
+<li>Docs</li>
+<li>U33E</li>
+<li>Gateway</li>
+<li>OpenApi</li>
+</ul>
+<h2 id="spec-as-source">
+  Spec as source
+  <a class="anchor" href="#spec-as-source">#</a>
+</h2>
+
+
+<p class="mermaid">
+graph TD
+Spec --> Proto
+Spec --> µSpec
+Spec --> Es6Module
+Spec --> Docs
+Spec --> U33E
+Spec --> ...
+Proto --> Gateway
+Proto --> OpenApi
+</p>
+
+<div class="book-columns flex flex-wrap">
+  
+  <div class="flex-even markdown-inner">
+    <h3 id="pros">Pros</h3>
+<ul>
+<li>only one kind of spec to work with</li>
+<li>run your flow at any time with same results (idempotency)</li>
+<li>guaranteed interoperability from backend to client</li>
+</ul>
+
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    <h3 id="cons">Cons</h3>
+<ul>
+<li>design phase is harder</li>
+<li>µSpec only for discussions and not for &ldquo;design&rdquo;</li>
+</ul>
+
+  </div>
+  
+</div>
+
+<blockquote class="book-hint warning">
+  Recommended when you only have to maintain an existing project.
+</blockquote>
+
+<h2 id="µspec-as-source">
+  µSpec as source
+  <a class="anchor" href="#%c2%b5spec-as-source">#</a>
+</h2>
+
+
+<p class="mermaid">
+graph TD
+Spec --> Proto
+µSpec -->Spec
+Spec --> Es6Module
+Spec --> Docs
+Spec --> U33E
+Spec --> ...
+Proto --> Gateway
+Proto --> OpenApi
+</p>
+
+<div class="book-columns flex flex-wrap">
+  
+  <div class="flex-even markdown-inner">
+    <h3 id="pros">Pros</h3>
+<ul>
+<li>fastest variant to design new stuff</li>
+<li>simplest notation</li>
+<li>covers &gt;90% of the cases</li>
+<li>idempotent</li>
+<li>guaranteed interoperability from backend to client</li>
+</ul>
+
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    <h3 id="cons">Cons</h3>
+<ul>
+<li>working in specs for some edge cases required</li>
+</ul>
+
+  </div>
+  
+</div>
+
+<blockquote class="book-hint warning">
+  <p>Recommended when you have a fresh project or a lot of changes.</p>
+<p>Easiest method when you know protobuf/grpc.</p>
+
+</blockquote>
+
+<h3 id="proto-as-source">
+  Proto as source
+  <a class="anchor" href="#proto-as-source">#</a>
+</h3>
+
+
+<p class="mermaid">
+graph TD
+Proto --> µSpec
+µSpec -->Spec
+Spec --> Es6Module
+Spec --> Docs
+Spec --> U33E
+Spec --> ...
+Proto --> Gateway
+Proto --> OpenApi
+</p>
+
+<div class="book-columns flex flex-wrap">
+  
+  <div class="flex-even markdown-inner">
+    <h3 id="pros">Pros</h3>
+<ul>
+<li>good solution when <strong>everything</strong> is already defined in proto</li>
+<li>covers &gt;80% of the cases</li>
+<li>idempotent</li>
+</ul>
+
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    <h3 id="cons">Cons</h3>
+<ul>
+<li>destructive step Proto &ndash;&gt; µSpec</li>
+<li>working in specs for some cases required</li>
+<li>writing REST service definitions by &ldquo;hand&rdquo;</li>
+<li>interoperability from backend to client is not guaranteed because some steps are not under control of spectools anymore.</li>
+</ul>
+
+  </div>
+  
+</div>
+
+<blockquote class="book-hint warning">
+  Recommended when you have a huge portfolio of protos and want to bring them to the web (without any changes).
+</blockquote>
+
+<h2 id="advanced-setup">
+  Advanced Setup
+  <a class="anchor" href="#advanced-setup">#</a>
+</h2>
+<p>This is a extended µSpec as source variant.</p>
+
+
+<p class="mermaid">
+graph TD
+SomeProto --> µSpec
+µSpec --> Spec
+Spec --> Proto
+Spec --> Es6Module
+Spec --> Docs
+Spec --> U33E
+Spec --> ...
+Proto --> Gateway
+Proto --> OpenApi
+</p>
+
+<div class="book-columns flex flex-wrap">
+  
+  <div class="flex-even markdown-inner">
+    <h3 id="pros">Pros</h3>
+<ul>
+<li>implement external changes very fast</li>
+<li>designing new stuff still fast</li>
+<li>guaranteed interoperability from backend to client</li>
+</ul>
+
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    <h3 id="cons">Cons</h3>
+<ul>
+<li>hard setup for the SomeProto part</li>
+<li>bigger skill set needed</li>
+<li>partially destructive step</li>
+</ul>
+
+  </div>
+  
+</div>
+
+<blockquote class="book-hint warning">
+  Recommended when you have to import protos to your system. Use &ldquo;µSpec as source&rdquo; first and switch to this variant when
+you have to.
+</blockquote>
+
+<h2 id="multiple-sources-of-truth">
+  Multiple Sources of Truth
+  <a class="anchor" href="#multiple-sources-of-truth">#</a>
+</h2>
+<p>The you know what you do mode.</p>
+<blockquote class="book-hint danger">
+  When you have to migrate a project from different spec formats, you have to use this setup. This is <strong>not recomended</strong> and
+should still be an exception and not the default.
+</blockquote>
+
+
+
+<p class="mermaid">
+graph TD
+SomeProto --> µSpec
+OtherFormats --> Spec
+µSpec --> Spec
+Spec --> Proto
+Spec --> µSpec
+Spec --> Es6Module
+Spec --> Docs
+Spec --> U33E
+Spec --> ...
+Proto --> Gateway
+Proto --> OpenApi
+Proto --> µSpec
+
+</p>
+
+<div class="book-columns flex flex-wrap">
+  
+  <div class="flex-even markdown-inner">
+    <h3 id="pros">Pros</h3>
+<ul>
+<li>Do what ever you ever want.</li>
+</ul>
+
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    <h3 id="cons">Cons</h3>
+<ul>
+<li>Dangerous</li>
+<li>More then one flow required</li>
+<li>Not idempotent</li>
+<li>very hard setup</li>
+</ul>
+
+  </div>
+  
+</div>
+
+<blockquote class="book-hint danger">
+  <p><strong>NOT Recommended!</strong></p>
+<p>Do this only when you have to do, try to switch to another setup as fast as you can.</p>
+
+</blockquote>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+  <div><a class="flex align-center" href="https://github.com/theNorstroem/fidl-docs/commit/735a39c8f34063021486a36d525c1d0eb4c91e99" title='Last modified by veith | November 12, 2020' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>November 12, 2020</span>
+    </a>
+  </div>
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#source-of-truth">Source of Truth</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#sources-and-sink">Sources AND Sink</a></li>
+            <li><a href="#sinks-only">Sinks only</a></li>
+          </ul>
+        </li>
+        <li><a href="#spec-as-source">Spec as source</a></li>
+        <li><a href="#µspec-as-source">µSpec as source</a>
+          <ul>
+            <li><a href="#proto-as-source">Proto as source</a></li>
+          </ul>
+        </li>
+        <li><a href="#advanced-setup">Advanced Setup</a></li>
+        <li><a href="#multiple-sources-of-truth">Multiple Sources of Truth</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

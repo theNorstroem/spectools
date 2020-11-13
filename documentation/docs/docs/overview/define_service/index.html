@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Defining A Service #  Furo services are organized in packages. They can use all types that you have defined in your project or are installed as dependencies.
+Lets do a simple example in µSpec and spec and see what the resulting proto will be.
+Define the service in µSpec #  The following example is a complete service definition. You can use every type from your specs and installed dependencies.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Defining a Service" />
+<meta property="og:description" content="Defining A Service #  Furo services are organized in packages. They can use all types that you have defined in your project or are installed as dependencies.
+Lets do a simple example in µSpec and spec and see what the resulting proto will be.
+Define the service in µSpec #  The following example is a complete service definition. You can use every type from your specs and installed dependencies." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://fidl.furo.pro/docs/overview/define_service/" />
+<meta property="article:modified_time" content="2020-11-11T09:43:56+01:00" />
+<title>Defining a Service | フロー FIDL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.09a284f5a03730d86dde350d2c062b1514e48fdfebba7763941c0674ef65748f.css" integrity="sha256-CaKE9aA3MNht3jUNLAYrFRTkj9/rundjlBwGdO9ldI8=">
+<script defer src="/en.search.min.b1b7a6f7c7e596c4c7a6dc15b084171dd3d7e9dce25ed834c77b194e2ee63338.js" integrity="sha256-sbem98fllsTHptwVsIQXHdPX6dziXtg0x3sZTi7mMzg="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <div ></div>
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>フロー FIDL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/" class="">Overview</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/define_type/" class="">Defining a Type</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/define_service/" class=" active">Defining a Service</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/default_values/" class="">Default Values</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/scalar_value_types/" class="">Scalar Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/using_other_types/" class="">Using Other Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/enums/" class="">Enumerations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/oneof/" class="">Oneof</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/maps/" class="">Maps</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/packages/" class="">Packages</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5a49e98448c138f3defcd1ff480166f2" class="toggle"  />
+    <label for="section-5a49e98448c138f3defcd1ff480166f2" class="flex justify-between">
+      <a href="http://fidl.furo.pro/docs/overview/extensions/" class="">Extensions</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/extensions/extension_proto/" class="">Protobuf Extension</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/extensions/extension_ui/" class="">UI Extension</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/style_guide/" class="">Style Guide</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-02a2f2578aa199d9ce0d19ad7b4e5ba3" class="toggle"  />
+    <label for="section-02a2f2578aa199d9ce0d19ad7b4e5ba3" class="flex justify-between">
+      <a href="http://fidl.furo.pro/docs/%C2%B5Specs/" class="">µSpecs</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/%C2%B5Specs/types/" class="">Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/%C2%B5Specs/services/" class="">Services</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-172dfd5e06b2f7615d5de2eefeeb4335" class="toggle"  />
+    <label for="section-172dfd5e06b2f7615d5de2eefeeb4335" class="flex justify-between">
+      <a href="http://fidl.furo.pro/docs/specs/" class="">Specs</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/specs/types/" class="">Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/specs/services/" class="">Services</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a432bb056edf769c9f15f6893988f152" class="toggle"  />
+    <label for="section-a432bb056edf769c9f15f6893988f152" class="flex justify-between">
+      <a href="http://fidl.furo.pro/docs/tools/" class="">Tools</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/tools/BEC/" class="">B E C</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/sourceoftruth/" class="">Source of Truth</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/theNorstroem/fidl-docs" target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://furo.pro/" target="_blank" rel="noopener">
+        furo.pro
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Defining a Service</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#defining-a-service">Defining A Service</a>
+      <ul>
+        <li><a href="#define-the-service-in-µspec">Define the service in µSpec</a></li>
+        <li><a href="#define-the-service-in-standard-spec">Define the service in standard spec</a></li>
+        <li><a href="#resulting-proto-from-the-service-definition">Resulting proto from the service definition</a>
+          <ul>
+            <li><a href="#the-service-itself">The service itself</a></li>
+            <li><a href="#the-request-messages">The request messages</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="defining-a-service">
+  Defining A Service
+  <a class="anchor" href="#defining-a-service">#</a>
+</h1>
+<p>Furo services are organized in packages. They can use all types that you have defined in your project or are installed as
+dependencies.</p>
+<p>Lets do a simple example in µSpec and spec and see what the resulting proto will be.</p>
+<h2 id="define-the-service-in-µspec">
+  Define the service in µSpec
+  <a class="anchor" href="#define-the-service-in-%c2%b5spec">#</a>
+</h2>
+<p>The following example is a complete service definition. You can use every type from your specs and installed
+dependencies. You do not need to import them. The imports are resolved and checked by the spectools when you translate your µSecs to standard specs with the command <code>spectools muSpec2spec</code>.</p>
+<p><em>File: muspec/auth/auth.services.yaml</em></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">AuthSession</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">description</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Login with credentials. The service should set a auth cookie on successful login and delete it on logout</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">package</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">auth</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">target</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">authservice.proto</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">services</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#204a87;font-weight:bold">md: &#39;Create</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">POST /auth auth.Credentials , google.protobuf.Empty #Login with credentials #A login is nothing else then creating a valid session&#39;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#204a87;font-weight:bold">md: &#39;Delete</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">DELETE /auth google.protobuf.Empty , google.protobuf.Empty #Logout.&#39;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><p>It helps a lot to know the anatomy of a µService, 
+  <a href="/docs/%c2%b5Specs/services/">read more here</a></p>
+<h2 id="define-the-service-in-standard-spec">
+  Define the service in standard spec
+  <a class="anchor" href="#define-the-service-in-standard-spec">#</a>
+</h2>
+<p>The standard specs have a much higher information density then the µSpecs.
+The spectools will fill out as much as possible with good defaults by using the <code>.spectools</code>  configuration file.</p>
+<p>It helps a lot to know the anatomy of a standard spec, 
+  <a href="/docs/specs/services/">read more here</a></p>
+<p>When you generate the specs from µSpecs, the spectools will generate all required types for the request and response
+in the same package that you have defined for your service. Spectools will try to use the best
+defaults for the types. You can always edit this pre generated types.</p>
+<p><em>File: specs/auth/AuthSession.service.spec</em></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">AuthSession</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">description</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Login with credentials. The service should set a auth cookie on successful login and delete it on logout</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">lifecycle</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">null</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">__proto</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">package</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">auth</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">targetfile</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">authservice.proto</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">imports</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">google/api/annotations.proto</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">auth/reqmsgs.proto</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">auth/auth.proto</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">google/protobuf/empty.proto</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">options</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">go_package</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">github.com/veith/doit-specs/dist/pb/auth;authpb</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">java_multiple_files</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">java_outer_classname</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">AuthserviceProto</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">java_package</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">com.furo.baseauth</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">services</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">Create</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">description</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#39;Login with credentials #A login is nothing else then creating a valid session&#39;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">data</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">request</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">auth.Credentials</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">response</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">google.protobuf.Empty</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">bodyfield</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">body</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">deeplink</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">description: &#39;Create</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">POST /auth auth.Credentials , google.protobuf.Empty #Login with credentials #A login is nothing else then creating a valid session&#39;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">href</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">/auth</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">method</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">POST</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">rel</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">create</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">query</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>{}<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">rpc_name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">CreateAuthSession</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">Delete</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">description</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Logout.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">data</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">request</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">google.protobuf.Empty</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">response</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">google.protobuf.Empty</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">bodyfield</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">body</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">deeplink</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">description: &#39;Delete</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">DELETE /auth google.protobuf.Empty , google.protobuf.Empty #Logout.&#39;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">href</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">/auth</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">method</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">DELETE</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">rel</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">delete</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">query</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>{}<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">rpc_name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">DeleteAuthSession</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><h2 id="resulting-proto-from-the-service-definition">
+  Resulting proto from the service definition
+  <a class="anchor" href="#resulting-proto-from-the-service-definition">#</a>
+</h2>
+<h3 id="the-service-itself">
+  The service itself
+  <a class="anchor" href="#the-service-itself">#</a>
+</h3>
+<p><em>file: dist/protos/auth/authservice.proto</em></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-proto" data-lang="proto"><span style="color:#8f5902;font-style:italic">// Code generated by furo spectools. DO NOT EDIT.
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#000">syntax</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;proto3&#34;</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">auth</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">option</span> <span style="color:#000">go_package</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;github.com/veith/doit-specs/dist/pb/auth;authpb&#34;</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">option</span> <span style="color:#000">java_multiple_files</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">option</span> <span style="color:#000">java_outer_classname</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;AuthserviceProto&#34;</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">option</span> <span style="color:#000">java_package</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;com.furo.baseauth&#34;</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#4e9a06">&#34;auth/auth.proto&#34;</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#4e9a06">&#34;auth/reqmsgs.proto&#34;</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#4e9a06">&#34;google/api/annotations.proto&#34;</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#4e9a06">&#34;google/protobuf/empty.proto&#34;</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#8f5902;font-style:italic">// Login with credentials. The service should set a auth cookie on successful login and delete it on logout
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">service</span> <span style="color:#000">AuthSession</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>    <span style="color:#8f5902;font-style:italic">// Login with credentials #A login is nothing else then creating a valid session
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">rpc</span> <span style="color:#000">CreateAuthSession</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">CreateAuthSessionRequest</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">returns</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">google.protobuf.Empty</span><span style="color:#000;font-weight:bold">){</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>        <span style="color:#8f5902;font-style:italic">//Create: POST /auth auth.Credentials , google.protobuf.Empty #Login with credentials #A login is nothing else then creating a valid session
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#204a87;font-weight:bold">option</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">google.api.http</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>		<span style="color:#000">post</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;/auth&#34;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>		<span style="color:#000">body</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;body&#34;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>	<span style="color:#000;font-weight:bold">};</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>    <span style="color:#000;font-weight:bold">}</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>    <span style="color:#8f5902;font-style:italic">// Logout.
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">rpc</span> <span style="color:#000">DeleteAuthSession</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">DeleteAuthSessionRequest</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">returns</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">google.protobuf.Empty</span><span style="color:#000;font-weight:bold">){</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>        <span style="color:#8f5902;font-style:italic">//Delete: DELETE /auth google.protobuf.Empty , google.protobuf.Empty #Logout.
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#204a87;font-weight:bold">option</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">google.api.http</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>		<span style="color:#000">delete</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;/auth&#34;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>		<span style="color:#a40000">
+</span><span style="color:#a40000"></span>	<span style="color:#000;font-weight:bold">};</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>    <span style="color:#000;font-weight:bold">}</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#000;font-weight:bold">}</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span></code></pre></div><h3 id="the-request-messages">
+  The request messages
+  <a class="anchor" href="#the-request-messages">#</a>
+</h3>
+<p><em>file: dist/protos/auth/reqmsgs.proto</em></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-proto" data-lang="proto"><span style="color:#8f5902;font-style:italic">// Code generated by furo-proto-gen. DO NOT EDIT.
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">syntax</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;proto3&#34;</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">auth</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">option</span> <span style="color:#000">go_package</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;github.com/veith/doit-specs/dist/pb/auth;authpb&#34;</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">option</span> <span style="color:#000">java_multiple_files</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">option</span> <span style="color:#000">java_outer_classname</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;ReqmsgsProto&#34;</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">option</span> <span style="color:#000">java_package</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;com.furo.baseauth&#34;</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#4e9a06">&#34;auth/auth.proto&#34;</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#4e9a06">&#34;google/protobuf/empty.proto&#34;</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#8f5902;font-style:italic">// request message for CreateAuthService
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">CreateAuthServiceRequest</span> <span style="color:#000;font-weight:bold">{</span>  <span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>    <span style="color:#8f5902;font-style:italic">// Body with auth.Credentials
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">auth.Credentials</span> <span style="color:#000">body</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#000;font-weight:bold">}</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#8f5902;font-style:italic">// request message for CreateAuthSession
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">CreateAuthSessionRequest</span> <span style="color:#000;font-weight:bold">{</span>  <span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>    <span style="color:#8f5902;font-style:italic">// Body with auth.Credentials
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">auth.Credentials</span> <span style="color:#000">body</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#000;font-weight:bold">}</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#8f5902;font-style:italic">// request message for CreateSessionAuthService
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">CreateSessionAuthServiceRequest</span> <span style="color:#000;font-weight:bold">{</span>  <span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>    <span style="color:#8f5902;font-style:italic">// Body with auth.Credentials
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">auth.Credentials</span> <span style="color:#000">body</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#000;font-weight:bold">}</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#8f5902;font-style:italic">// request message for DeleteAuthService
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">DeleteAuthServiceRequest</span> <span style="color:#000;font-weight:bold">{</span>  <span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>    <span style="color:#8f5902;font-style:italic">// Body with google.protobuf.Empty
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">google.protobuf.Empty</span> <span style="color:#000">body</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#000;font-weight:bold">}</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#8f5902;font-style:italic">// request message for DeleteAuthSession
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">DeleteAuthSessionRequest</span> <span style="color:#000;font-weight:bold">{</span>  <span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>    <span style="color:#8f5902;font-style:italic">// Body with google.protobuf.Empty
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">google.protobuf.Empty</span> <span style="color:#000">body</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#000;font-weight:bold">}</span><span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#8f5902;font-style:italic">// request message for DeleteSessionAuthService
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">message</span> <span style="color:#000">DeleteSessionAuthServiceRequest</span> <span style="color:#000;font-weight:bold">{</span>  <span style="color:#a40000">
+</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span>    <span style="color:#8f5902;font-style:italic">// Body with google.protobuf.Empty
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">google.protobuf.Empty</span> <span style="color:#000">body</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span><span style="color:#a40000">
+</span><span style="color:#a40000"></span><span style="color:#000;font-weight:bold">}</span><span style="color:#a40000">
+</span></code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+  <div><a class="flex align-center" href="https://github.com/theNorstroem/fidl-docs/commit/01cdbe017dad03007957355dc9755e04290d9822" title='Last modified by veith | November 11, 2020' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>November 11, 2020</span>
+    </a>
+  </div>
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#defining-a-service">Defining A Service</a>
+      <ul>
+        <li><a href="#define-the-service-in-µspec">Define the service in µSpec</a></li>
+        <li><a href="#define-the-service-in-standard-spec">Define the service in standard spec</a></li>
+        <li><a href="#resulting-proto-from-the-service-definition">Resulting proto from the service definition</a>
+          <ul>
+            <li><a href="#the-service-itself">The service itself</a></li>
+            <li><a href="#the-request-messages">The request messages</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Scalar Value Types #  Furo specs knows the same scalar types which are defined in ProtocolBuffers.
+   type note golang java es6     string Please use UTF-8 *string String String   bytes  []byte ByteString String   bool  *bool boolean Boolean   float  *float32 float Number   double  *float64 double Number   int32  *int32 int Number   int64  *int64 long Number   uint32  *uint32 int Number   uint64  *uint64 long Number   sint32  *int32 int Number   sint64  *int64 long Number   fixed32  *uint32 int Number   fixed64  *uint64 long Number   sfixed32  *int32 int Number   sfixed64  *int64 long Number    ">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Scalar Types" />
+<meta property="og:description" content="Scalar Value Types #  Furo specs knows the same scalar types which are defined in ProtocolBuffers.
+   type note golang java es6     string Please use UTF-8 *string String String   bytes  []byte ByteString String   bool  *bool boolean Boolean   float  *float32 float Number   double  *float64 double Number   int32  *int32 int Number   int64  *int64 long Number   uint32  *uint32 int Number   uint64  *uint64 long Number   sint32  *int32 int Number   sint64  *int64 long Number   fixed32  *uint32 int Number   fixed64  *uint64 long Number   sfixed32  *int32 int Number   sfixed64  *int64 long Number    " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://fidl.furo.pro/docs/overview/scalar_value_types/" />
+<meta property="article:modified_time" content="2020-11-10T12:47:40+01:00" />
+<title>Scalar Types | フロー FIDL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.09a284f5a03730d86dde350d2c062b1514e48fdfebba7763941c0674ef65748f.css" integrity="sha256-CaKE9aA3MNht3jUNLAYrFRTkj9/rundjlBwGdO9ldI8=">
+<script defer src="/en.search.min.b1b7a6f7c7e596c4c7a6dc15b084171dd3d7e9dce25ed834c77b194e2ee63338.js" integrity="sha256-sbem98fllsTHptwVsIQXHdPX6dziXtg0x3sZTi7mMzg="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <div ></div>
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>フロー FIDL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/" class="">Overview</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/define_type/" class="">Defining a Type</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/define_service/" class="">Defining a Service</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/default_values/" class="">Default Values</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/scalar_value_types/" class=" active">Scalar Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/using_other_types/" class="">Using Other Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/enums/" class="">Enumerations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/oneof/" class="">Oneof</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/maps/" class="">Maps</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/packages/" class="">Packages</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5a49e98448c138f3defcd1ff480166f2" class="toggle"  />
+    <label for="section-5a49e98448c138f3defcd1ff480166f2" class="flex justify-between">
+      <a href="http://fidl.furo.pro/docs/overview/extensions/" class="">Extensions</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/extensions/extension_proto/" class="">Protobuf Extension</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/extensions/extension_ui/" class="">UI Extension</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/overview/style_guide/" class="">Style Guide</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-02a2f2578aa199d9ce0d19ad7b4e5ba3" class="toggle"  />
+    <label for="section-02a2f2578aa199d9ce0d19ad7b4e5ba3" class="flex justify-between">
+      <a href="http://fidl.furo.pro/docs/%C2%B5Specs/" class="">µSpecs</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/%C2%B5Specs/types/" class="">Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/%C2%B5Specs/services/" class="">Services</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-172dfd5e06b2f7615d5de2eefeeb4335" class="toggle"  />
+    <label for="section-172dfd5e06b2f7615d5de2eefeeb4335" class="flex justify-between">
+      <a href="http://fidl.furo.pro/docs/specs/" class="">Specs</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/specs/types/" class="">Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/specs/services/" class="">Services</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a432bb056edf769c9f15f6893988f152" class="toggle"  />
+    <label for="section-a432bb056edf769c9f15f6893988f152" class="flex justify-between">
+      <a href="http://fidl.furo.pro/docs/tools/" class="">Tools</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/tools/BEC/" class="">B E C</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://fidl.furo.pro/docs/sourceoftruth/" class="">Source of Truth</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/" >
+        Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/theNorstroem/fidl-docs" target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://furo.pro/" target="_blank" rel="noopener">
+        furo.pro
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Scalar Types</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="scalar-value-types">
+  Scalar Value Types
+  <a class="anchor" href="#scalar-value-types">#</a>
+</h1>
+<p>Furo specs knows the same scalar types which are defined in 
+  <a href="https://developers.google.com/protocol-buffers/docs/overview#scalar">ProtocolBuffers</a>.</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>note</th>
+<th>golang</th>
+<th>java</th>
+<th>es6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>string</code></td>
+<td>Please use UTF-8</td>
+<td><code>*string</code></td>
+<td><code>String</code></td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td><code>bytes</code></td>
+<td></td>
+<td><code>[]byte</code></td>
+<td><code>ByteString</code></td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td></td>
+<td><code>*bool</code></td>
+<td><code>boolean</code></td>
+<td><code>Boolean</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td></td>
+<td><code>*float32</code></td>
+<td><code>float</code></td>
+<td><code>Number</code></td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td></td>
+<td><code>*float64</code></td>
+<td><code>double</code></td>
+<td><code>Number</code></td>
+</tr>
+<tr>
+<td><code>int32</code></td>
+<td></td>
+<td><code>*int32</code></td>
+<td><code>int</code></td>
+<td><code>Number</code></td>
+</tr>
+<tr>
+<td><code>int64</code></td>
+<td></td>
+<td><code>*int64</code></td>
+<td><code>long</code></td>
+<td><code>Number</code></td>
+</tr>
+<tr>
+<td><code>uint32</code></td>
+<td></td>
+<td><code>*uint32</code></td>
+<td><code>int</code></td>
+<td><code>Number</code></td>
+</tr>
+<tr>
+<td><code>uint64</code></td>
+<td></td>
+<td><code>*uint64</code></td>
+<td><code>long</code></td>
+<td><code>Number</code></td>
+</tr>
+<tr>
+<td><code>sint32</code></td>
+<td></td>
+<td><code>*int32</code></td>
+<td><code>int</code></td>
+<td><code>Number</code></td>
+</tr>
+<tr>
+<td><code>sint64</code></td>
+<td></td>
+<td><code>*int64</code></td>
+<td><code>long</code></td>
+<td><code>Number</code></td>
+</tr>
+<tr>
+<td><code>fixed32</code></td>
+<td></td>
+<td><code>*uint32</code></td>
+<td><code>int</code></td>
+<td><code>Number</code></td>
+</tr>
+<tr>
+<td><code>fixed64</code></td>
+<td></td>
+<td><code>*uint64</code></td>
+<td><code>long</code></td>
+<td><code>Number</code></td>
+</tr>
+<tr>
+<td><code>sfixed32</code></td>
+<td></td>
+<td><code>*int32</code></td>
+<td><code>int</code></td>
+<td><code>Number</code></td>
+</tr>
+<tr>
+<td><code>sfixed64</code></td>
+<td></td>
+<td><code>*int64</code></td>
+<td><code>long</code></td>
+<td><code>Number</code></td>
+</tr>
+</tbody>
+</table>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+  <div><a class="flex align-center" href="https://github.com/theNorstroem/fidl-docs/commit/7aa1d74e1809af6e28c266e2197266c7c5c892e4" title='Last modified by veith | November 10, 2020' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>November 10, 2020</span>
+    </a>
+  </div>
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

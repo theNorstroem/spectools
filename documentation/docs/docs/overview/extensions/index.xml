@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Extensions on フロー FIDL</title>
+    <link>http://fidl.furo.pro/docs/overview/extensions/</link>
+    <description>Recent content in Extensions on フロー FIDL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://fidl.furo.pro/docs/overview/extensions/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Protobuf Extension</title>
+      <link>http://fidl.furo.pro/docs/overview/extensions/extension_proto/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://fidl.furo.pro/docs/overview/extensions/extension_proto/</guid>
+      <description>The Protobuf Extension #  The protobuf extension is meanwhile a fix part of the specs and the spectools.
+In this, meanwhile built in, extesnion you define things for the protos.
+__proto extension in a type #  The proto extension in a type defines the package, target file, imports (*.proto) and options
+__proto:package:authtargetfile:auth.protoimports:[]options:go_package:github.com/veith/doit-specs/dist/pb/auth;authpbjava_multiple_files:&amp;#34;true&amp;#34;java_outer_classname:AuthProtojava_package:com.furo.baseauth__proto extension in a field of a type #  The proto extension in a field let you define the field id an can set a oneof group.</description>
+    </item>
+    
+    <item>
+      <title>UI Extension</title>
+      <link>http://fidl.furo.pro/docs/overview/extensions/extension_ui/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://fidl.furo.pro/docs/overview/extensions/extension_ui/</guid>
+      <description>__ui extension #  Define some options for the ui-builder (furoc-gen-u33e).
+____ui extension in a field of a type #  fields:id:type:stringdescription:The identifier.</description>
+    </item>
+    
+  </channel>
+</rss>

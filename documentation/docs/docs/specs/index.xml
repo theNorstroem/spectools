@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Specs on フロー FIDL</title>
+    <link>http://fidl.furo.pro/docs/specs/</link>
+    <description>Recent content in Specs on フロー FIDL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://fidl.furo.pro/docs/specs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Types</title>
+      <link>http://fidl.furo.pro/docs/specs/types/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://fidl.furo.pro/docs/specs/types/</guid>
+      <description>Anatomy of a type spec #  A type spec consists of 2 main sections (fields and __proto) and some properties on the root.
+name #  This property is deprecated. Fill in the same as you fill in on the property type for compatibility with some old generators.
+type #  The type of the field without the package name. Write it in CamelCase with a capital letter at the beginning.</description>
+    </item>
+    
+    <item>
+      <title>Services</title>
+      <link>http://fidl.furo.pro/docs/specs/services/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://fidl.furo.pro/docs/specs/services/</guid>
+      <description>Anatomy of a service spec #  A service spec consists of 2 main sections (services and __proto) and some properties on the root node.
+name #  The type of the service without the package name. Follow the style guide and write it in CamelCase with an initial capital.
+version #  Put any version information of the service. This field does not affect the URL of the services/methods.</description>
+    </item>
+    
+  </channel>
+</rss>
