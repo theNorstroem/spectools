@@ -275,8 +275,19 @@ func (mt MicroService) ToMicroServiceAst() *MicroServiceAst {
 			},
 			Description: description,
 			Query:       queryParams,
-			RpcName:     matches[1] + mt.Name,
+			// name guessing for the rpc name
+			RpcName: matches[1] + strings.Replace(mt.Name, "Service", "", 1), // cut of the word Service
 		}
+		// on list, which handles a collection, make the word plural by addin an s
+		if r.Deeplink.Rel == "list" {
+			r.RpcName = r.RpcName + "s"
+		}
+		// guessing for DeleteAll, which is also plural
+		if r.Deeplink.Rel == "deleteall" {
+			r.Deeplink.Rel = "delete"
+			r.RpcName = r.RpcName + "s"
+		}
+		// We do not have a rel get, this comes from Get ... we make a self out of it
 		if r.Deeplink.Rel == "get" {
 			r.Deeplink.Rel = "self"
 		}
