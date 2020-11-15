@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docs on フロー Spectools</title>
+    <link>http://spectools.furo.pro/docs/</link>
+    <description>Recent content in Docs on フロー Spectools</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Nov 2020 19:37:46 +0100</lastBuildDate><atom:link href="http://spectools.furo.pro/docs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installation</title>
+      <link>http://spectools.furo.pro/docs/installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://spectools.furo.pro/docs/installation/</guid>
+      <description>Installation #  You can install spectools on your local machine. For working with specs only, this is enough. We recommend furoBEC if you have to generate more then &amp;ldquo;just&amp;rdquo; the specs. furoBEC is a docker image which has nearly all dependencies already installed to generate all the additional things you may need to.
+Installation with brew #  brew tap theNorstroem/tap brew install spectools  Installation with go #  GO111MODULE=on go get github.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>http://spectools.furo.pro/docs/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://spectools.furo.pro/docs/overview/</guid>
+      <description>Overview #  A brief overview over the main tasks where spectools / furoc / protoc1 are used for.
+We have seen some nice generators like furoc-gen-ddl2 which uses simple type and field extensions to generate mysql DDLs.
+A documentation generator furoc-gen-apidocs3 is in development.
+ mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) graph TD µSpec(µSpec) Spec([Spec]) µSpec-- spectools --Spec Spec-. spectools .-µSpec someProto[Proto] -- protoc-gen-furo-specs -- µSpec Spec-- spectools --Es6Module Spec-- furoc-gen-apidocs --Docs Spec-- furoc-gen-u33e --U33E U33E-- simple-generator --web-components Spec-- furoc-gen-ddl --ddl[(DDL)] Spec-- spectools --xs[.</description>
+    </item>
+    
+    <item>
+      <title>Project Configuration</title>
+      <link>http://spectools.furo.pro/docs/configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://spectools.furo.pro/docs/configuration/</guid>
+      <description>Configuration #  Each spec project must have a .spectools configuration file.
+A fictive example of a spectools config for a spec project.
+spectools:&amp;#34;1.20.0&amp;#34;#Minimal spectools versionspecDir:&amp;#34;./specs&amp;#34;specFormat:&amp;#34;yaml&amp;#34;#set to yaml or jsondependencies:#do not write every type/message again and again. Install them.- &amp;#34;git@github.com:theNorstroem/furoBaseSpecs.git v1.11.8&amp;#34;# The importer looks for all **/*.type.spec files recursive The importer looks for all **/*.service.spec files recursivedependenciesDir:dependencies #directory where the dependencies get installed to.muSpec:types:- &amp;#34;./muspecs/**/*types.yaml&amp;#34;- &amp;#34;./muspecs/*types.yaml&amp;#34;#Use this if you do not put your specs in foldersservices:- &amp;#34;.</description>
+    </item>
+    
+  </channel>
+</rss>

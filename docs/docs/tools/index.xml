@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Additional Tools on フロー Spectools</title>
+    <link>http://spectools.furo.pro/docs/tools/</link>
+    <description>Recent content in Additional Tools on フロー Spectools</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Nov 2020 19:37:46 +0100</lastBuildDate><atom:link href="http://spectools.furo.pro/docs/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>B E C</title>
+      <link>http://spectools.furo.pro/docs/tools/BEC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://spectools.furo.pro/docs/tools/BEC/</guid>
+      <description>フロー furoBEC #  The furo build essentials container. #  This container contains all tools you need to work with a furo spec project.
+ furoBEC on github
+Usage #  Bash mode
+docker run -it --rm -v `pwd`:/specs thenorstroem/furo-bec # do your stuff # type exit to quit exit  Command mode
+docker run -it --rm -v `pwd`:/specs thenorstroem/furo-bec build   TIPP: If your spectools commands have to access different directories, do not forget to mount them.</description>
+    </item>
+    
+  </channel>
+</rss>
