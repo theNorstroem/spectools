@@ -1,3 +1,8 @@
+---
+weight: 10
+title: "muSpec2Spec"
+---
+
 ## spectools muSpec2Spec
 
 Updates the type specs with the definitions from the type µSpecs.

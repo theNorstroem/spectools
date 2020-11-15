@@ -1,3 +1,8 @@
+---
+weight: 30
+title: "exportAsYaml"
+---
+
 ## spectools exportAsYaml
 
 Exports all specs and the current config in one yaml file to stdout

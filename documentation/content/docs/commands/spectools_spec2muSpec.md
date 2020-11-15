@@ -1,3 +1,8 @@
+---
+weight: 90
+title: "spec2muSpec"
+---
+
 ## spectools spec2muSpec
 
 A brief description of your command

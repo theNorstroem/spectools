@@ -1,3 +1,8 @@
+---
+weight: 60
+title: "genEsModule"
+---
+
 ## spectools genEsModule
 
 generate es6 spec module

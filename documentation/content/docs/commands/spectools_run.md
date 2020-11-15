@@ -1,3 +1,8 @@
+---
+weight: 6
+title: "run"
+---
+
 ## spectools run
 
 Runs a configured flow.

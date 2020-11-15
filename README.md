@@ -15,7 +15,7 @@ Modify your default flow in the .spectools config file to your needs. You can se
     brew install spectools
 
 ### Documentation
-Read more in the [detailed documentation](./doc/spectools.md)
+Read more in the [detailed documentation](spectools.furo.pro)
 
 ### Samples
 See some sample usages and scripts [here](./samples/readme.md)

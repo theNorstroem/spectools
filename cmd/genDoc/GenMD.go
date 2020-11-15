@@ -10,7 +10,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var docPath = "./doc"
+var docPath = "./_generateddocs"
 
 func main() {
 	// gen root command

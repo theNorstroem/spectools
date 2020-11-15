@@ -1,3 +1,8 @@
+---
+weight: 20
+title: "checkImports"
+---
+
 ## spectools checkImports
 
 Checks and correct the imports

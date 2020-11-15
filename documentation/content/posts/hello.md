@@ -1,13 +1,13 @@
 
 +++
-title = "Hello"
-description = "hello world"
-tags = ["FIDL"]
-date = "2020-11-10"
-#categories = ["FIDL"]
+title = "Hey"
+description = "Initial documentation"
+#tags = ["Spectools"]
+date = "2020-11-15"
+#categories = ["Spectools"]
 +++
 
 # Initial documentation
 
-Hi and welcome to the first version of the FIDL documentation. If you have some issues, found typos and have suggestions,
-feel free to open an [issue](https://github.com/theNorstroem/fidl-docs/issues) or better make a pull request.
+Hi and welcome to the first version of the spectools documentation. If you have some issues, found typos and have suggestions,
+feel free to open an [issue](https://github.com/theNorstroem/spectools/issues) or better make a pull request.

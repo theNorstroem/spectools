@@ -1,3 +1,8 @@
+---
+weight: 100
+title: "install"
+---
+
 ## spectools install
 
 Installs the dependencies

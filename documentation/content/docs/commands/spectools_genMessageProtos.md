@@ -1,3 +1,8 @@
+---
+weight: 40
+title: "genMessageProtos"
+---
+
 ## spectools genMessageProtos
 
 Generate the message protos from the type specs.

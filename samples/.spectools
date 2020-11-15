@@ -40,8 +40,6 @@ flows:
   build:
     - clearAllProtos
     - clearAllSpecs
-    - muType2Spec
-    - muService2Spec
     - genServiceProtos
     - genServiceProtos
     - nonexistent

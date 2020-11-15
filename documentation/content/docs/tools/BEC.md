@@ -15,6 +15,8 @@ weight: 1
 
 This container contains all tools you need to work with a furo spec project.
 
+[furoBEC on github](https://github.com/theNorstroem/furoBEC)
+
 ## Usage
 Bash mode
 

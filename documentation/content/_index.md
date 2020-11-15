@@ -14,7 +14,8 @@ Furo spectools contains helpful generators, converters, sanitizer for the furo s
 {{< columns >}}
 ## Stay In Sync
 
-The different specification formats can be used as a source or a sink or both of them, but never use sources as source of the specs.
+The different specification formats can be used as a source or a sink or both of them. Some have a higher information 
+density, furo spectools can keep them in sync for you.
 
 {{< mermaid >}}
 graph LR
@@ -27,10 +28,30 @@ Spec --> µSpec
 
 <--->
 
-## Multiple Sources Of Truth
-You have the choice from multiple definition formats. This can be *.proto, one of the FIDLs (µSpec, spec).
+## Multiple Sources Of Truth Supported
+You have the choice from multiple definition formats as your source of truth.
+This can be *.proto or one of the FIDLs (µSpec, spec). 
+
+[Read more here](/docs/sourceoftruth/), to find out what fits best for you.
 
 {{< /columns >}}
 
+{{< columns >}}
+## Extendable
 
-## Add your own extensions
+Furo FIDLs comes with a lot of extension points. You can add your extensions at type level, field level and services. 
+The extensions can be used by *your* generators or scripts.
+<--->
+## Configurable Flows
+The commands of spectools can be configured as **flows** (chain of commands). You can also add your custom commands and 
+add them at any point to your flow. 
+
+**flow build**
+{{< mermaid >}}
+graph LR
+µSpec2Spec --> genMessageProtos
+genMessageProtos --> Protoc(protoc -I...)
+Protoc --> Publish(publish)
+{{< /mermaid >}}
+
+{{< /columns >}}

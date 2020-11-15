@@ -1,3 +1,8 @@
+---
+weight: 50
+title: "genServiceProtos"
+---
+
 ## spectools genServiceProtos
 
 Generate service protos from the specs

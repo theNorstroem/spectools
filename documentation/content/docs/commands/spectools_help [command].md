@@ -1,3 +1,7 @@
+---
+weight: 5
+title: "help"
+---
 ## spectools help
 
 Help about any command
