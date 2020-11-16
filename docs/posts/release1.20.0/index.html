@@ -1,0 +1,2589 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="1.20.0 #  We should have done the release notes before, so this note will contain a summary of the older releases too. In the fututre the messages will get smaller then this one.
+semver: 1.20.0 #  date: 2020-11-13T10:12:52&#43;01:00
+changes: #    9bf9e23970a3b68d969fa45b5c886a1469edc539
+note: &#39;feat: genBundledServiceProto to generate all specified services in one file installed services included&#39; breaking: false description: genBundledServiceProto to generate all specified services in one file installed services included    5f2ec401c3e52df09efbb5c444db5e7a274d80b0">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Release1.20" />
+<meta property="og:description" content="1.20.0 #  We should have done the release notes before, so this note will contain a summary of the older releases too. In the fututre the messages will get smaller then this one.
+semver: 1.20.0 #  date: 2020-11-13T10:12:52&#43;01:00
+changes: #    9bf9e23970a3b68d969fa45b5c886a1469edc539
+note: &#39;feat: genBundledServiceProto to generate all specified services in one file installed services included&#39; breaking: false description: genBundledServiceProto to generate all specified services in one file installed services included    5f2ec401c3e52df09efbb5c444db5e7a274d80b0" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://spectools.furo.pro/posts/release1.20.0/" />
+<meta property="article:published_time" content="2020-11-16T13:21:59+01:00" />
+<meta property="article:modified_time" content="2020-11-16T19:33:47+01:00" />
+<title>Release1.20 | フロー Spectools</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.09a284f5a03730d86dde350d2c062b1514e48fdfebba7763941c0674ef65748f.css" integrity="sha256-CaKE9aA3MNht3jUNLAYrFRTkj9/rundjlBwGdO9ldI8=">
+<script defer src="/en.search.min.f961ebdd0c6b9c518f028b5f0e22a71bc7ffcb230924336cd55883700a8f11c7.js" integrity="sha256-&#43;WHr3QxrnFGPAotfDiKnG8f/yyMJJDNs1ViDcAqPEcc="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <div ></div>
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>フロー Spectools</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/configuration/" class="">Project Configuration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3fb225060dbc6eb1fda04fb19c520b9e" class="toggle"  />
+    <label for="section-3fb225060dbc6eb1fda04fb19c520b9e" class="flex justify-between">
+      <a href="http://spectools.furo.pro/docs/commands/" class="">Commands</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/commands/spectools_help-command/" class="">help</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/commands/spectools_run/" class="">run</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/commands/spectools_muSpec2Spec/" class="">muSpec2Spec</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/commands/spectools_checkImports/" class="">checkImports</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/commands/spectools_exportAsYaml/" class="">exportAsYaml</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/commands/spectools_genMessageProtos/" class="">genMessageProtos</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/commands/spectools_genServiceProtos/" class="">genServiceProtos</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/commands/spectools_genEsModule/" class="">genEsModule</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/commands/spectools_muSrvSanitize/" class="">muSrvSanitize</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/commands/spectools_spec2muSpec/" class="">spec2muSpec</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/commands/spectools_install/" class="">install</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a432bb056edf769c9f15f6893988f152" class="toggle"  />
+    <label for="section-a432bb056edf769c9f15f6893988f152" class="flex justify-between">
+      <a href="http://spectools.furo.pro/docs/tools/" class="">Additional Tools</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/tools/BEC/" class="">B E C</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://spectools.furo.pro/docs/sourceoftruth/" class="">Source of Truth</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/" >
+        Changelog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/theNorstroem/spectools" target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://furo.pro/" target="_blank" rel="noopener">
+        furo.pro
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Release1.20</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1200">1.20.0</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#semver-1200">semver: 1.20.0</a></li>
+            <li><a href="#semver-1190">semver: 1.19.0</a></li>
+            <li><a href="#semver-1183">semver: 1.18.3</a></li>
+            <li><a href="#semver-1182">semver: 1.18.2</a></li>
+            <li><a href="#semver-1181">semver: 1.18.1</a></li>
+            <li><a href="#semver-1180">semver: 1.18.0</a></li>
+            <li><a href="#semver-1170">semver: 1.17.0</a></li>
+            <li><a href="#semver-1161">semver: 1.16.1</a></li>
+            <li><a href="#semver-1160">semver: 1.16.0</a></li>
+            <li><a href="#semver-1150">semver: 1.15.0</a></li>
+            <li><a href="#semver-1141">semver: 1.14.1</a></li>
+            <li><a href="#semver-1140">semver: 1.14.0</a></li>
+            <li><a href="#semver-1131">semver: 1.13.1</a></li>
+            <li><a href="#semver-1130">semver: 1.13.0</a></li>
+            <li><a href="#semver-1121">semver: 1.12.1</a></li>
+            <li><a href="#semver-1120">semver: 1.12.0</a></li>
+            <li><a href="#semver-1112">semver: 1.11.2</a></li>
+            <li><a href="#semver-1111">semver: 1.11.1</a></li>
+            <li><a href="#semver-1110">semver: 1.11.0</a></li>
+            <li><a href="#semver-1100">semver: 1.10.0</a></li>
+            <li><a href="#semver-194">semver: 1.9.4</a></li>
+            <li><a href="#semver-193">semver: 1.9.3</a></li>
+            <li><a href="#semver-192">semver: 1.9.2</a></li>
+            <li><a href="#semver-191">semver: 1.9.1</a></li>
+            <li><a href="#semver-190">semver: 1.9.0</a></li>
+            <li><a href="#semver-180">semver: 1.8.0</a></li>
+            <li><a href="#semver-170">semver: 1.7.0</a></li>
+            <li><a href="#semver-161">semver: 1.6.1</a></li>
+            <li><a href="#semver-160">semver: 1.6.0</a></li>
+            <li><a href="#semver-151">semver: 1.5.1</a></li>
+            <li><a href="#semver-150">semver: 1.5.0</a></li>
+            <li><a href="#semver-140">semver: 1.4.0</a></li>
+            <li><a href="#semver-130">semver: 1.3.0</a></li>
+            <li><a href="#semver-120">semver: 1.2.0</a></li>
+            <li><a href="#semver-112">semver: 1.1.2</a></li>
+            <li><a href="#semver-111">semver: 1.1.1</a></li>
+            <li><a href="#semver-110">semver: 1.1.0</a></li>
+            <li><a href="#semver-100">semver: 1.0.0</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown">
+  <h1>
+    <a href="/posts/release1.20.0/">Release1.20</a>
+  </h1>
+  
+  <h5>November 16, 2020</h5>
+
+
+
+  
+
+  
+
+
+  <p><h1 id="1200">
+  1.20.0
+  <a class="anchor" href="#1200">#</a>
+</h1>
+<p>We should have done the release notes before, so this note will contain a summary of the older releases too.
+In the fututre the messages will get smaller then this one.</p>
+<h3 id="semver-1200">
+  semver: 1.20.0
+  <a class="anchor" href="#semver-1200">#</a>
+</h3>
+<p>date: 2020-11-13T10:12:52+01:00</p>
+<h4 id="changes">
+  changes:
+  <a class="anchor" href="#changes">#</a>
+</h4>
+<ul>
+<li>
+<p>9bf9e23970a3b68d969fa45b5c886a1469edc539</p>
+<pre><code>note: 'feat: genBundledServiceProto to generate all specified services in one file installed services included'
+breaking: false
+description: genBundledServiceProto to generate all specified services in one file installed services included
+</code></pre>
+</li>
+<li>
+<p>5f2ec401c3e52df09efbb5c444db5e7a274d80b0</p>
+<pre><code>note: 'feat: genBundledServiceProto to generate all specified services in one file'
+breaking: false
+description: genBundledServiceProto to generate all specified services in one file
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-1190">
+  semver: 1.19.0
+  <a class="anchor" href="#semver-1190">#</a>
+</h3>
+<p>date: 2020-11-05T11:38:11+01:00</p>
+<h4 id="changes-1">
+  changes:
+  <a class="anchor" href="#changes-1">#</a>
+</h4>
+<pre><code>- 9bf9e23970a3b68d969fa45b5c886a1469edc539
+
+  note: 'feat: genBundledServiceProto to generate all specified services in one file installed services included'
+  breaking: false
+  description: genBundledServiceProto to generate all specified services in one file installed services included
+</code></pre>
+<ul>
+<li>
+<p>5f2ec401c3e52df09efbb5c444db5e7a274d80b0</p>
+<pre><code>note: 'feat: genBundledServiceProto to generate all specified services in one file'
+breaking: false
+description: genBundledServiceProto to generate all specified services in one file
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-1183">
+  semver: 1.18.3
+  <a class="anchor" href="#semver-1183">#</a>
+</h3>
+<p>date: 2020-11-04T16:43:48+01:00</p>
+<h4 id="changes-2">
+  changes:
+  <a class="anchor" href="#changes-2">#</a>
+</h4>
+<pre><code>- 0987f156be86b273b9d868148e273bc47eb4a9a2
+
+  note: 'fix: no emitempty on yaml specs'
+  breaking: false
+  description: no emitempty on yaml specs
+</code></pre>
+<h3 id="semver-1182">
+  semver: 1.18.2
+  <a class="anchor" href="#semver-1182">#</a>
+</h3>
+<p>date: 2020-11-04T11:46:46+01:00</p>
+<h4 id="changes-3">
+  changes:
+  <a class="anchor" href="#changes-3">#</a>
+</h4>
+<pre><code>- d6608ebb97c71996e846eeca9d09b9b530b19a4d
+
+  note: 'fix: store google.type.Any as map[string]interface{} because it will not marshal to yaml else'
+  breaking: false
+  description: store google.type.Any as map[string]interface{} because it will not marshal to yaml else
+</code></pre>
+<h3 id="semver-1181">
+  semver: 1.18.1
+  <a class="anchor" href="#semver-1181">#</a>
+</h3>
+<p>date: 2020-11-03T09:58:53+01:00</p>
+<h4 id="changes-4">
+  changes:
+  <a class="anchor" href="#changes-4">#</a>
+</h4>
+<pre><code>- 1f6cfe9f603b944e89c536161ea0c4cd4b10d6f3
+
+  note: 'fix: ensure .spectools file is copied even when it is not in the list'
+  breaking: false
+  description: ensure .spectools file is copied even when it is not in the list
+</code></pre>
+<h3 id="semver-1180">
+  semver: 1.18.0
+  <a class="anchor" href="#semver-1180">#</a>
+</h3>
+<p>date: 2020-11-02T16:14:29+01:00</p>
+<h4 id="changes-5">
+  changes:
+  <a class="anchor" href="#changes-5">#</a>
+</h4>
+<pre><code>- bdf5bb95c2ea838b7bc38b034299f3e77995fd6d
+
+  note: 'feat: dist file management'
+  breaking: false
+  description: dist file management
+</code></pre>
+<h3 id="semver-1170">
+  semver: 1.17.0
+  <a class="anchor" href="#semver-1170">#</a>
+</h3>
+<p>date: 2020-11-02T09:50:52+01:00</p>
+<h4 id="changes-6">
+  changes:
+  <a class="anchor" href="#changes-6">#</a>
+</h4>
+<pre><code>- 5993e41b5083bde5b99838222268bda1e978be72
+
+  note: set version to 1.17.0
+  breaking: false
+  description: set version to 1.17.0
+</code></pre>
+<ul>
+<li>
+<p>b04c56fe93db81cf0cbfd53eae3eed3bfff523c4</p>
+<pre><code>note: |-
+feat: escape newline, tabs and quotes in es6module so you can write the defaults like:
+
+default: |
+{
+&quot;link&quot;: {
+&quot;rel&quot;: &quot;list&quot;,
+&quot;href&quot;: &quot;/api/xxx&quot;,
+&quot;method&quot;: &quot;GET&quot;,
+&quot;type&quot;: &quot;pkg.Type&quot;,
+&quot;service&quot;: &quot;Servicename&quot;
+}
+}
+breaking: false
+description: 'escape newline, tabs and quotes in es6module so you can write the defaults like:'
+body: |-
+default: |
+{
+&quot;link&quot;: {
+&quot;rel&quot;: &quot;list&quot;,
+&quot;href&quot;: &quot;/api/xxx&quot;,
+&quot;method&quot;: &quot;GET&quot;,
+&quot;type&quot;: &quot;pkg.Type&quot;,
+&quot;service&quot;: &quot;Servicename&quot;
+}
+}
+</code></pre>
+<ul>
+<li>
+<p>85c22477a21538e71927eedeb7cd6997c0603f28</p>
+<p>note: &lsquo;fix: /* eslint-disable */ on esModule&rsquo;
+breaking: false
+description: /* eslint-disable */ on esModule</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="semver-1161">
+  semver: 1.16.1
+  <a class="anchor" href="#semver-1161">#</a>
+</h3>
+<p>date: 2020-10-30T13:10:02+01:00</p>
+<h4 id="changes-7">
+  changes:
+  <a class="anchor" href="#changes-7">#</a>
+</h4>
+<pre><code>- e88ad37ad85139727db7957e83079e3e13412d12
+
+  note: 'fix: version'
+  breaking: false
+  description: version
+</code></pre>
+<h3 id="semver-1160">
+  semver: 1.16.0
+  <a class="anchor" href="#semver-1160">#</a>
+</h3>
+<p>date: 2020-10-29T11:04:40+01:00</p>
+<h4 id="changes-8">
+  changes:
+  <a class="anchor" href="#changes-8">#</a>
+</h4>
+<pre><code>- 605c2762a6c9c5fd457c1cdc9b226d67b76245f8
+
+  note: |-
+  feat: semver check against .spectools config.
+  A config which requires a newer release then installed, forces spectools to quit.
+  breaking: false
+  description: semver check against .spectools config.
+</code></pre>
+<h3 id="semver-1150">
+  semver: 1.15.0
+  <a class="anchor" href="#semver-1150">#</a>
+</h3>
+<p>date: 2020-10-28T16:50:47+01:00</p>
+<h4 id="changes-9">
+  changes:
+  <a class="anchor" href="#changes-9">#</a>
+</h4>
+<pre><code>- eb1d7248817830bd461ab29c6250a4cda4caf910
+
+  note: 'feat: imports are sorted and distinct'
+  breaking: false
+  description: imports are sorted and distinct
+</code></pre>
+<ul>
+<li>
+<p>bde2d0679a46362e870653670b6bfd917bc5e2d8</p>
+<pre><code>note: 'feat: imports are sorted and distinct'
+breaking: false
+description: imports are sorted and distinct
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-1141">
+  semver: 1.14.1
+  <a class="anchor" href="#semver-1141">#</a>
+</h3>
+<p>date: 2020-10-25T14:57:21+01:00</p>
+<h4 id="changes-10">
+  changes:
+  <a class="anchor" href="#changes-10">#</a>
+</h4>
+<pre><code>- 4d3178b7f4d62bba93af972f5097cd8ffdfed5ff
+
+  note: 'fix: do not overwrite default values from spec when comming from muSpec'
+  breaking: false
+  description: do not overwrite default values from spec when comming from muSpec
+</code></pre>
+<ul>
+<li>
+<p>eb8be6794f6751336b406a9787cbf7972c085510</p>
+<pre><code>note: 'fix: do not overwrite default values from spec when comming from muSpec'
+breaking: false
+description: do not overwrite default values from spec when comming from muSpec
+</code></pre>
+</li>
+<li>
+<p>ddaffa49f8dcb59cf3f5b745a58f2014b8fb6a64</p>
+<pre><code>note: 'docs: Documentation refined'
+  
+conventional_commit:
+category: docs
+scope: &quot;&quot;
+breaking: false
+description: Documentation refined
+</code></pre>
+</li>
+<li>
+<p>c669e95404fa37ba8fea93ba2984265e8c671d7a</p>
+<pre><code>note: 'docs: sample files updated'
+  
+conventional_commit:
+category: docs
+scope: &quot;&quot;
+breaking: false
+description: sample files updated
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-1140">
+  semver: 1.14.0
+  <a class="anchor" href="#semver-1140">#</a>
+</h3>
+<p>date: 2020-10-23T06:21:14+02:00</p>
+<h4 id="changes-11">
+  changes:
+  <a class="anchor" href="#changes-11">#</a>
+</h4>
+<pre><code>- d01fdfdb0346ee06c7a54615f303a58ed5186bcb
+
+  note: 'feat: additional path info in exported yaml'
+  breaking: false
+  description: additional path info in exported yaml
+</code></pre>
+<ul>
+<li>
+<p>cba77a277872d001a6d53967fabe736e80598dff</p>
+<pre><code>note: 'feat: additional path info in exported yaml'
+breaking: false
+description: additional path info in exported yaml
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-1131">
+  semver: 1.13.1
+  <a class="anchor" href="#semver-1131">#</a>
+</h3>
+<p>date: 2020-10-19T10:22:16+02:00</p>
+<h4 id="changes-12">
+  changes:
+  <a class="anchor" href="#changes-12">#</a>
+</h4>
+<pre><code>- b2cc22bcafe23008d20a8362afe1bb63bb05dd4d
+
+  note: 'fix: version tag'
+  breaking: false
+  description: version tag
+</code></pre>
+<h3 id="semver-1130">
+  semver: 1.13.0
+  <a class="anchor" href="#semver-1130">#</a>
+</h3>
+<p>date: 2020-10-19T10:16:00+02:00</p>
+<h4 id="changes-13">
+  changes:
+  <a class="anchor" href="#changes-13">#</a>
+</h4>
+<pre><code>- 4f7be62325741c58a5be96d0e9f175d2b404d9e8
+
+  note: |-
+  feat: using argument for flow, so you can write
+  spectools run flowname instead spectools run -f=flowname
+  breaking: false
+  description: using argument for flow, so you can write
+</code></pre>
+<h3 id="semver-1121">
+  semver: 1.12.1
+  <a class="anchor" href="#semver-1121">#</a>
+</h3>
+<p>date: 2020-10-18T08:36:39+02:00</p>
+<h4 id="changes-14">
+  changes:
+  <a class="anchor" href="#changes-14">#</a>
+</h4>
+<pre><code>- f6fcc8745a6a5c48cf39ce852a418e0ade2ef2b5
+
+  note: 'fix: default field label with &quot;package.type.field.label&quot;'
+  breaking: false
+  description: default field label with &quot;package.type.field.label&quot;
+</code></pre>
+<ul>
+<li>
+<p>f1d2d971ed0f291499aa593a17afe9f2147ab9f2</p>
+<pre><code>note: 'fix: default field label with &quot;package.type.field.label&quot;'
+breaking: false
+description: default field label with &quot;package.type.field.label&quot;
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-1120">
+  semver: 1.12.0
+  <a class="anchor" href="#semver-1120">#</a>
+</h3>
+<p>date: 2020-10-16T11:53:13+02:00</p>
+<h4 id="changes-15">
+  changes:
+  <a class="anchor" href="#changes-15">#</a>
+</h4>
+<pre><code>- 7f9a41cb1c52c1b2db2e21684bd7e2034072052b
+
+  note: 'feat: java package prefix &quot;muSpec.javaPackagePrefix&quot;'
+  breaking: false
+  description: java package prefix &quot;muSpec.javaPackagePrefix&quot;
+</code></pre>
+<h3 id="semver-1112">
+  semver: 1.11.2
+  <a class="anchor" href="#semver-1112">#</a>
+</h3>
+<p>date: 2020-10-16T07:52:38+02:00</p>
+<h4 id="changes-16">
+  changes:
+  <a class="anchor" href="#changes-16">#</a>
+</h4>
+<pre><code>- ee63ec29b75e210330bdb7050d0263707e9f3aea
+
+  note: 'fix: order of required, readonly when creating muSpec from spec'
+  breaking: false
+  description: order of required, readonly when creating muSpec from spec
+</code></pre>
+<ul>
+<li>
+<p>127a0f212e862ee83480e3bb609f3561366a2458</p>
+<pre><code>note: 'fix: order of required, readonly'
+breaking: false
+description: order of required, readonly
+</code></pre>
+</li>
+<li>
+<p>22b86c62c9a5b2302c7c23d41f191b1033ef5912</p>
+<pre><code>note: 'fix: catch empty AstField.Constraints'
+breaking: false
+description: catch empty AstField.Constraints
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-1111">
+  semver: 1.11.1
+  <a class="anchor" href="#semver-1111">#</a>
+</h3>
+<p>date: 2020-10-15T11:32:39+02:00</p>
+<h4 id="changes-17">
+  changes:
+  <a class="anchor" href="#changes-17">#</a>
+</h4>
+<pre><code>- 90ba2bbe61cb82586134d8c773ebd4fd74d24f99
+
+  note: 'fix: catch empty __proto'
+  breaking: false
+  description: catch empty __proto
+</code></pre>
+<h3 id="semver-1110">
+  semver: 1.11.0
+  <a class="anchor" href="#semver-1110">#</a>
+</h3>
+<p>date: 2020-10-04T10:55:02+02:00</p>
+<h4 id="changes-18">
+  changes:
+  <a class="anchor" href="#changes-18">#</a>
+</h4>
+<pre><code>- 529b8bf4f21b4e141da31b30cde916371ce9ee4c
+
+  note: 'fix: removed the cleanbuild on protos, decision is not for the tools'
+  breaking: false
+  description: removed the cleanbuild on protos, decision is not for the tools
+</code></pre>
+<ul>
+<li>
+<p>bf61805029cfbc4476c9fe824b35cdcb76e07fcd</p>
+<pre><code>note: 'feat: additional bindings on Update Request with method PUT and field update_mask'
+breaking: false
+description: additional bindings on Update Request with method PUT and field update_mask
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-1100">
+  semver: 1.10.0
+  <a class="anchor" href="#semver-1100">#</a>
+</h3>
+<p>date: 2020-09-25T15:28:48+02:00</p>
+<h4 id="changes-19">
+  changes:
+  <a class="anchor" href="#changes-19">#</a>
+</h4>
+<pre><code>- eba42e0077fac5461ef21a8f958ce70dc99e73ff
+
+  note: 'feat: type extensions'
+  breaking: false
+  description: type extensions
+</code></pre>
+<ul>
+<li>
+<p>485c417c037c6756ddb58328aee90a9a1df7f4ba</p>
+<pre><code>note: 'feat: service extensions'
+breaking: false
+description: service extensions
+</code></pre>
+</li>
+<li>
+<p>d784ed39a556290b21ea73bc940eb7e797f651b3</p>
+<pre><code>note: query description removed from es6spec
+breaking: false
+description: query description removed from es6spec
+</code></pre>
+</li>
+<li>
+<p>76e97fca57ce1622ff967e416255bdb78245d8f9</p>
+<pre><code>note: 'chore: export installed types and services too'
+  
+conventional_commit:
+category: chore
+scope: &quot;&quot;
+breaking: false
+description: export installed types and services too
+</code></pre>
+</li>
+<li>
+<p>70663701da57c79dd4153a64276f1436df98da59</p>
+<pre><code>note: 'fix: version number'
+breaking: false
+description: version number
+</code></pre>
+</li>
+<li>
+<p>a0080a3a389121c4f265ed69b2bd13d85938c601</p>
+<pre><code>note: 'fix: depth=1 removed'
+breaking: false
+description: depth=1 removed
+</code></pre>
+</li>
+<li>
+<p>293a0171bcc7b3a7616fc02fc5738408acc3d8ed</p>
+<pre><code>note: 'feat: use git command only, go-git removed'
+breaking: false
+description: use git command only, go-git removed
+</code></pre>
+</li>
+<li>
+<p>dbe381db5cd6780cda46bbe949b3d941fb500807</p>
+<pre><code>note: 'feat: use git command only, go-git removed'
+breaking: false
+description: use git command only, go-git removed
+</code></pre>
+</li>
+<li>
+<p>269fde54f0474ee2a19f939327fa192f9d5dc3e6</p>
+<pre><code>note: 'feat: use git command only, go-git removed'
+breaking: false
+description: use git command only, go-git removed
+</code></pre>
+</li>
+<li>
+<p>86b5cde11d82ef1e9b84c4a266698477b6dc969a</p>
+<pre><code>note: 'fix: git command fallback'
+breaking: false
+description: git command fallback
+</code></pre>
+</li>
+<li>
+<p>104284a5d71efba93786dc50ff97d381b972f97f</p>
+<pre><code>note: 'fix: git command fallback'
+breaking: false
+description: git command fallback
+</code></pre>
+</li>
+<li>
+<p>b2cf1734e3de672f4fa76df5d09bd2d5e9ba9fbe</p>
+<pre><code>note: git command fallback
+breaking: false
+description: git command fallback
+</code></pre>
+</li>
+<li>
+<p>5a784513d2a89cb147076c9eb483de12e3c4e2fd</p>
+<pre><code>note: git command fallback
+breaking: false
+description: git command fallback
+</code></pre>
+</li>
+<li>
+<p>8571a24af0797ff6cfdee0ae065e6c73dce94669</p>
+<pre><code>note: feat bodyField can be named like you want. Default is &quot;body&quot;
+breaking: false
+description: feat bodyField can be named like you want. Default is &quot;body&quot;
+</code></pre>
+</li>
+<li>
+<p>c73060005695d36bf8d5e42608013cad8348e4f9</p>
+<pre><code>note: feat bodyField can be named like you want. Default is &quot;body&quot;
+breaking: false
+description: feat bodyField can be named like you want. Default is &quot;body&quot;
+</code></pre>
+</li>
+<li>
+<p>40d46c49d7a411d3a5ab1c9624cfca9955376f46</p>
+<pre><code>note: feat muSrvSanitize =&gt; service sanitizer
+breaking: false
+description: feat muSrvSanitize =&gt; service sanitizer
+</code></pre>
+</li>
+<li>
+<p>bb8b2d8d18b231e7d5ce7e46104beb2f776890fd</p>
+<pre><code>note: |-
+feat better error message with sourcode pointer
+more robust regex
+breaking: false
+description: feat better error message with sourcode pointer
+body: more robust regex
+</code></pre>
+<ul>
+<li>
+<p>666579f481e2c10cde1a75cc4ae129b615c6d30a</p>
+<p>note: feat Spec2MuSpec creating of services
+breaking: false
+description: feat Spec2MuSpec creating of services</p>
+</li>
+</ul>
+</li>
+<li>
+<p>a02c2b571a819cc73c75a33373aa8fd15cb3a162</p>
+<pre><code>note: feat Spec2MuSpec creating of types
+breaking: false
+description: feat Spec2MuSpec creating of types
+</code></pre>
+</li>
+<li>
+<p>adb1eb93bb01d15d8b882bd6f0f81af15c2c772a</p>
+<pre><code>note: feat Spec2MuSpec link the objects
+breaking: false
+description: feat Spec2MuSpec link the objects
+</code></pre>
+</li>
+<li>
+<p>b07412c1d86bced3393e618f8edf016ff246e10c</p>
+<pre><code>note: feat Spec2MuSpec init
+breaking: false
+description: feat Spec2MuSpec init
+</code></pre>
+</li>
+<li>
+<p>cc65d91559de89d5bd7290db55ec15d57a80bcad</p>
+<pre><code>note: feat MuSpec2Spec doc update
+breaking: false
+description: feat MuSpec2Spec doc update
+</code></pre>
+</li>
+<li>
+<p>c8f6e7c29d69193db433dbcd8cc947815a98656d</p>
+<pre><code>note: feat MuSpec2Spec doc update
+breaking: false
+description: feat MuSpec2Spec doc update
+</code></pre>
+</li>
+<li>
+<p>35781541763e7ed2b2cbc84a0e2deab0b6cedde6</p>
+<pre><code>note: feat MuSpec2Spec
+breaking: false
+description: feat MuSpec2Spec
+</code></pre>
+</li>
+<li>
+<p>bd4efc6b8dc1165c79f819aa86461ef0ce1a827e</p>
+<pre><code>note: fix checkimports with single root specs and protos
+breaking: false
+description: fix checkimports with single root specs and protos
+</code></pre>
+</li>
+<li>
+<p>8b9c529e1436edd03d23e6fe6e6f4dc92b3cfffb</p>
+<pre><code>note: feat install -fresh || -f  to refresh the local repo (or force a fresh installation)
+breaking: false
+description: feat install -fresh || -f  to refresh the local repo (or force a fresh installation)
+</code></pre>
+</li>
+<li>
+<p>227e0ac06419d5494f6d029587897ef139854d42</p>
+<pre><code>note: feat .notation cleanup for service request and response
+breaking: false
+description: feat .notation cleanup for service request and response
+</code></pre>
+</li>
+<li>
+<p>2fab65593a4b6d261085202e1d95cf54b93e71ec</p>
+<pre><code>note: feat .notation cleanup for service request and response
+breaking: false
+description: feat .notation cleanup for service request and response
+</code></pre>
+</li>
+<li>
+<p>ac1b05dbe0779f4f16dae35c874a34649e0b0ed6</p>
+<pre><code>note: feat c++ type notation and resolution
+breaking: false
+description: feat c++ type notation and resolution
+</code></pre>
+</li>
+<li>
+<p>c9d457b0a1cd0bf7cad06a6117aad3e1ab723e0d</p>
+<pre><code>note: |-
+generate service protos without request messages
+init of ClassicServiceTemplate
+breaking: false
+description: generate service protos without request messages
+body: init of ClassicServiceTemplate
+</code></pre>
+<ul>
+<li>
+<p>b0a4bd96d3ee92547f13303ce2fccff46e16debb</p>
+<p>note: |-
+generate protos without installed as default
+yaml exporter without installed as default
+breaking: false
+description: generate protos without installed as default
+body: yaml exporter without installed as default</p>
+</li>
+<li>
+<p>9d699b41aec986a51d481fc82fe294f9c4e479c9</p>
+<p>note: |-
+generate protos without installed as default
+yaml exporter without installed as default
+breaking: false
+description: generate protos without installed as default
+body: yaml exporter without installed as default</p>
+</li>
+<li>
+<p>563fcc28612c006a9dc34f096d0d1fe54ce8c464</p>
+<p>note: |-
+checkImports.go
+improved samples
+breaking: false
+description: checkImports.go
+body: improved samples</p>
+</li>
+<li>
+<p>90c7f58dcca2d06fef871b9b4dfed47070c9ee20</p>
+<p>note: small refactoring
+breaking: false
+description: small refactoring</p>
+</li>
+</ul>
+</li>
+<li>
+<p>e4de2c7eeb9a187056d83803d1d2e2c4f4702569</p>
+<pre><code>note: 'feat: init'
+breaking: false
+description: init
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-194">
+  semver: 1.9.4
+  <a class="anchor" href="#semver-194">#</a>
+</h3>
+<p>date: 2020-09-25T13:36:35+02:00</p>
+<h4 id="changes-20">
+  changes:
+  <a class="anchor" href="#changes-20">#</a>
+</h4>
+<pre><code>- 485c417c037c6756ddb58328aee90a9a1df7f4ba
+
+  note: 'feat: service extensions'
+  breaking: false
+  description: service extensions
+</code></pre>
+<h3 id="semver-193">
+  semver: 1.9.3
+  <a class="anchor" href="#semver-193">#</a>
+</h3>
+<p>date: 2020-09-24T14:33:19+02:00</p>
+<h4 id="changes-21">
+  changes:
+  <a class="anchor" href="#changes-21">#</a>
+</h4>
+<pre><code>- d784ed39a556290b21ea73bc940eb7e797f651b3
+
+  note: query description removed from es6spec
+  breaking: false
+  description: query description removed from es6spec
+</code></pre>
+<ul>
+<li>
+<p>76e97fca57ce1622ff967e416255bdb78245d8f9</p>
+<pre><code>note: 'chore: export installed types and services too'
+  
+conventional_commit:
+category: chore
+scope: &quot;&quot;
+breaking: false
+description: export installed types and services too
+</code></pre>
+</li>
+<li>
+<p>70663701da57c79dd4153a64276f1436df98da59</p>
+<pre><code>note: 'fix: version number'
+breaking: false
+description: version number
+</code></pre>
+</li>
+<li>
+<p>a0080a3a389121c4f265ed69b2bd13d85938c601</p>
+<pre><code>note: 'fix: depth=1 removed'
+breaking: false
+description: depth=1 removed
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-192">
+  semver: 1.9.2
+  <a class="anchor" href="#semver-192">#</a>
+</h3>
+<p>date: 2020-09-21T12:10:08+02:00</p>
+<h4 id="changes-22">
+  changes:
+  <a class="anchor" href="#changes-22">#</a>
+</h4>
+<pre><code>- 293a0171bcc7b3a7616fc02fc5738408acc3d8ed
+
+  note: 'feat: use git command only, go-git removed'
+  breaking: false
+  description: use git command only, go-git removed
+</code></pre>
+<ul>
+<li>
+<p>dbe381db5cd6780cda46bbe949b3d941fb500807</p>
+<pre><code>note: 'feat: use git command only, go-git removed'
+breaking: false
+description: use git command only, go-git removed
+</code></pre>
+</li>
+<li>
+<p>269fde54f0474ee2a19f939327fa192f9d5dc3e6</p>
+<pre><code>note: 'feat: use git command only, go-git removed'
+breaking: false
+description: use git command only, go-git removed
+</code></pre>
+</li>
+<li>
+<p>86b5cde11d82ef1e9b84c4a266698477b6dc969a</p>
+<pre><code>note: 'fix: git command fallback'
+breaking: false
+description: git command fallback
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-191">
+  semver: 1.9.1
+  <a class="anchor" href="#semver-191">#</a>
+</h3>
+<p>date: 2020-09-21T11:19:03+02:00</p>
+<h4 id="changes-23">
+  changes:
+  <a class="anchor" href="#changes-23">#</a>
+</h4>
+<pre><code>- 104284a5d71efba93786dc50ff97d381b972f97f
+
+  note: 'fix: git command fallback'
+  breaking: false
+  description: git command fallback
+</code></pre>
+<ul>
+<li>
+<p>b2cf1734e3de672f4fa76df5d09bd2d5e9ba9fbe</p>
+<pre><code>note: git command fallback
+breaking: false
+description: git command fallback
+</code></pre>
+</li>
+<li>
+<p>5a784513d2a89cb147076c9eb483de12e3c4e2fd</p>
+<pre><code>note: git command fallback
+breaking: false
+description: git command fallback
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-190">
+  semver: 1.9.0
+  <a class="anchor" href="#semver-190">#</a>
+</h3>
+<p>date: 2020-09-20T07:03:08+02:00</p>
+<h4 id="changes-24">
+  changes:
+  <a class="anchor" href="#changes-24">#</a>
+</h4>
+<pre><code>- 8571a24af0797ff6cfdee0ae065e6c73dce94669
+
+  note: feat bodyField can be named like you want. Default is &quot;body&quot;
+  breaking: false
+  description: feat bodyField can be named like you want. Default is &quot;body&quot;
+</code></pre>
+<ul>
+<li>
+<p>c73060005695d36bf8d5e42608013cad8348e4f9</p>
+<pre><code>note: feat bodyField can be named like you want. Default is &quot;body&quot;
+breaking: false
+description: feat bodyField can be named like you want. Default is &quot;body&quot;
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-180">
+  semver: 1.8.0
+  <a class="anchor" href="#semver-180">#</a>
+</h3>
+<p>date: 2020-09-19T22:45:29+02:00</p>
+<h4 id="changes-25">
+  changes:
+  <a class="anchor" href="#changes-25">#</a>
+</h4>
+<pre><code>- 40d46c49d7a411d3a5ab1c9624cfca9955376f46
+
+  note: feat muSrvSanitize =&gt; service sanitizer
+  breaking: false
+  description: feat muSrvSanitize =&gt; service sanitizer
+</code></pre>
+<ul>
+<li>
+<p>bb8b2d8d18b231e7d5ce7e46104beb2f776890fd</p>
+<pre><code>note: |-
+feat better error message with sourcode pointer
+more robust regex
+breaking: false
+description: feat better error message with sourcode pointer
+body: more robust regex
+</code></pre>
+<ul>
+<li>
+<p>666579f481e2c10cde1a75cc4ae129b615c6d30a</p>
+<p>note: feat Spec2MuSpec creating of services
+breaking: false
+description: feat Spec2MuSpec creating of services</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="semver-170">
+  semver: 1.7.0
+  <a class="anchor" href="#semver-170">#</a>
+</h3>
+<p>date: 2020-09-19T09:07:02+02:00</p>
+<h4 id="changes-26">
+  changes:
+  <a class="anchor" href="#changes-26">#</a>
+</h4>
+<pre><code>- a02c2b571a819cc73c75a33373aa8fd15cb3a162
+
+  note: feat Spec2MuSpec creating of types
+  breaking: false
+  description: feat Spec2MuSpec creating of types
+</code></pre>
+<ul>
+<li>
+<p>adb1eb93bb01d15d8b882bd6f0f81af15c2c772a</p>
+<pre><code>note: feat Spec2MuSpec link the objects
+breaking: false
+description: feat Spec2MuSpec link the objects
+</code></pre>
+</li>
+<li>
+<p>b07412c1d86bced3393e618f8edf016ff246e10c</p>
+<pre><code>note: feat Spec2MuSpec init
+breaking: false
+description: feat Spec2MuSpec init
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-161">
+  semver: 1.6.1
+  <a class="anchor" href="#semver-161">#</a>
+</h3>
+<p>date: 2020-09-17T13:55:33+02:00</p>
+<h4 id="changes-27">
+  changes:
+  <a class="anchor" href="#changes-27">#</a>
+</h4>
+<pre><code>- cc65d91559de89d5bd7290db55ec15d57a80bcad
+
+  note: feat MuSpec2Spec doc update
+  breaking: false
+  description: feat MuSpec2Spec doc update
+</code></pre>
+<h3 id="semver-160">
+  semver: 1.6.0
+  <a class="anchor" href="#semver-160">#</a>
+</h3>
+<p>date: 2020-09-17T13:48:12+02:00</p>
+<h4 id="changes-28">
+  changes:
+  <a class="anchor" href="#changes-28">#</a>
+</h4>
+<pre><code>- c8f6e7c29d69193db433dbcd8cc947815a98656d
+
+  note: feat MuSpec2Spec doc update
+  breaking: false
+  description: feat MuSpec2Spec doc update
+</code></pre>
+<ul>
+<li>
+<p>35781541763e7ed2b2cbc84a0e2deab0b6cedde6</p>
+<pre><code>note: feat MuSpec2Spec
+breaking: false
+description: feat MuSpec2Spec
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-151">
+  semver: 1.5.1
+  <a class="anchor" href="#semver-151">#</a>
+</h3>
+<p>date: 2020-09-16T23:05:09+02:00</p>
+<h4 id="changes-29">
+  changes:
+  <a class="anchor" href="#changes-29">#</a>
+</h4>
+<pre><code>- bd4efc6b8dc1165c79f819aa86461ef0ce1a827e
+
+  note: fix checkimports with single root specs and protos
+  breaking: false
+  description: fix checkimports with single root specs and protos
+</code></pre>
+<h3 id="semver-150">
+  semver: 1.5.0
+  <a class="anchor" href="#semver-150">#</a>
+</h3>
+<p>date: 2020-09-16T11:06:49+02:00</p>
+<h4 id="changes-30">
+  changes:
+  <a class="anchor" href="#changes-30">#</a>
+</h4>
+<pre><code>- 8b9c529e1436edd03d23e6fe6e6f4dc92b3cfffb
+
+  note: feat install -fresh || -f  to refresh the local repo (or force a fresh installation)
+  breaking: false
+  description: feat install -fresh || -f  to refresh the local repo (or force a fresh installation)
+</code></pre>
+<ul>
+<li>
+<p>227e0ac06419d5494f6d029587897ef139854d42</p>
+<pre><code>note: feat .notation cleanup for service request and response
+breaking: false
+description: feat .notation cleanup for service request and response
+</code></pre>
+</li>
+<li>
+<p>2fab65593a4b6d261085202e1d95cf54b93e71ec</p>
+<pre><code>note: feat .notation cleanup for service request and response
+breaking: false
+description: feat .notation cleanup for service request and response
+</code></pre>
+</li>
+<li>
+<p>ac1b05dbe0779f4f16dae35c874a34649e0b0ed6</p>
+<pre><code>note: feat c++ type notation and resolution
+breaking: false
+description: feat c++ type notation and resolution
+</code></pre>
+</li>
+<li>
+<p>c9d457b0a1cd0bf7cad06a6117aad3e1ab723e0d</p>
+<pre><code>note: |-
+generate service protos without request messages
+init of ClassicServiceTemplate
+breaking: false
+description: generate service protos without request messages
+body: init of ClassicServiceTemplate
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-140">
+  semver: 1.4.0
+  <a class="anchor" href="#semver-140">#</a>
+</h3>
+<p>date: 2020-09-14T14:12:52+02:00</p>
+<h4 id="changes-31">
+  changes:
+  <a class="anchor" href="#changes-31">#</a>
+</h4>
+<pre><code>- b0a4bd96d3ee92547f13303ce2fccff46e16debb
+
+  note: |-
+  generate protos without installed as default
+  yaml exporter without installed as default
+  breaking: false
+  description: generate protos without installed as default
+  body: yaml exporter without installed as default
+</code></pre>
+<h3 id="semver-130">
+  semver: 1.3.0
+  <a class="anchor" href="#semver-130">#</a>
+</h3>
+<p>date: 2020-09-09T07:39:41+02:00</p>
+<h4 id="changes-32">
+  changes:
+  <a class="anchor" href="#changes-32">#</a>
+</h4>
+<pre><code>- 9d699b41aec986a51d481fc82fe294f9c4e479c9
+
+  note: |-
+  generate protos without installed as default
+  yaml exporter without installed as default
+  breaking: false
+  description: generate protos without installed as default
+  body: yaml exporter without installed as default
+- 563fcc28612c006a9dc34f096d0d1fe54ce8c464
+
+  note: |-
+  checkImports.go
+  improved samples
+  breaking: false
+  description: checkImports.go
+  body: improved samples
+- 90c7f58dcca2d06fef871b9b4dfed47070c9ee20
+
+  note: small refactoring
+  breaking: false
+  description: small refactoring
+</code></pre>
+<ul>
+<li>
+<p>e4de2c7eeb9a187056d83803d1d2e2c4f4702569</p>
+<pre><code>note: 'feat: init'
+breaking: false
+description: init
+</code></pre>
+</li>
+<li>
+<p>445a9486f0bdfd6e7ae23a922be3dca961642f09</p>
+<pre><code>note: 'fix: lowercase in generated env specs'
+breaking: false
+description: lowercase in generated env specs
+</code></pre>
+</li>
+<li>
+<p>f32790ad542bf4e66ea40f6e473db65a304404a9</p>
+<pre><code>note: 'fix: autocreate of collections with correct entity types'
+breaking: false
+description: autocreate of collections with correct entity types
+</code></pre>
+</li>
+<li>
+<p>9744caef00902e666033c472fc2ebef87113b58e</p>
+<pre><code>note: 'feat: Release version 1.1.0'
+breaking: false
+description: Release version 1.1.0
+</code></pre>
+</li>
+<li>
+<p>b4b823f7148ed17d88bc99189db0141b4cdeda38</p>
+<pre><code>note: 'feat: calling spectools without arguments will run the default flow.'
+breaking: false
+description: calling spectools without arguments will run the default flow.
+</code></pre>
+</li>
+<li>
+<p>173aad3d53ef3a219bf7600a721bd51c7e962682</p>
+<pre><code>note: 'doc: doc updated'
+  
+conventional_commit:
+category: doc
+scope: &quot;&quot;
+breaking: false
+description: doc updated
+</code></pre>
+</li>
+<li>
+<p>be922360dd2dd465c1d286beb6ccbef0d6a4e396</p>
+<pre><code>note: 'feat: env var with FST prefix'
+breaking: false
+description: env var with FST prefix
+</code></pre>
+</li>
+<li>
+<p>628a8d7497ce509a18ad43cb9515082ccf1aafa4</p>
+<pre><code>note: installation manual
+breaking: false
+description: installation manual
+</code></pre>
+</li>
+<li>
+<p>fa8479243df579acaee329019ee5ab25d22c8760</p>
+<pre><code>note: remove gobuild.sh, it is not needed
+breaking: false
+description: remove gobuild.sh, it is not needed
+</code></pre>
+</li>
+<li>
+<p>8b7add3707e5568e68003ea482bbcc4e15e4ec19</p>
+<pre><code>note: test feat gobuild init
+breaking: false
+description: test feat gobuild init
+</code></pre>
+</li>
+<li>
+<p>de25f7b5e35a9cfd430595fc286378b553b8db0e</p>
+<pre><code>note: test feat gobuild init
+breaking: false
+description: test feat gobuild init
+</code></pre>
+</li>
+<li>
+<p>a60f9f2d44e54bd38c8c701a9c50827da6d6a4c0</p>
+<pre><code>note: feat gobuild init
+breaking: false
+description: feat gobuild init
+</code></pre>
+</li>
+<li>
+<p>767107987ba3405c8574987a3c2596222e4c2855</p>
+<pre><code>note: 'fix: root command prints help as default'
+breaking: false
+description: root command prints help as default
+</code></pre>
+</li>
+<li>
+<p>4b063c8db78ffc07d5fbf5298546966ed4405136</p>
+<pre><code>note: 'feat: custom config'
+breaking: false
+description: custom config
+</code></pre>
+</li>
+<li>
+<p>0a70b54fb489e9c45ab3bdcfe53ce5bab8261504</p>
+<pre><code>note: 'feat: custom config'
+breaking: false
+description: custom config
+</code></pre>
+</li>
+<li>
+<p>5e010716787a1e336d3122ac2facefd499d5e08f</p>
+<pre><code>note: 'feat: custom config'
+breaking: false
+description: custom config
+</code></pre>
+</li>
+<li>
+<p>d2569a57c12708df1161b930b989e0abcce01bfd</p>
+<pre><code>note: dev notice removed
+breaking: false
+description: dev notice removed
+</code></pre>
+</li>
+<li>
+<p>f2a518c8115b042ac92d52721c2f533655bb40eb</p>
+<pre><code>note: 'feat: Sample for a command'
+breaking: false
+description: Sample for a command
+</code></pre>
+</li>
+<li>
+<p>ff473474589154b74e99f1682cc2735110032f35</p>
+<pre><code>note: 'feat: Sample for a command'
+breaking: false
+description: Sample for a command
+</code></pre>
+</li>
+<li>
+<p>1e43d13267a692f866caf2972d09704f26b332a1</p>
+<pre><code>note: 'doc: doc updated'
+  
+conventional_commit:
+category: doc
+scope: &quot;&quot;
+breaking: false
+description: doc updated
+</code></pre>
+</li>
+<li>
+<p>9cac4490645db4a97b0eb2534a7d64c6007546ec</p>
+<pre><code>note: 'doc: doc init'
+  
+conventional_commit:
+category: doc
+scope: &quot;&quot;
+breaking: false
+description: doc init
+</code></pre>
+</li>
+<li>
+<p>2a39737c5b4af3ecb8b94ee49f07030a1f0becd9</p>
+<pre><code>note: 'doc: doc init'
+  
+conventional_commit:
+category: doc
+scope: &quot;&quot;
+breaking: false
+description: doc init
+</code></pre>
+</li>
+<li>
+<p>edb253e39405f57411a626ca53e7f5ba22ad9965</p>
+<pre><code>note: 'feat: running commands from flow'
+breaking: false
+description: running commands from flow
+</code></pre>
+</li>
+<li>
+<p>0f703ae97c6908d725ce19629c809e5a473cdbca</p>
+<pre><code>note: 'fix: pb in package name'
+breaking: false
+description: pb in package name
+</code></pre>
+</li>
+<li>
+<p>3620fabfc5811790faa7c0a9ee410ec3869198a2</p>
+<pre><code>note: export full tree as yaml
+breaking: false
+description: export full tree as yaml
+</code></pre>
+</li>
+<li>
+<p>7c86a5e44c7d617f31f0b0ecc5ce87eda998103b</p>
+<pre><code>note: export full tree as yaml
+breaking: false
+description: export full tree as yaml
+</code></pre>
+</li>
+<li>
+<p>2c9e7c0f7a81bf5766726d5fadb413a9e8d3009a</p>
+<pre><code>note: generate full env es module
+breaking: false
+description: generate full env es module
+</code></pre>
+</li>
+<li>
+<p>97cb8eeb592a595db724b8fa4e7509ec8aac4322</p>
+<pre><code>note: installer with repo
+breaking: false
+description: installer with repo
+</code></pre>
+</li>
+<li>
+<p>94c761da852d3ea6c41056b2f7cc664bcb6ed7ab</p>
+<pre><code>note: installer init
+breaking: false
+description: installer init
+</code></pre>
+</li>
+<li>
+<p>cf8f14b406d6221eed75348cf45cc9d0223b96f7</p>
+<pre><code>note: installer init
+breaking: false
+description: installer init
+</code></pre>
+</li>
+<li>
+<p>05c90b80de1d0cae81d4959181decbf36a37dc3a</p>
+<pre><code>note: load dependencies
+breaking: false
+description: load dependencies
+</code></pre>
+</li>
+<li>
+<p>c293c5aea4b348b2f16934270a3b21c5452b29ab</p>
+<pre><code>note: load dependencies
+breaking: false
+description: load dependencies
+</code></pre>
+</li>
+<li>
+<p>4011063b4049be22fd1cd0640e08dee7ac17f454</p>
+<pre><code>note: generate type protos and migration from initializr
+breaking: false
+description: generate type protos and migration from initializr
+</code></pre>
+</li>
+<li>
+<p>af165db5efee37bd62e4def8cb076d926497869b</p>
+<pre><code>note: generate type protos and migration from initializr
+breaking: false
+description: generate type protos and migration from initializr
+</code></pre>
+</li>
+<li>
+<p>cca9368e8d4399bdc608426c520daaa028e4b014</p>
+<pre><code>note: file watcher init
+breaking: false
+description: file watcher init
+</code></pre>
+</li>
+<li>
+<p>c08480d3e2a1226362af2a5f1bb5c2fdaf48ac3c</p>
+<pre><code>note: flow runner
+breaking: false
+description: flow runner
+</code></pre>
+</li>
+<li>
+<p>22a263a2f4e2bc5f2c1511ecf91eface236c576c</p>
+<pre><code>note: flow runner
+breaking: false
+description: flow runner
+</code></pre>
+</li>
+<li>
+<p>8afedbe12a68cc6e06b48cfb87a2f1ff988796a0</p>
+<pre><code>note: muService2Spec
+breaking: false
+description: muService2Spec
+</code></pre>
+</li>
+<li>
+<p>47176b1e4e338adc35c31259523f1165f0ce4ee3</p>
+<pre><code>note: initial commit
+breaking: false
+description: initial commit
+</code></pre>
+</li>
+<li>
+<p>b5efebc81e4a14c8a7bd00cb20ffda23389091ee</p>
+<pre><code>note: initial commit
+breaking: false
+description: initial commit
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-120">
+  semver: 1.2.0
+  <a class="anchor" href="#semver-120">#</a>
+</h3>
+<p>date: 2020-09-07T15:31:44+02:00</p>
+<h4 id="changes-33">
+  changes:
+  <a class="anchor" href="#changes-33">#</a>
+</h4>
+<pre><code>- 563fcc28612c006a9dc34f096d0d1fe54ce8c464
+
+  note: |-
+  checkImports.go
+  improved samples
+  breaking: false
+  description: checkImports.go
+  body: improved samples
+- 90c7f58dcca2d06fef871b9b4dfed47070c9ee20
+
+  note: small refactoring
+  breaking: false
+  description: small refactoring
+</code></pre>
+<ul>
+<li>
+<p>e4de2c7eeb9a187056d83803d1d2e2c4f4702569</p>
+<pre><code>note: 'feat: init'
+breaking: false
+description: init
+</code></pre>
+</li>
+<li>
+<p>445a9486f0bdfd6e7ae23a922be3dca961642f09</p>
+<pre><code>note: 'fix: lowercase in generated env specs'
+breaking: false
+description: lowercase in generated env specs
+</code></pre>
+</li>
+<li>
+<p>f32790ad542bf4e66ea40f6e473db65a304404a9</p>
+<pre><code>note: 'fix: autocreate of collections with correct entity types'
+breaking: false
+description: autocreate of collections with correct entity types
+</code></pre>
+</li>
+<li>
+<p>9744caef00902e666033c472fc2ebef87113b58e</p>
+<pre><code>note: 'feat: Release version 1.1.0'
+breaking: false
+description: Release version 1.1.0
+</code></pre>
+</li>
+<li>
+<p>b4b823f7148ed17d88bc99189db0141b4cdeda38</p>
+<pre><code>note: 'feat: calling spectools without arguments will run the default flow.'
+breaking: false
+description: calling spectools without arguments will run the default flow.
+</code></pre>
+</li>
+<li>
+<p>173aad3d53ef3a219bf7600a721bd51c7e962682</p>
+<pre><code>note: 'doc: doc updated'
+  
+conventional_commit:
+category: doc
+scope: &quot;&quot;
+breaking: false
+description: doc updated
+</code></pre>
+</li>
+<li>
+<p>be922360dd2dd465c1d286beb6ccbef0d6a4e396</p>
+<pre><code>note: 'feat: env var with FST prefix'
+breaking: false
+description: env var with FST prefix
+</code></pre>
+</li>
+<li>
+<p>628a8d7497ce509a18ad43cb9515082ccf1aafa4</p>
+<pre><code>note: installation manual
+breaking: false
+description: installation manual
+</code></pre>
+</li>
+<li>
+<p>fa8479243df579acaee329019ee5ab25d22c8760</p>
+<pre><code>note: remove gobuild.sh, it is not needed
+breaking: false
+description: remove gobuild.sh, it is not needed
+</code></pre>
+</li>
+<li>
+<p>8b7add3707e5568e68003ea482bbcc4e15e4ec19</p>
+<pre><code>note: test feat gobuild init
+breaking: false
+description: test feat gobuild init
+</code></pre>
+</li>
+<li>
+<p>de25f7b5e35a9cfd430595fc286378b553b8db0e</p>
+<pre><code>note: test feat gobuild init
+breaking: false
+description: test feat gobuild init
+</code></pre>
+</li>
+<li>
+<p>a60f9f2d44e54bd38c8c701a9c50827da6d6a4c0</p>
+<pre><code>note: feat gobuild init
+breaking: false
+description: feat gobuild init
+</code></pre>
+</li>
+<li>
+<p>767107987ba3405c8574987a3c2596222e4c2855</p>
+<pre><code>note: 'fix: root command prints help as default'
+breaking: false
+description: root command prints help as default
+</code></pre>
+</li>
+<li>
+<p>4b063c8db78ffc07d5fbf5298546966ed4405136</p>
+<pre><code>note: 'feat: custom config'
+breaking: false
+description: custom config
+</code></pre>
+</li>
+<li>
+<p>0a70b54fb489e9c45ab3bdcfe53ce5bab8261504</p>
+<pre><code>note: 'feat: custom config'
+breaking: false
+description: custom config
+</code></pre>
+</li>
+<li>
+<p>5e010716787a1e336d3122ac2facefd499d5e08f</p>
+<pre><code>note: 'feat: custom config'
+breaking: false
+description: custom config
+</code></pre>
+</li>
+<li>
+<p>d2569a57c12708df1161b930b989e0abcce01bfd</p>
+<pre><code>note: dev notice removed
+breaking: false
+description: dev notice removed
+</code></pre>
+</li>
+<li>
+<p>f2a518c8115b042ac92d52721c2f533655bb40eb</p>
+<pre><code>note: 'feat: Sample for a command'
+breaking: false
+description: Sample for a command
+</code></pre>
+</li>
+<li>
+<p>ff473474589154b74e99f1682cc2735110032f35</p>
+<pre><code>note: 'feat: Sample for a command'
+breaking: false
+description: Sample for a command
+</code></pre>
+</li>
+<li>
+<p>1e43d13267a692f866caf2972d09704f26b332a1</p>
+<pre><code>note: 'doc: doc updated'
+  
+conventional_commit:
+category: doc
+scope: &quot;&quot;
+breaking: false
+description: doc updated
+</code></pre>
+</li>
+<li>
+<p>9cac4490645db4a97b0eb2534a7d64c6007546ec</p>
+<pre><code>note: 'doc: doc init'
+  
+conventional_commit:
+category: doc
+scope: &quot;&quot;
+breaking: false
+description: doc init
+</code></pre>
+</li>
+<li>
+<p>2a39737c5b4af3ecb8b94ee49f07030a1f0becd9</p>
+<pre><code>note: 'doc: doc init'
+  
+conventional_commit:
+category: doc
+scope: &quot;&quot;
+breaking: false
+description: doc init
+</code></pre>
+</li>
+<li>
+<p>edb253e39405f57411a626ca53e7f5ba22ad9965</p>
+<pre><code>note: 'feat: running commands from flow'
+breaking: false
+description: running commands from flow
+</code></pre>
+</li>
+<li>
+<p>0f703ae97c6908d725ce19629c809e5a473cdbca</p>
+<pre><code>note: 'fix: pb in package name'
+breaking: false
+description: pb in package name
+</code></pre>
+</li>
+<li>
+<p>3620fabfc5811790faa7c0a9ee410ec3869198a2</p>
+<pre><code>note: export full tree as yaml
+breaking: false
+description: export full tree as yaml
+</code></pre>
+</li>
+<li>
+<p>7c86a5e44c7d617f31f0b0ecc5ce87eda998103b</p>
+<pre><code>note: export full tree as yaml
+breaking: false
+description: export full tree as yaml
+</code></pre>
+</li>
+<li>
+<p>2c9e7c0f7a81bf5766726d5fadb413a9e8d3009a</p>
+<pre><code>note: generate full env es module
+breaking: false
+description: generate full env es module
+</code></pre>
+</li>
+<li>
+<p>97cb8eeb592a595db724b8fa4e7509ec8aac4322</p>
+<pre><code>note: installer with repo
+breaking: false
+description: installer with repo
+</code></pre>
+</li>
+<li>
+<p>94c761da852d3ea6c41056b2f7cc664bcb6ed7ab</p>
+<pre><code>note: installer init
+breaking: false
+description: installer init
+</code></pre>
+</li>
+<li>
+<p>cf8f14b406d6221eed75348cf45cc9d0223b96f7</p>
+<pre><code>note: installer init
+breaking: false
+description: installer init
+</code></pre>
+</li>
+<li>
+<p>05c90b80de1d0cae81d4959181decbf36a37dc3a</p>
+<pre><code>note: load dependencies
+breaking: false
+description: load dependencies
+</code></pre>
+</li>
+<li>
+<p>c293c5aea4b348b2f16934270a3b21c5452b29ab</p>
+<pre><code>note: load dependencies
+breaking: false
+description: load dependencies
+</code></pre>
+</li>
+<li>
+<p>4011063b4049be22fd1cd0640e08dee7ac17f454</p>
+<pre><code>note: generate type protos and migration from initializr
+breaking: false
+description: generate type protos and migration from initializr
+</code></pre>
+</li>
+<li>
+<p>af165db5efee37bd62e4def8cb076d926497869b</p>
+<pre><code>note: generate type protos and migration from initializr
+breaking: false
+description: generate type protos and migration from initializr
+</code></pre>
+</li>
+<li>
+<p>cca9368e8d4399bdc608426c520daaa028e4b014</p>
+<pre><code>note: file watcher init
+breaking: false
+description: file watcher init
+</code></pre>
+</li>
+<li>
+<p>c08480d3e2a1226362af2a5f1bb5c2fdaf48ac3c</p>
+<pre><code>note: flow runner
+breaking: false
+description: flow runner
+</code></pre>
+</li>
+<li>
+<p>22a263a2f4e2bc5f2c1511ecf91eface236c576c</p>
+<pre><code>note: flow runner
+breaking: false
+description: flow runner
+</code></pre>
+</li>
+<li>
+<p>8afedbe12a68cc6e06b48cfb87a2f1ff988796a0</p>
+<pre><code>note: muService2Spec
+breaking: false
+description: muService2Spec
+</code></pre>
+</li>
+<li>
+<p>47176b1e4e338adc35c31259523f1165f0ce4ee3</p>
+<pre><code>note: initial commit
+breaking: false
+description: initial commit
+</code></pre>
+</li>
+<li>
+<p>b5efebc81e4a14c8a7bd00cb20ffda23389091ee</p>
+<pre><code>note: initial commit
+breaking: false
+description: initial commit
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-112">
+  semver: 1.1.2
+  <a class="anchor" href="#semver-112">#</a>
+</h3>
+<p>date: 2020-09-05T22:13:03+02:00</p>
+<h4 id="changes-34">
+  changes:
+  <a class="anchor" href="#changes-34">#</a>
+</h4>
+<pre><code>- 445a9486f0bdfd6e7ae23a922be3dca961642f09
+
+  note: 'fix: lowercase in generated env specs'
+  breaking: false
+  description: lowercase in generated env specs
+</code></pre>
+<h3 id="semver-111">
+  semver: 1.1.1
+  <a class="anchor" href="#semver-111">#</a>
+</h3>
+<p>date: 2020-09-05T08:03:42+02:00</p>
+<h4 id="changes-35">
+  changes:
+  <a class="anchor" href="#changes-35">#</a>
+</h4>
+<pre><code>- f32790ad542bf4e66ea40f6e473db65a304404a9
+
+  note: 'fix: autocreate of collections with correct entity types'
+  breaking: false
+  description: autocreate of collections with correct entity types
+</code></pre>
+<h3 id="semver-110">
+  semver: 1.1.0
+  <a class="anchor" href="#semver-110">#</a>
+</h3>
+<p>date: 2020-09-04T07:24:13+02:00</p>
+<h4 id="changes-36">
+  changes:
+  <a class="anchor" href="#changes-36">#</a>
+</h4>
+<pre><code>- 9744caef00902e666033c472fc2ebef87113b58e
+
+  note: 'feat: Release version 1.1.0'
+  breaking: false
+  description: Release version 1.1.0
+</code></pre>
+<ul>
+<li>
+<p>b4b823f7148ed17d88bc99189db0141b4cdeda38</p>
+<pre><code>note: 'feat: calling spectools without arguments will run the default flow.'
+breaking: false
+description: calling spectools without arguments will run the default flow.
+</code></pre>
+</li>
+<li>
+<p>173aad3d53ef3a219bf7600a721bd51c7e962682</p>
+<pre><code>note: 'doc: doc updated'
+  
+conventional_commit:
+category: doc
+scope: &quot;&quot;
+breaking: false
+description: doc updated
+</code></pre>
+</li>
+<li>
+<p>be922360dd2dd465c1d286beb6ccbef0d6a4e396</p>
+<pre><code>note: 'feat: env var with FST prefix'
+breaking: false
+description: env var with FST prefix
+</code></pre>
+</li>
+</ul>
+<h3 id="semver-100">
+  semver: 1.0.0
+  <a class="anchor" href="#semver-100">#</a>
+</h3>
+<p>date: 2020-09-03T22:36:17+02:00</p>
+<h4 id="changes-37">
+  changes:
+  <a class="anchor" href="#changes-37">#</a>
+</h4>
+<pre><code>- 628a8d7497ce509a18ad43cb9515082ccf1aafa4
+
+  note: installation manual
+  breaking: false
+  description: installation manual
+</code></pre>
+<ul>
+<li>
+<p>fa8479243df579acaee329019ee5ab25d22c8760</p>
+<pre><code>note: remove gobuild.sh, it is not needed
+breaking: false
+description: remove gobuild.sh, it is not needed
+</code></pre>
+</li>
+<li>
+<p>8b7add3707e5568e68003ea482bbcc4e15e4ec19</p>
+<pre><code>note: test feat gobuild init
+breaking: false
+description: test feat gobuild init
+</code></pre>
+</li>
+<li>
+<p>de25f7b5e35a9cfd430595fc286378b553b8db0e</p>
+<pre><code>note: test feat gobuild init
+breaking: false
+description: test feat gobuild init
+</code></pre>
+</li>
+<li>
+<p>a60f9f2d44e54bd38c8c701a9c50827da6d6a4c0</p>
+<pre><code>note: feat gobuild init
+breaking: false
+description: feat gobuild init
+</code></pre>
+</li>
+<li>
+<p>767107987ba3405c8574987a3c2596222e4c2855</p>
+<pre><code>note: 'fix: root command prints help as default'
+breaking: false
+description: root command prints help as default
+</code></pre>
+</li>
+<li>
+<p>4b063c8db78ffc07d5fbf5298546966ed4405136</p>
+<pre><code>note: 'feat: custom config'
+breaking: false
+description: custom config
+</code></pre>
+</li>
+<li>
+<p>0a70b54fb489e9c45ab3bdcfe53ce5bab8261504</p>
+<pre><code>note: 'feat: custom config'
+breaking: false
+description: custom config
+</code></pre>
+</li>
+<li>
+<p>5e010716787a1e336d3122ac2facefd499d5e08f</p>
+<pre><code>note: 'feat: custom config'
+breaking: false
+description: custom config
+</code></pre>
+</li>
+<li>
+<p>d2569a57c12708df1161b930b989e0abcce01bfd</p>
+<pre><code>note: dev notice removed
+breaking: false
+description: dev notice removed
+</code></pre>
+</li>
+<li>
+<p>f2a518c8115b042ac92d52721c2f533655bb40eb</p>
+<pre><code>note: 'feat: Sample for a command'
+breaking: false
+description: Sample for a command
+</code></pre>
+</li>
+<li>
+<p>ff473474589154b74e99f1682cc2735110032f35</p>
+<pre><code>note: 'feat: Sample for a command'
+breaking: false
+description: Sample for a command
+</code></pre>
+</li>
+<li>
+<p>1e43d13267a692f866caf2972d09704f26b332a1</p>
+<pre><code>note: 'doc: doc updated'
+  
+conventional_commit:
+category: doc
+scope: &quot;&quot;
+breaking: false
+description: doc updated
+</code></pre>
+</li>
+<li>
+<p>9cac4490645db4a97b0eb2534a7d64c6007546ec</p>
+<pre><code>note: 'doc: doc init'
+  
+conventional_commit:
+category: doc
+scope: &quot;&quot;
+breaking: false
+description: doc init
+</code></pre>
+</li>
+<li>
+<p>2a39737c5b4af3ecb8b94ee49f07030a1f0becd9</p>
+<pre><code>note: 'doc: doc init'
+  
+conventional_commit:
+category: doc
+scope: &quot;&quot;
+breaking: false
+description: doc init
+</code></pre>
+</li>
+<li>
+<p>edb253e39405f57411a626ca53e7f5ba22ad9965</p>
+<pre><code>note: 'feat: running commands from flow'
+breaking: false
+description: running commands from flow
+</code></pre>
+</li>
+<li>
+<p>0f703ae97c6908d725ce19629c809e5a473cdbca</p>
+<pre><code>note: 'fix: pb in package name'
+breaking: false
+description: pb in package name
+</code></pre>
+</li>
+<li>
+<p>3620fabfc5811790faa7c0a9ee410ec3869198a2</p>
+<pre><code>note: export full tree as yaml
+breaking: false
+description: export full tree as yaml
+</code></pre>
+</li>
+<li>
+<p>7c86a5e44c7d617f31f0b0ecc5ce87eda998103b</p>
+<pre><code>note: export full tree as yaml
+breaking: false
+description: export full tree as yaml
+</code></pre>
+</li>
+<li>
+<p>2c9e7c0f7a81bf5766726d5fadb413a9e8d3009a</p>
+<pre><code>note: generate full env es module
+breaking: false
+description: generate full env es module
+</code></pre>
+</li>
+<li>
+<p>97cb8eeb592a595db724b8fa4e7509ec8aac4322</p>
+<pre><code>note: installer with repo
+breaking: false
+description: installer with repo
+</code></pre>
+</li>
+<li>
+<p>94c761da852d3ea6c41056b2f7cc664bcb6ed7ab</p>
+<pre><code>note: installer init
+breaking: false
+description: installer init
+</code></pre>
+</li>
+<li>
+<p>cf8f14b406d6221eed75348cf45cc9d0223b96f7</p>
+<pre><code>note: installer init
+breaking: false
+description: installer init
+</code></pre>
+</li>
+<li>
+<p>05c90b80de1d0cae81d4959181decbf36a37dc3a</p>
+<pre><code>note: load dependencies
+breaking: false
+description: load dependencies
+</code></pre>
+</li>
+<li>
+<p>c293c5aea4b348b2f16934270a3b21c5452b29ab</p>
+<pre><code>note: load dependencies
+breaking: false
+description: load dependencies
+</code></pre>
+</li>
+<li>
+<p>4011063b4049be22fd1cd0640e08dee7ac17f454</p>
+<pre><code>note: generate type protos and migration from initializr
+breaking: false
+description: generate type protos and migration from initializr
+</code></pre>
+</li>
+<li>
+<p>af165db5efee37bd62e4def8cb076d926497869b</p>
+<pre><code>note: generate type protos and migration from initializr
+breaking: false
+description: generate type protos and migration from initializr
+</code></pre>
+</li>
+<li>
+<p>cca9368e8d4399bdc608426c520daaa028e4b014</p>
+<pre><code>note: file watcher init
+breaking: false
+description: file watcher init
+</code></pre>
+</li>
+<li>
+<p>c08480d3e2a1226362af2a5f1bb5c2fdaf48ac3c</p>
+<pre><code>note: flow runner
+breaking: false
+description: flow runner
+</code></pre>
+</li>
+<li>
+<p>22a263a2f4e2bc5f2c1511ecf91eface236c576c</p>
+<pre><code>note: flow runner
+breaking: false
+description: flow runner
+</code></pre>
+</li>
+<li>
+<p>8afedbe12a68cc6e06b48cfb87a2f1ff988796a0</p>
+<pre><code>note: muService2Spec
+breaking: false
+description: muService2Spec
+</code></pre>
+</li>
+</ul>
+</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+  <div><a class="flex align-center" href="https://github.com/theNorstroem/spectools/documentation/commit/bb70a3fe98b5b722aeeb15eae72a62f74eae20d0" title='Last modified by veith | November 16, 2020' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>November 16, 2020</span>
+    </a>
+  </div>
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1200">1.20.0</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#semver-1200">semver: 1.20.0</a></li>
+            <li><a href="#semver-1190">semver: 1.19.0</a></li>
+            <li><a href="#semver-1183">semver: 1.18.3</a></li>
+            <li><a href="#semver-1182">semver: 1.18.2</a></li>
+            <li><a href="#semver-1181">semver: 1.18.1</a></li>
+            <li><a href="#semver-1180">semver: 1.18.0</a></li>
+            <li><a href="#semver-1170">semver: 1.17.0</a></li>
+            <li><a href="#semver-1161">semver: 1.16.1</a></li>
+            <li><a href="#semver-1160">semver: 1.16.0</a></li>
+            <li><a href="#semver-1150">semver: 1.15.0</a></li>
+            <li><a href="#semver-1141">semver: 1.14.1</a></li>
+            <li><a href="#semver-1140">semver: 1.14.0</a></li>
+            <li><a href="#semver-1131">semver: 1.13.1</a></li>
+            <li><a href="#semver-1130">semver: 1.13.0</a></li>
+            <li><a href="#semver-1121">semver: 1.12.1</a></li>
+            <li><a href="#semver-1120">semver: 1.12.0</a></li>
+            <li><a href="#semver-1112">semver: 1.11.2</a></li>
+            <li><a href="#semver-1111">semver: 1.11.1</a></li>
+            <li><a href="#semver-1110">semver: 1.11.0</a></li>
+            <li><a href="#semver-1100">semver: 1.10.0</a></li>
+            <li><a href="#semver-194">semver: 1.9.4</a></li>
+            <li><a href="#semver-193">semver: 1.9.3</a></li>
+            <li><a href="#semver-192">semver: 1.9.2</a></li>
+            <li><a href="#semver-191">semver: 1.9.1</a></li>
+            <li><a href="#semver-190">semver: 1.9.0</a></li>
+            <li><a href="#semver-180">semver: 1.8.0</a></li>
+            <li><a href="#semver-170">semver: 1.7.0</a></li>
+            <li><a href="#semver-161">semver: 1.6.1</a></li>
+            <li><a href="#semver-160">semver: 1.6.0</a></li>
+            <li><a href="#semver-151">semver: 1.5.1</a></li>
+            <li><a href="#semver-150">semver: 1.5.0</a></li>
+            <li><a href="#semver-140">semver: 1.4.0</a></li>
+            <li><a href="#semver-130">semver: 1.3.0</a></li>
+            <li><a href="#semver-120">semver: 1.2.0</a></li>
+            <li><a href="#semver-112">semver: 1.1.2</a></li>
+            <li><a href="#semver-111">semver: 1.1.1</a></li>
+            <li><a href="#semver-110">semver: 1.1.0</a></li>
+            <li><a href="#semver-100">semver: 1.0.0</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
