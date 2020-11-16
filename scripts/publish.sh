@@ -6,6 +6,8 @@ rm docs/en.search*
 cd ./documentation
 # build docs
 hugo -d ../docs
+
+cd ..
 # add changes
 git add docs/.
 # autocommit
