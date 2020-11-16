@@ -183,6 +183,19 @@ dependencies: - &amp;quot;git@github.com:theNorstroem/furoBaseSpecs.git v1.10.9&
     </item>
     
     <item>
+      <title>Release1.20</title>
+      <link>http://spectools.furo.pro/posts/release1.20.1/</link>
+      <pubDate>Mon, 16 Nov 2020 13:21:59 +0100</pubDate>
+      
+      <guid>http://spectools.furo.pro/posts/release1.20.1/</guid>
+      <description>1.20.0 #  We should have done the release notes before, so this note will contain a summary of the older releases too.
+In the fututre the messages will get smaller then this one.
+semver: 1.20.0 #  date: 2020-11-13T10:12:52+01:00
+changes: #    9bf9e23970a3b68d969fa45b5c886a1469edc539
+note: &#39;feat: genBundledServiceProto to generate all specified services in one file installed services included&#39; breaking: false description: genBundledServiceProto to generate all specified services in one file installed services included    5f2ec401c3e52df09efbb5c444db5e7a274d80b0</description>
+    </item>
+    
+    <item>
       <title>Hey</title>
       <link>http://spectools.furo.pro/posts/hello/</link>
       <pubDate>Sun, 15 Nov 2020 00:00:00 +0000</pubDate>

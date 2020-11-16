@@ -93,6 +93,11 @@
   </url>
   
   <url>
+    <loc>http://spectools.furo.pro/posts/release1.20.1/</loc>
+    <lastmod>2020-11-16T13:21:59+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://spectools.furo.pro/posts/hello/</loc>
     <lastmod>2020-11-15T17:24:19+01:00</lastmod>
   </url>
@@ -103,12 +108,12 @@
   </url>
   
   <url>
-    <loc>http://spectools.furo.pro/posts/</loc>
-    <lastmod>2020-11-13T21:33:01+01:00</lastmod>
+    <loc>http://spectools.furo.pro/categories/</loc>
   </url>
   
   <url>
-    <loc>http://spectools.furo.pro/categories/</loc>
+    <loc>http://spectools.furo.pro/posts/</loc>
+    <lastmod>2020-11-13T21:33:01+01:00</lastmod>
   </url>
   
   <url>
