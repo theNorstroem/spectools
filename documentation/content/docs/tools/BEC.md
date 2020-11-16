@@ -18,14 +18,15 @@ This container contains all tools you need to work with a furo spec project.
 [furoBEC on github](https://github.com/theNorstroem/furoBEC)
 
 ## Usage
-Bash mode
+### Bash mode
 
     docker run -it --rm -v `pwd`:/specs thenorstroem/furo-bec
     # do your stuff
     # type exit to quit
     exit
 
-Command mode
+### Command mode
+This will run spectools with the configured flow *build*.
 
     docker run -it --rm -v `pwd`:/specs thenorstroem/furo-bec build
 
@@ -46,5 +47,5 @@ Command mode
 - spectools
 - furoc
 
-> No furoc generators are installed. Add the needed furoc-gen-XXX to the `.furobecrc` file.
+> No furoc generators are installed. Add the needed furoc-gen-XXX to the `.furobecrc` file. Or build a image based on this one.
 

@@ -29,7 +29,7 @@ muSpec:
     - "./muspecs/**/*services.yaml"
     - "./muspecs/*services.yaml" #Use this if you do not put your specs in folders
   goPackageBase: "github.com/yourname/appname-specs/dist/pb/" #this is used to prefix the go package option
-  javaPackagePrefix: "com.furo.base"
+  javaPackagePrefix: "com.yourname.something"
   dir: "muspecs"
 commands: #camelCase is not allowed, command scripts can only be executed from a flow
   gen_grpc_gateway: "./scripts/grpcgateway/gateway.sh"
@@ -47,6 +47,14 @@ build: #build config, define the targets here
     targetDir: "dist/protos/" #Hint: add this to your proto include path
   esModule:
     targetFile: "dist/env.js" #env module for the furo client libs 
+  bundledservice:
+    targetFile: "dist/allservices/all-services.proto"
+    package: "allservices"
+    options:
+      go_package: "github.com/yourname/appname-specs/dist/pb/allservices;allservicespb"
+      java_multiple_files: true
+      java_outer_classname: "AllServices"
+      java_package: "com.yourname.something.allservices"
 dist: # this is for spectools install called on other projects, 
   files: # enter a list of files and directories which should be installed by other projects
     - dist/protos

@@ -19,3 +19,8 @@ docker image which has nearly all dependencies already installed to generate all
 ## Installation from sources
     git clone git@github.com:theNorstroem/spectools.git
     go install
+
+## Working without installation
+Use the docker image [furoBEC](/docs/tools/BEC/)
+
+    docker run -it --rm -v `pwd`:/specs thenorstroem/furo-bec
