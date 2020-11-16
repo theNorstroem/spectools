@@ -1,14 +1,12 @@
 ---
-title: "Release1.21"
+title: "Release1.20.1"
 date: 2020-11-16T20:02:22+01:00
 ---
 
 # Fix release 1.20.1
-
-## changes:
 - commit: bb70a3fe98b5b722aeeb15eae72a62f74eae20d0
   
-### fix: 
+## fixes: 
 genBundledServiceProto with ordered imports, because it is really disturbing having changes in commits without having changes.
   
 ## furoBEC
