@@ -5,7 +5,6 @@ date: 2020-11-16T13:21:59+01:00
 
 # 1.20.0
 We should have done the release notes before, so this note will contain a summary of the older releases too.
-
 In the fututre the messages will get smaller then this one.
 
 

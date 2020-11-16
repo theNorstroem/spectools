@@ -141,6 +141,9 @@ func Run(cmd *cobra.Command, args []string) {
 		allData.AllImports = append(allData.AllImports, i)
 	}
 
+	// sort the imports
+	sort.Strings(allData.AllImports)
+
 	// make the  proto
 	filename := path.Join(viper.GetString("build.bundledservice.targetFile"))
 	// create target dir => kann optimiert werden
