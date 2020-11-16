@@ -1,3 +1,135 @@
+- semver: 1.20.1
+  date: 2020-11-16T19:33:47+01:00
+  packager: theNorstroem
+  changes:
+  - commit: bb70a3fe98b5b722aeeb15eae72a62f74eae20d0
+    note: 'fix: genBundledServiceProto with ordered imports, because it is really disturbing having changes in commits without having changes'
+    author:
+      name: veith
+      email: veithz@gmail.com
+    committer:
+      name: veith
+      email: veithz@gmail.com
+    conventional_commit:
+      category: fix
+      scope: ""
+      breaking: false
+      description: genBundledServiceProto with ordered imports, because it is really disturbing having changes in commits without having changes
+      body: ""
+  - commit: 0930a32a96f4b01191edb975285cad08ac9521a4
+    note: 'chore: documentation release notes'
+    author:
+      name: veith
+      email: veithz@gmail.com
+    committer:
+      name: veith
+      email: veithz@gmail.com
+    conventional_commit:
+      category: chore
+      scope: ""
+      breaking: false
+      description: documentation release notes
+      body: ""
+  - commit: 4d5b188669aa4494af5fe0dac15c4f811f248c14
+    note: Create CNAME
+    author:
+      name: Veith Zäch
+      email: veithz@gmail.com
+    committer:
+      name: Veith Zäch
+      email: veithz@gmail.com
+    conventional_commit:
+      category: ""
+      scope: ""
+      breaking: false
+      description: Create CNAME
+      body: ""
+  - commit: 57813bc49572045f238150882fc56fb05ae8d95b
+    note: 'chore: documentation initial publish'
+    author:
+      name: veith
+      email: veithz@gmail.com
+    committer:
+      name: veith
+      email: veithz@gmail.com
+    conventional_commit:
+      category: chore
+      scope: ""
+      breaking: false
+      description: documentation initial publish
+      body: ""
+  - commit: 3be770747e3cb3d1c6b726ace307ce62bcf68e9f
+    note: 'chore: documentation initial publish'
+    author:
+      name: veith
+      email: veithz@gmail.com
+    committer:
+      name: veith
+      email: veithz@gmail.com
+    conventional_commit:
+      category: chore
+      scope: ""
+      breaking: false
+      description: documentation initial publish
+      body: ""
+  - commit: b824ab7adf9c939e1e6a5b5a150918abd0ea99b6
+    note: autocommit publish docs
+    author:
+      name: veith
+      email: veithz@gmail.com
+    committer:
+      name: veith
+      email: veithz@gmail.com
+    conventional_commit:
+      category: ""
+      scope: ""
+      breaking: false
+      description: autocommit publish docs
+      body: ""
+  - commit: 4b95c615b10f162a261f852e0d618ecbca5a9e18
+    note: 'chore: documentation init'
+    author:
+      name: veith
+      email: veithz@gmail.com
+    committer:
+      name: veith
+      email: veithz@gmail.com
+    conventional_commit:
+      category: chore
+      scope: ""
+      breaking: false
+      description: documentation init
+      body: ""
+  - commit: 1b1789e6e43c6f9bd3f9ee7d176617c83d37c5eb
+    note: 'chore: documentation init'
+    author:
+      name: veith
+      email: veithz@gmail.com
+    committer:
+      name: veith
+      email: veithz@gmail.com
+    conventional_commit:
+      category: chore
+      scope: ""
+      breaking: false
+      description: documentation init
+      body: ""
+  - commit: 531d2fa6d0c5c3a529dfb301ce616fad27d37d04
+    note: |-
+      feat: improved name guessing for rpc_names with pluralisation
+      This can never be perfect, as long muService does not define an explizit name for the rpc method
+    author:
+      name: veith
+      email: veithz@gmail.com
+    committer:
+      name: veith
+      email: veithz@gmail.com
+    conventional_commit:
+      category: feat
+      scope: ""
+      breaking: false
+      description: improved name guessing for rpc_names with pluralisation
+      body: ""
 - semver: 1.20.0
   date: 2020-11-13T10:12:52+01:00
   packager: theNorstroem
