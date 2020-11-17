@@ -11,12 +11,12 @@ Installation with brew #  brew tap theNorstroem/tap brew install spectools  Inst
 Installation with brew #  brew tap theNorstroem/tap brew install spectools  Installation with go #  GO111MODULE=on go get github." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://spectools.furo.pro/docs/installation/" />
-<meta property="article:modified_time" content="2020-11-15T17:24:19+01:00" />
+<meta property="article:modified_time" content="2020-11-16T21:16:42+01:00" />
 <title>Installation | フロー Spectools</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.09a284f5a03730d86dde350d2c062b1514e48fdfebba7763941c0674ef65748f.css" integrity="sha256-CaKE9aA3MNht3jUNLAYrFRTkj9/rundjlBwGdO9ldI8=">
-<script defer src="/en.search.min.ec4e05e50c778fa1823aab63d7fe20953737149445939f42ecb48a0e7d166202.js" integrity="sha256-7E4F5Qx3j6GCOqtj1/4glTc3FJRFk59C7LSKDn0WYgI="></script>
+<script defer src="/en.search.min.10e69f30ae716052ab01815aa5af6188b255ba38b9b9c3bf348c14175d6089bc.js" integrity="sha256-EOafMK5xYFKrAYFapa9hiLJVuji5ucO/NIwUF11gibw="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -398,6 +398,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#installation-with-brew">Installation with brew</a></li>
         <li><a href="#installation-with-go">Installation with go</a></li>
         <li><a href="#installation-from-sources">Installation from sources</a></li>
+        <li><a href="#working-without-installation">Working without installation</a></li>
       </ul>
     </li>
   </ul>
@@ -417,7 +418,6 @@ https://github.com/alex-shpak/hugo-book
 </h1>
 <p>You can install spectools on your local machine. For working with specs only, this is enough.
 We recommend 
-      
   <a href="/docs/tools/BEC/">furoBEC</a> if you have to generate more then &ldquo;just&rdquo; the specs. furoBEC is a
 docker image which has nearly all dependencies already installed to generate all the additional things you may need to.</p>
 <h2 id="installation-with-brew">
@@ -440,6 +440,13 @@ brew install spectools
 <pre><code>git clone git@github.com:theNorstroem/spectools.git
 go install
 </code></pre>
+<h2 id="working-without-installation">
+  Working without installation
+  <a class="anchor" href="#working-without-installation">#</a>
+</h2>
+<p>Use the docker image 
+  <a href="/docs/tools/BEC/">furoBEC</a></p>
+<pre><code>docker run -it --rm -v `pwd`:/specs thenorstroem/furo-bec</code></pre>
 </article>
  
       
@@ -450,9 +457,9 @@ go install
 
 
 
-  <div><a class="flex align-center" href="https://github.com/theNorstroem/spectools/documentation/commit/4b95c615b10f162a261f852e0d618ecbca5a9e18" title='Last modified by veith | November 15, 2020' target="_blank" rel="noopener">
+  <div><a class="flex align-center" href="https://github.com/theNorstroem/spectools/documentation/commit/8282e946fc8d4ccc223d89789351bc4f7a34a7c2" title='Last modified by veith | November 16, 2020' target="_blank" rel="noopener">
       <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
-      <span>November 15, 2020</span>
+      <span>November 16, 2020</span>
     </a>
   </div>
 
@@ -485,6 +492,7 @@ go install
         <li><a href="#installation-with-brew">Installation with brew</a></li>
         <li><a href="#installation-with-go">Installation with go</a></li>
         <li><a href="#installation-from-sources">Installation from sources</a></li>
+        <li><a href="#working-without-installation">Working without installation</a></li>
       </ul>
     </li>
   </ul>

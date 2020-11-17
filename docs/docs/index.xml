@@ -24,9 +24,9 @@ Installation with brew #  brew tap theNorstroem/tap brew install spectools  Inst
       
       <guid>http://spectools.furo.pro/docs/overview/</guid>
       <description>Overview #  A brief overview over the main tasks where spectools / furoc / protoc1 are used for.
-We have seen some nice generators like furoc-gen-ddl2 which uses simple type and field extensions to generate mysql DDLs.
+We have seen some nice generators like furoc-gen-ddl2, which uses simple type and field extensions to generate mysql DDLs.
 A documentation generator furoc-gen-apidocs3 is in development.
- mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) graph TD µSpec(µSpec) Spec([Spec]) µSpec-- spectools --Spec Spec-. spectools .-µSpec someProto[Proto] -- protoc-gen-furo-specs -- µSpec Spec-- spectools --Es6Module Spec-- furoc-gen-apidocs --Docs Spec-- furoc-gen-u33e --U33E U33E-- simple-generator --web-components Spec-- furoc-gen-ddl --ddl[(DDL)] Spec-- spectools --xs[.</description>
+ mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) graph TD µSpec(µSpec) Spec([Spec]) µSpec-- spectools --Spec Spec-. spectools .-µSpec someProto[Proto] -- protoc-gen-furo-specs*1 -- µSpec Spec-- spectools --Es6Module Spec-- furoc-gen-apidocs --Docs Spec-- furoc-gen-u33e --U33E U33E-- simple-generator --web-components Spec-.</description>
     </item>
     
     <item>

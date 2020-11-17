@@ -5,22 +5,22 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Overview #  A brief overview over the main tasks where spectools / furoc / protoc1 are used for.
-We have seen some nice generators like furoc-gen-ddl2 which uses simple type and field extensions to generate mysql DDLs.
+We have seen some nice generators like furoc-gen-ddl2, which uses simple type and field extensions to generate mysql DDLs.
 A documentation generator furoc-gen-apidocs3 is in development.
- mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) graph TD µSpec(µSpec) Spec([Spec]) µSpec-- spectools --Spec Spec-. spectools .-µSpec someProto[Proto] -- protoc-gen-furo-specs -- µSpec Spec-- spectools --Es6Module Spec-- furoc-gen-apidocs --Docs Spec-- furoc-gen-u33e --U33E U33E-- simple-generator --web-components Spec-- furoc-gen-ddl --ddl[(DDL)] Spec-- spectools --xs[.">
+ mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) graph TD µSpec(µSpec) Spec([Spec]) µSpec-- spectools --Spec Spec-. spectools .-µSpec someProto[Proto] -- protoc-gen-furo-specs*1 -- µSpec Spec-- spectools --Es6Module Spec-- furoc-gen-apidocs --Docs Spec-- furoc-gen-u33e --U33E U33E-- simple-generator --web-components Spec-.">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Overview" />
 <meta property="og:description" content="Overview #  A brief overview over the main tasks where spectools / furoc / protoc1 are used for.
-We have seen some nice generators like furoc-gen-ddl2 which uses simple type and field extensions to generate mysql DDLs.
+We have seen some nice generators like furoc-gen-ddl2, which uses simple type and field extensions to generate mysql DDLs.
 A documentation generator furoc-gen-apidocs3 is in development.
- mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) graph TD µSpec(µSpec) Spec([Spec]) µSpec-- spectools --Spec Spec-. spectools .-µSpec someProto[Proto] -- protoc-gen-furo-specs -- µSpec Spec-- spectools --Es6Module Spec-- furoc-gen-apidocs --Docs Spec-- furoc-gen-u33e --U33E U33E-- simple-generator --web-components Spec-- furoc-gen-ddl --ddl[(DDL)] Spec-- spectools --xs[." />
+ mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) graph TD µSpec(µSpec) Spec([Spec]) µSpec-- spectools --Spec Spec-. spectools .-µSpec someProto[Proto] -- protoc-gen-furo-specs*1 -- µSpec Spec-- spectools --Es6Module Spec-- furoc-gen-apidocs --Docs Spec-- furoc-gen-u33e --U33E U33E-- simple-generator --web-components Spec-." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://spectools.furo.pro/docs/overview/" />
-<meta property="article:modified_time" content="2020-11-15T17:24:19+01:00" />
+<meta property="article:modified_time" content="2020-11-16T21:16:42+01:00" />
 <title>Overview | フロー Spectools</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.09a284f5a03730d86dde350d2c062b1514e48fdfebba7763941c0674ef65748f.css" integrity="sha256-CaKE9aA3MNht3jUNLAYrFRTkj9/rundjlBwGdO9ldI8=">
-<script defer src="/en.search.min.ec4e05e50c778fa1823aab63d7fe20953737149445939f42ecb48a0e7d166202.js" integrity="sha256-7E4F5Qx3j6GCOqtj1/4glTc3FJRFk59C7LSKDn0WYgI="></script>
+<script defer src="/en.search.min.10e69f30ae716052ab01815aa5af6188b255ba38b9b9c3bf348c14175d6089bc.js" integrity="sha256-EOafMK5xYFKrAYFapa9hiLJVuji5ucO/NIwUF11gibw="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -401,7 +401,7 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#overview">#</a>
 </h1>
 <p>A brief overview over the main tasks where spectools / furoc / protoc<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> are used for.</p>
-<p>We have seen some nice generators like furoc-gen-ddl<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> which uses simple type and field extensions to generate mysql DDLs.</p>
+<p>We have seen some nice generators like <em>furoc-gen-ddl</em><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>, which uses simple type and field extensions to generate mysql DDLs.</p>
 <p>A documentation generator <em>furoc-gen-apidocs</em><sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> is in development.</p>
 
 
@@ -425,13 +425,13 @@ graph TD
 Spec([Spec])
 µSpec-- spectools -->Spec
 Spec-. spectools .->µSpec
-someProto[Proto] -- protoc-gen-furo-specs --> µSpec
+someProto[Proto] -- protoc-gen-furo-specs*1 --> µSpec
 
 Spec-- spectools -->Es6Module
 Spec-- furoc-gen-apidocs -->Docs
 Spec-- furoc-gen-u33e  -->U33E
 U33E-- simple-generator  -->web-components
-Spec-- furoc-gen-ddl -->ddl[(DDL)]
+Spec-. furoc-gen-ddl .->ddl[(DDL)]
 Spec-- spectools  -->xs[...]
 Spec-- spectools -->Proto
 
@@ -447,7 +447,7 @@ Proto-- protoc  -->xp[...]
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>Protos are usualy a product of spectools, but they can also be a source for the µSpecs (protoc-gen-furo-specs) <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Protos are usualy a product of spectools, but they can also be a source for the µSpecs (protoc-gen-furo-specs). <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
 <p>sadly not open source :-( <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
@@ -467,9 +467,9 @@ Proto-- protoc  -->xp[...]
 
 
 
-  <div><a class="flex align-center" href="https://github.com/theNorstroem/spectools/documentation/commit/4b95c615b10f162a261f852e0d618ecbca5a9e18" title='Last modified by veith | November 15, 2020' target="_blank" rel="noopener">
+  <div><a class="flex align-center" href="https://github.com/theNorstroem/spectools/documentation/commit/8282e946fc8d4ccc223d89789351bc4f7a34a7c2" title='Last modified by veith | November 16, 2020' target="_blank" rel="noopener">
       <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
-      <span>November 15, 2020</span>
+      <span>November 16, 2020</span>
     </a>
   </div>
 
