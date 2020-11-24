@@ -5,7 +5,7 @@ bookCollapseSection: true
 ---
 ## spectools
 
-The furo spec toolkit
+The furo spec toolkit 1.21.2
 
 ### Synopsis
 
