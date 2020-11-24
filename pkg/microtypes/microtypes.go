@@ -20,7 +20,7 @@ type MicroTypelist struct {
 	MicroTypes          []*MicroType `yaml:"types"`
 }
 
-func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist, deleteSpecs bool) {
+func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist, deleteSpecs bool, overwriteSpecOptions bool) {
 	// build list to delete specs which are not types.yaml
 	deleteList := map[string]bool{}
 	for typeName, _ := range typelist.TypesByName {
@@ -56,14 +56,11 @@ func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist, deleteSpecs bo
 				Targetfile: "",
 			}
 		}
-		if AstType.TypeSpec.XProto.Options == nil {
-			AstType.TypeSpec.XProto.Options = map[string]string{}
-		}
 
 		AstType.TypeSpec.XProto.Package = mType.Package
 		AstType.TypeSpec.XProto.Targetfile = mType.Target
 		// check for empty options
-		if AstType.TypeSpec.XProto.Options == nil {
+		if AstType.TypeSpec.XProto.Options == nil || overwriteSpecOptions {
 			AstType.TypeSpec.XProto.Options = map[string]string{}
 		}
 		// set option only if it does not exist

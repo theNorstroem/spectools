@@ -70,7 +70,7 @@ func Run(cmd *cobra.Command, args []string) {
 	}
 
 	// update the services ast from microspecs
-	microServicesList.UpateServicelist(Servicelist, deleteSpecs, microList) //microList is to create request types...
+	microServicesList.UpateServicelist(Servicelist, deleteSpecs, microList, cmd.Flag("overwrite-spec-options").Value.String() == "true") //microList is to create request types...
 
 	// build the new name and ast map
 	for _, t := range microList.MicroTypes {
@@ -88,7 +88,7 @@ func Run(cmd *cobra.Command, args []string) {
 	Servicelist.UpdateAllImports(Typelist)
 
 	// update the typelist from microspecs
-	microList.UpateTypelist(Typelist, deleteSpecs)
+	microList.UpateTypelist(Typelist, deleteSpecs, cmd.Flag("overwrite-spec-options").Value.String() == "true")
 	Typelist.UpdateImports()
 
 	// save types and services

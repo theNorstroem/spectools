@@ -22,7 +22,8 @@ type MicroServiceList struct {
 }
 
 // updates the core ast list
-func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist, deleteSpecs bool, microTypelist *microtypes.MicroTypelist) {
+func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist, deleteSpecs bool, microTypelist *microtypes.MicroTypelist, overwriteSpecOptions bool) {
+
 	// build list to delete specs which are not Services.yaml
 	deleteList := map[string]bool{}
 	for serviceName, _ := range servicelist.ServicesByName {
@@ -61,8 +62,9 @@ func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist,
 
 		AstService.ServiceSpec.XProto.Package = microServiceAst.Package
 		AstService.ServiceSpec.XProto.Targetfile = microServiceAst.Target
-		// check for empty options
-		if AstService.ServiceSpec.XProto.Options == nil {
+
+		// check for empty options or overwriteSpecOptions
+		if AstService.ServiceSpec.XProto.Options == nil || overwriteSpecOptions {
 			AstService.ServiceSpec.XProto.Options = map[string]string{}
 		}
 		// set option only if it does not exist

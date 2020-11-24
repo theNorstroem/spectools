@@ -51,4 +51,5 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	muSpec2SpecCmd.Flags().BoolP("delete", "d", false, "Delete specs which are not in muTypes")
+	muSpec2SpecCmd.Flags().BoolP("overwrite-spec-options", "", false, "Overwrite the proto options section in the spec files")
 }
