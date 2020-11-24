@@ -37,7 +37,7 @@ A documentation generator furoc-gen-apidocs3 is in development.
       <guid>http://spectools.furo.pro/docs/configuration/</guid>
       <description>Configuration #  Each spec project must have a .spectools configuration file.
 A fictive example of a spectools config for a spec project.
-spectools:&amp;#34;1.20.0&amp;#34;#Minimal spectools versionspecDir:&amp;#34;./specs&amp;#34;specFormat:&amp;#34;yaml&amp;#34;#set to yaml or jsondependencies:#do not write every type/message again and again. Install them.- &amp;#34;git@github.com:theNorstroem/furoBaseSpecs.git v1.11.8&amp;#34;# The importer looks for all **/*.type.spec files recursive The importer looks for all **/*.service.spec files recursivedependenciesDir:dependencies #directory where the dependencies get installed to.muSpec:types:- &amp;#34;./muspecs/**/*types.yaml&amp;#34;- &amp;#34;./muspecs/*types.yaml&amp;#34;#Use this if you do not put your specs in foldersservices:- &amp;#34;.</description>
+spectools:&amp;#34;1.20.0&amp;#34;#Minimal spectools versionspecDir:&amp;#34;./specs&amp;#34;specFormat:&amp;#34;yaml&amp;#34;#set to yaml or jsondependencies:#do not write every type/message again and again. Install them.- &amp;#34;git@github.com:theNorstroem/furoBaseSpecs.git v1.11.8&amp;#34;# The importer looks for all **/*.type.spec files recursive The importer looks for all **/*.service.spec files recursivedependenciesDir:dependencies#directory where the dependencies get installed to.muSpec:types:- &amp;#34;./muspecs/**/*types.yaml&amp;#34;- &amp;#34;./muspecs/*types.yaml&amp;#34;#Use this if you do not put your specs in foldersservices:- &amp;#34;.</description>
     </item>
     
   </channel>

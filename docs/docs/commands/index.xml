@@ -40,7 +40,7 @@ This config will run &amp;ldquo;cleanTypeProtoDir&amp;rdquo;, muSpec2Spec&amp;qu
       <description>spectools muSpec2Spec #  Updates the type specs with the definitions from the type µSpecs.
 Synopsis #  The converter will update your type specs and also delete specs and fields if they are not in the µSpec file anymore.
 Do not forget to set your µSpec folder in the .spectools config.
-spectools muSpec2Spec [flags] Options #   -d, --delete Delete specs which are not in muTypes -h, --help help for muSpec2Spec Options inherited from parent commands #   --config string config file (default is CWD/.</description>
+spectools muSpec2Spec [flags] Options #   -d, --delete Delete specs which are not in muTypes -h, --help help for muSpec2Spec --overwrite-spec-options Overwrite the proto options section in the spec files Options inherited from parent commands #   --config string config file (default is CWD/.</description>
     </item>
     
     <item>
