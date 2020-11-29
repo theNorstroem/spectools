@@ -288,7 +288,7 @@ type FieldMap struct {
 }
 
 func (m *FieldMap) ParseFieldString(s string) {
-	regex := regexp.MustCompile(`^(-*)? ?(\**)? ?(\[.?])? ?([^#=:]*):?([^=#]*)(=([^#]*))?(#(.*))?$`)
+	regex := regexp.MustCompile(`^(-*)? ?(\**)? ?(\[.?])? ?([^#=:]*):?([^=#]*)(=([^#]*))?(#(?s:(.*)))?$`)
 	matches := regex.FindStringSubmatch(s)
 	if len(matches) == 0 {
 		fmt.Println("field not parsed", s)
