@@ -29,7 +29,7 @@ func checkQueryParams(microServicesByName map[string]*microservices.MicroService
 		thisSrc := ms.SourceFile
 		ms.SourceFile = ""
 
-		for sIndex, rpc := range ms.Services {
+		for sIndex, rpc := range ms.Methods {
 			regex := regexp.MustCompile(`^([^:]+):\s?([A-Z]*)\s?([^\s]*) ?([^,\s]*)\s?,\s?([^#\s]*)\s?#?(.*)$`)
 			matches := regex.FindStringSubmatch(rpc.Md)
 			if len(matches) == 0 {
@@ -56,7 +56,7 @@ func checkQueryParams(microServicesByName map[string]*microservices.MicroService
 				rpc.Qp = nil
 			}
 
-			ms.Services[sIndex] = rpc
+			ms.Methods[sIndex] = rpc
 
 		}
 
