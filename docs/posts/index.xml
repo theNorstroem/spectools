@@ -12,7 +12,7 @@
       <pubDate>Tue, 01 Dec 2020 06:02:22 +0100</pubDate>
       
       <guid>http://spectools.furo.pro/posts/release1.22.2/</guid>
-      <description>Release 1.22.1 #   commit: eaee2ad6  features: #  muType: multiline type field definitions supported, this makes it easier to write good descriptions.
+      <description>Release 1.22.2 #   commit: eaee2ad6  features: #  muType: multiline type field definitions supported, this makes it easier to write good descriptions.
 muService: multiline method definitions supported, this makes it easier to write good descriptions.
 muService: multiline query param field definitions supported, this makes it easier to write good descriptions.
 fixes: #  muSpec2Spec &amp;ndash;overwrite-spec-options null pointer in flow mode.
