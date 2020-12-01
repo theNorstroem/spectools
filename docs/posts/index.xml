@@ -15,8 +15,8 @@
       <description>Release 1.22.2 #   commit: eaee2ad6  features: #  muType: multiline type field definitions supported, this makes it easier to write good descriptions.
 muService: multiline method definitions supported, this makes it easier to write good descriptions.
 muService: multiline query param field definitions supported, this makes it easier to write good descriptions.
-fixes: #  muSpec2Spec &amp;ndash;overwrite-spec-options null pointer in flow mode.
-genEsModule added query fields from request type to service.</description>
+muSpec2Spec: flag –overwrite-spec-options to generate the default options based on the .spectools config again.
+fixes: #  muSpec2Spec &amp;ndash;overwrite-spec-options null pointer in flow mode.</description>
     </item>
     
     <item>
