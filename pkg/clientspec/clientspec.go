@@ -47,6 +47,7 @@ func CreateServiceFromAstService(ast *specSpec.Service, fullname string) (t *Ser
 				Method: astField.Deeplink.Method,
 				Rel:    astField.Deeplink.Rel,
 			},
+			Query: astField.Query, // todo check if this is still needed
 		}
 		t.Services.Set(iKey, s)
 	})
