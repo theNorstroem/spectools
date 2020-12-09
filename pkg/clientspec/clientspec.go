@@ -20,6 +20,7 @@ func CreateClientTypeFromAstType(ast *specSpec.Type) (t *Type) {
 			Type:        astField.Type,
 			Meta:        astField.Meta,
 			Constraints: astField.Constraints,
+			XProto:      astField.XProto,
 		}
 		t.Fields.Set(iKey, field)
 	})
@@ -93,4 +94,6 @@ type Field struct {
 	Meta *furo.FieldMeta `protobuf:"bytes,3,opt,name=meta,proto3" json:"meta" yaml:"meta"`
 	// constraints for a field, like min{}, max{}, step{}
 	Constraints map[string]*furo.FieldConstraint `protobuf:"bytes,4,rep,name=constraints,proto3" json:"constraints" json:"yaml" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	// information for the proto generator, like number, type
+	XProto *specSpec.Fieldproto `protobuf:"bytes,6,opt,name=__proto,json=Proto,proto3" json:"__proto" yaml:"__proto"`
 }
