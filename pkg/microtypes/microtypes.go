@@ -206,7 +206,7 @@ func (mt MicroType) ToMicroTypeAst() *MicroTypeAst {
 	}
 
 	// parse title and description
-	regex := regexp.MustCompile(`^([^#(]*):?([^#]*)?(#(.*))?$`)
+	regex := regexp.MustCompile(`(?s)^([^#(]*):?([^#]*)?(#(.*))?$`)
 	matches := regex.FindStringSubmatch(mt.Type)
 	if len(matches) == 0 {
 		fmt.Println("typeline not parseable", mt.Type)

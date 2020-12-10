@@ -19,7 +19,7 @@ func (l *MicroTypelist) Unmarshal(data []byte) {
 	l.MicroTypesASTByName = map[string]*MicroTypeAst{}
 	// build the map
 	for _, t := range l.MicroTypes {
-		regex := regexp.MustCompile(`^([^#(]*):?([^#]*)?(#(.*))?$`)
+		regex := regexp.MustCompile(`(?s)^([^#(]*):?([^#]*)?(#(.*))?$`)
 		matches := regex.FindStringSubmatch(t.Type)
 		if len(matches) == 0 {
 			fmt.Println("typeline not parseable", t.Type)

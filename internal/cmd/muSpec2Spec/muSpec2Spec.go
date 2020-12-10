@@ -80,7 +80,7 @@ func Run(cmd *cobra.Command, args []string) {
 
 	// build the new name and ast map
 	for _, t := range microList.MicroTypes {
-		regex := regexp.MustCompile(`^([^#(]*):?([^#]*)?(#(.*))?$`)
+		regex := regexp.MustCompile(`(?s)^([^#(]*):?([^#]*)?(#(.*))?$`)
 		matches := regex.FindStringSubmatch(t.Type)
 		if len(matches) == 0 {
 			fmt.Println("typeline not parseable", t.Type)
