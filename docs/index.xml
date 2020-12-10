@@ -182,6 +182,17 @@ dependencies: - &amp;quot;git@github.com:theNorstroem/furoBaseSpecs.git v1.10.9&
     </item>
     
     <item>
+      <title>Release1.22.3</title>
+      <link>http://spectools.furo.pro/posts/release1.22.3/</link>
+      <pubDate>Fri, 11 Dec 2020 00:14:22 +0100</pubDate>
+      
+      <guid>http://spectools.furo.pro/posts/release1.22.3/</guid>
+      <description>Release 1.22.3 #  fixes: #  genEsModule oneof from specs included
+furoBEC #  docker pull thenorstroem/furo-bec:v1.22.3 docker pull thenorstroem/furo-bec:latest
+homebrew #  Formula updated (488ab9b9eb573008e56108a1786e8592f97fe7710f6eaa137ce3bdf0279aae22)</description>
+    </item>
+    
+    <item>
       <title>Release1.22.2</title>
       <link>http://spectools.furo.pro/posts/release1.22.2/</link>
       <pubDate>Tue, 01 Dec 2020 06:02:22 +0100</pubDate>
