@@ -42,7 +42,12 @@ func Run(cmd *cobra.Command, args []string) {
 
 	typeLine := "export const Types = JSON.parse(\n`" + escapedType + "`,\n);\n"
 	sd, _ := json.Marshal(allServices)
-	serviceLine := "export const Services = JSON.parse(\n`" + string(sd) + "`,\n);\n"
+
+	escapedServices := strings.ReplaceAll(string(sd), "\\\"", "\\\\\"")
+	escapedServices = strings.ReplaceAll(escapedServices, "\\n", "\\\\n")
+	escapedServices = strings.ReplaceAll(escapedServices, "\\t", "\\\\t")
+
+	serviceLine := "export const Services = JSON.parse(\n`" + escapedServices + "`,\n);\n"
 
 	err := ioutil.WriteFile(viper.GetString("build.esModule.targetFile"), []byte("/* eslint-disable */\n"+typeLine+"\n"+serviceLine), 0644)
 	if err != nil {

@@ -384,9 +384,9 @@ type Fieldproto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// The field numbers are used to identify your fields in the message binary format, and should not be changed once your message type is in use.
-	Number int32 `protobuf:"varint,2,opt,name=number,proto3" json:"number"`
+	Number int32 `protobuf:"varint,2,opt,name=number,proto3" json:"number" yaml:"number"`
 	// Assign field to a protobuf oneof group.
-	Oneof string `protobuf:"bytes,3,opt,name=oneof,proto3" json:"oneof"`
+	Oneof string `protobuf:"bytes,3,opt,name=oneof,proto3" json:"oneof,omitempty"   yaml:"oneof,omitempty"`
 }
 
 func (x *Fieldproto) Reset() {

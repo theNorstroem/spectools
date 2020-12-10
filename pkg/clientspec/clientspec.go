@@ -95,5 +95,5 @@ type Field struct {
 	// constraints for a field, like min{}, max{}, step{}
 	Constraints map[string]*furo.FieldConstraint `protobuf:"bytes,4,rep,name=constraints,proto3" json:"constraints" json:"yaml" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// information for the proto generator, like number, type
-	XProto *specSpec.Fieldproto `protobuf:"bytes,6,opt,name=__proto,json=Proto,proto3" json:"__proto" yaml:"__proto"`
+	XProto *specSpec.Fieldproto `json:"__proto" yaml:"__proto"`
 }
