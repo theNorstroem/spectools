@@ -264,6 +264,12 @@ func (mt MicroService) ToMicroServiceAst() *MicroServiceAst {
 			description = matches[6]
 		}
 
+		// name guessing for the rpc name
+		rpcType := strings.Replace(mt.Name, "Service", "", 1)
+		if strings.HasSuffix(rpcType, "s") {
+			rpcType = rpcType[:len(rpcType)-1]
+		}
+
 		r := &specSpec.Rpc{
 			Data: &specSpec.Servicereqres{
 				Request:  matches[4],
@@ -277,8 +283,8 @@ func (mt MicroService) ToMicroServiceAst() *MicroServiceAst {
 			},
 			Description: description,
 			Query:       queryParams,
-			// name guessing for the rpc name
-			RpcName: matches[1] + strings.Replace(mt.Name, "Service", "", 1), // cut of the word Service
+
+			RpcName: matches[1] + rpcType, // cut of the word Service
 		}
 		// on list, which handles a collection, make the word plural by addin an s
 		if r.Deeplink.Rel == "list" {
