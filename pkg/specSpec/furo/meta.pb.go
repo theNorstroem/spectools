@@ -263,6 +263,8 @@ type FieldMeta struct {
 
 	// The default value as JSON string
 	Default string `protobuf:"bytes,3,opt,name=default,proto3" json:"default"`
+	// Informative text which can be displayed on the ui
+	Placeholder string `protobuf:"bytes,8,opt,name=placeholder,proto3" json:"placeholder,omitempty"`
 	// A hint
 	Hint string `protobuf:"bytes,2,opt,name=hint,proto3" json:"hint"`
 	// The label
@@ -326,6 +328,13 @@ func (x *FieldMeta) GetHint() string {
 func (x *FieldMeta) GetLabel() string {
 	if x != nil {
 		return x.Label
+	}
+	return ""
+}
+
+func (x *FieldMeta) GetPlaceholder() string {
+	if x != nil {
+		return x.Placeholder
 	}
 	return ""
 }

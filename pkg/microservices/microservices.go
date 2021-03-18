@@ -234,10 +234,14 @@ func (mt MicroService) ToMicroServiceAst() *MicroServiceAst {
 	// build the map
 	for _, def := range mt.Methods {
 		// "List: GET /auth/{user} request.Type, response.Type #List eds with pagination"
-		regex := regexp.MustCompile(`^([^:]+):\s?([A-Z]*)\s?([^\s]*) ?([^,\s]*)\s?,\s?([^#\s]*)\s?#?(?s:(.*))$`)
+		regex := regexp.MustCompile(`^([^:]+):\s?([A-Z]*)\s?([^\s]*) ?([^,\s]*)\s?,\s?([^#]*)\s?#?(?s:(.*))$`)
 		matches := regex.FindStringSubmatch(def.Md)
 		if len(matches) == 0 {
 			fmt.Println("typeline not parseable", def.Md)
+		}
+		// trim all matches
+		for i, m := range matches {
+			matches[i] = strings.TrimSpace(m)
 		}
 
 		queryParams := orderedmap.New()
