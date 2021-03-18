@@ -73,5 +73,15 @@ furoBEC #  NOT released yet docker pull thenorstroem/furo-bec:v1.23.0 docker pul
 homebrew #  NOT released yet Formula updated (488ab9b9eb573008e56108a1786e8592f97fe7710f6eaa137ce3bdf0279aae22)</description>
     </item>
     
+    <item>
+      <title>Release1.24.1</title>
+      <link>http://spectools.furo.pro/posts/release1.24.1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://spectools.furo.pro/posts/release1.24.1/</guid>
+      <description>Release 1.24.1 #  features: #  Placeholder attribute in field metas added
+furoBEC #  NOT released yet docker pull thenorstroem/furo-bec:v1.24.1 docker pull thenorstroem/furo-bec:latest</description>
+    </item>
+    
   </channel>
 </rss>
