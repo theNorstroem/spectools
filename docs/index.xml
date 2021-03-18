@@ -229,15 +229,6 @@ note: &#39;feat: genBundledServiceProto to generate all specified services in on
     </item>
     
     <item>
-      <title>Hey</title>
-      <link>http://spectools.furo.pro/posts/hello/</link>
-      <pubDate>Sun, 15 Nov 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://spectools.furo.pro/posts/hello/</guid>
-      <description>Initial documentation #  Hi and welcome to the first version of the spectools documentation. If you have some issues, found typos and have suggestions, feel free to open an issue or better make a pull request.</description>
-    </item>
-    
-    <item>
       <title>Release1.23.0</title>
       <link>http://spectools.furo.pro/posts/release1.23.0/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
