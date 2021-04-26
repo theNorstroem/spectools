@@ -120,8 +120,8 @@ func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist, deleteSpecs bo
 						Meta: &furo.FieldMeta{
 							Default:     "",
 							Hint:        "",
-							Placeholder: strings.Join([]string{mType.Package, mType.Type, mFieldname, "placeholder"}, "."),
-							Label:       strings.Join([]string{mType.Package, mType.Type, mFieldname, "label"}, "."),
+							Placeholder: strings.Replace(strings.ToLower(strings.Join([]string{mType.Package, mType.Type, mFieldname, "placeholder"}, ".")), "_", "", -1),
+							Label:       strings.Replace(strings.ToLower(strings.Join([]string{mType.Package, mType.Type, mFieldname, "label"}, ".")), "_", "", -1),
 							Options:     &furo.Fieldoption{},
 							Readonly:    false,
 							Repeated:    false,

@@ -8,7 +8,7 @@ require (
 	github.com/Masterminds/sprig v2.22.0+incompatible
 	github.com/fsnotify/fsnotify v1.4.7
 	github.com/go-git/go-git/v5 v5.1.0 // indirect
-	github.com/golang/protobuf v1.4.1
+	github.com/golang/protobuf v1.5.0
 	github.com/google/uuid v1.1.2 // indirect
 	github.com/huandu/xstrings v1.3.2 // indirect
 	github.com/imdario/mergo v0.3.11 // indirect
@@ -18,7 +18,7 @@ require (
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/viper v1.7.1
 	golang.org/x/mod v0.1.0
-	google.golang.org/protobuf v1.25.0
+	google.golang.org/protobuf v1.26.0
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776
 
 )
