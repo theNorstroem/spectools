@@ -3,7 +3,6 @@ package microtypes
 import (
 	"fmt"
 	"github.com/spf13/viper"
-	furo "github.com/theNorstroem/FuroBaseSpecs/dist/pb/furo"
 	"github.com/theNorstroem/spectools/pkg/ast/typeAst"
 	"github.com/theNorstroem/spectools/pkg/orderedmap"
 	"github.com/theNorstroem/spectools/pkg/specSpec"
@@ -115,14 +114,14 @@ func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist, deleteSpecs bo
 							Number: mField.FieldId,
 						},
 						XUi:         nil,
-						Constraints: map[string]*furo.FieldConstraint{},
+						Constraints: map[string]*specSpec.FieldConstraint{},
 						Description: "",
-						Meta: &furo.FieldMeta{
+						Meta: &specSpec.FieldMeta{
 							Default:     "",
 							Hint:        "",
 							Placeholder: strings.Replace(strings.ToLower(strings.Join([]string{mType.Package, mType.Type, mFieldname, "placeholder"}, ".")), "_", "", -1),
 							Label:       strings.Replace(strings.ToLower(strings.Join([]string{mType.Package, mType.Type, mFieldname, "label"}, ".")), "_", "", -1),
-							Options:     &furo.Fieldoption{},
+							Options:     &specSpec.Fieldoption{},
 							Readonly:    false,
 							Repeated:    false,
 						},
@@ -142,9 +141,9 @@ func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist, deleteSpecs bo
 
 			if mField.Required {
 				if AstField.Constraints == nil {
-					AstField.Constraints = map[string]*furo.FieldConstraint{}
+					AstField.Constraints = map[string]*specSpec.FieldConstraint{}
 				}
-				AstField.Constraints["required"] = &furo.FieldConstraint{
+				AstField.Constraints["required"] = &specSpec.FieldConstraint{
 					Is:      "true",
 					Message: mFieldname + " is required",
 				}
@@ -154,7 +153,7 @@ func (l *MicroTypelist) UpateTypelist(typelist *typeAst.Typelist, deleteSpecs bo
 			}
 
 			if AstField.Meta == nil {
-				AstField.Meta = &furo.FieldMeta{}
+				AstField.Meta = &specSpec.FieldMeta{}
 			}
 			// do not overwrite
 			if AstField.Meta.Default == "" {

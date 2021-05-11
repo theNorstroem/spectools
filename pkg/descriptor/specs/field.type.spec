@@ -5,7 +5,6 @@ __proto:
     package: descriptor
     targetfile: descriptor.proto
     imports:
-        - furo/furo.proto
         - google/protobuf/any.proto
     options:
         cc_enable_arenas: "true"
@@ -87,7 +86,7 @@ fields:
             typespecific: null
         constraints: {}
     meta:
-        type: furo.FieldMeta
+        type: descriptor.FieldMeta
         description: meta information for the client, like label, default, repeated, options...
         __proto:
             number: 3
@@ -95,7 +94,7 @@ fields:
         meta: null
         constraints: {}
     constraints:
-        type: map<string,furo.FieldConstraint>
+        type: map<string,descriptor.FieldConstraint>
         description: constraints for a field, like min{}, max{}, step{}
         __proto:
             number: 4

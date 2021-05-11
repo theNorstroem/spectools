@@ -4,8 +4,7 @@ description: Defines a queryparam field (for rpc type)
 __proto:
     package: descriptor
     targetfile: descriptor.proto
-    imports:
-        - furo/furo.proto
+    imports: []
     options:
         cc_enable_arenas: "true"
         go_package: github.com/theNorstroem/spectools/pkg/descriptor;descriptorpb
@@ -52,7 +51,7 @@ fields:
             typespecific: null
         constraints: {}
     meta:
-        type: furo.FieldMeta
+        type: descriptor.FieldMeta
         description: meta information for the client, like label, default, repeated, options...
         __proto:
             number: 3
@@ -68,7 +67,7 @@ fields:
             typespecific: null
         constraints: {}
     constraints:
-        type: map<string,furo.FieldConstraint>
+        type: map<string,descriptor.FieldConstraint>
         description: constraints for a field, like min{}, max{}, step{}. Not used at the moment
         __proto:
             number: 4

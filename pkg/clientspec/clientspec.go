@@ -1,7 +1,6 @@
 package clientspec
 
 import (
-	furo "github.com/theNorstroem/FuroBaseSpecs/dist/pb/furo"
 	"github.com/theNorstroem/spectools/pkg/orderedmap"
 	"github.com/theNorstroem/spectools/pkg/specSpec"
 )
@@ -91,9 +90,9 @@ type Field struct {
 	// the field type, https://developers.google.com/protocol-buffers/docs/proto3#scalar
 	Type string `protobuf:"bytes,2,opt,name=type,proto3" json:"type" yaml:"type"`
 	// meta information for the client, like label, default, repeated, options...
-	Meta *furo.FieldMeta `protobuf:"bytes,3,opt,name=meta,proto3" json:"meta" yaml:"meta"`
+	Meta *specSpec.FieldMeta `protobuf:"bytes,3,opt,name=meta,proto3" json:"meta" yaml:"meta"`
 	// constraints for a field, like min{}, max{}, step{}
-	Constraints map[string]*furo.FieldConstraint `protobuf:"bytes,4,rep,name=constraints,proto3" json:"constraints" json:"yaml" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Constraints map[string]*specSpec.FieldConstraint `protobuf:"bytes,4,rep,name=constraints,proto3" json:"constraints" json:"yaml" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// information for the proto generator, like number, type
 	XProto *specSpec.Fieldproto `json:"__proto" yaml:"__proto"`
 }

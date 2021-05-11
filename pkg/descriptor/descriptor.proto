@@ -8,7 +8,6 @@ option java_outer_classname = "FuroDescriptorProto";
 option java_package = "pro.furo.descriptor";
 option objc_class_prefix = "FPB";
 
-import "furo/furo.proto";
 import "google/protobuf/any.proto";
 
 
@@ -22,10 +21,10 @@ message Queryparam {
     string description = 1;
 
     // meta information for the client, like label, default, repeated, options...
-    furo.FieldMeta meta = 3;
+    descriptor.FieldMeta meta = 3;
 
     // constraints for a field, like min{}, max{}, step{}. Not used at the moment
-    map<string,furo.FieldConstraint> constraints = 4;
+    map<string,descriptor.FieldConstraint> constraints = 4;
 }
 
 // Defines a field in the furo spec
@@ -44,13 +43,63 @@ message Field {
     descriptor.Uiextension __ui = 7;
 
     // meta information for the client, like label, default, repeated, options...
-    furo.FieldMeta meta = 3;
+    descriptor.FieldMeta meta = 3;
 
     // constraints for a field, like min{}, max{}, step{}
-    map<string,furo.FieldConstraint> constraints = 4;
+    map<string,descriptor.FieldConstraint> constraints = 4;
 
     // Custom extension
     map<string,google.protobuf.Any> extensions = 5;
+}
+
+// a single fieldconstraint
+message FieldConstraint {  
+
+    // the constraint value as string, even it is a number
+    string is = 1;
+
+    // The message to display on constraint violation
+    string message = 2;
+}
+
+// Metas for a field
+message FieldMeta {  
+
+    // The default value as JSON string, this must match with the data structure of your type
+    string default = 3;
+
+    // Informative text which can be displayed on the ui
+    string placeholder = 8;
+
+    // A hint
+    string hint = 2;
+
+    // Informative text which can be displayed on the ui
+    string label = 1;
+
+    // Fieldoptions
+    descriptor.Fieldoption options = 6;
+
+    // Marks the field as readonly. Used for validations.
+    bool readonly = 4;
+
+    // repeated
+    bool repeated = 5;
+
+    // Put in type specific metas for your fields here
+    google.protobuf.Any typespecific = 7;
+}
+
+// Options like flags and list
+message Fieldoption {  
+
+    // Add flags for your field. This can be something like "searchable". 
+// //The flags can be used by generators, ui components,...
+// 
+    repeated string flags = 2;
+
+    // a list with options, use descriptor.Optionitem or your own
+    repeated google.protobuf.Any list = 1;
 }
 
 // Proto options for a field
@@ -71,6 +120,19 @@ message Lifecycle {
 
     // Inform about the replacement here, if you have one
     string info = 2;
+}
+
+// Items for fieldoption.list
+message Optionitem {  
+
+    // Id
+    string id = 1;
+
+    // String representation
+    string display_name = 2;
+
+    // is the item selected
+    bool selected = 3;
 }
 
 // Defines a rpc for a service
@@ -107,7 +169,7 @@ message Service {
     // Describe the rpcs or so
     string description = 2;
 
-    // todo replace with lc type
+    // Service lifecycle information
     descriptor.Lifecycle lifecycle = 4;
 
     // information for the proto generator, should be removed for the client spec

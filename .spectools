@@ -10,7 +10,6 @@ commands: #camelCase is not allowed, command scripts can only be executed from a
   buf_generate: "./scripts/buf_generate.sh"
 flows:
   default:
-    - genServiceProtos
     - genMessageProtos
     - buf_generate
 build:
@@ -18,8 +17,7 @@ build:
     targetDir: "pkg/" #Hint: add this to your proto include path
 dist:
   files: # enter a list of files and directories which should be installed by other projects
-    - dist/protos
-    - specs
+    - pkg/descriptor
     - README.md
     - .spectools
 extensions:

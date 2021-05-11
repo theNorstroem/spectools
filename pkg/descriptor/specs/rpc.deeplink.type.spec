@@ -76,35 +76,35 @@ fields:
             options:
                 flags: []
                 list:
-                    - '@type': furo.Optionitem
+                    - '@type': descriptor.Optionitem
                       display_name: GET
                       id: GET
                       selected: true
-                    - '@type': furo.Optionitem
+                    - '@type': descriptor.Optionitem
                       display_name: PUT
                       id: PUT
                       selected: false
-                    - '@type': furo.Optionitem
+                    - '@type': descriptor.Optionitem
                       display_name: POST
                       id: POST
                       selected: false
-                    - '@type': furo.Optionitem
+                    - '@type': descriptor.Optionitem
                       display_name: PATCH
                       id: PATCH
                       selected: false
-                    - '@type': furo.Optionitem
+                    - '@type': descriptor.Optionitem
                       display_name: DELETE
                       id: DELETE
                       selected: false
-                    - '@type': furo.Optionitem
+                    - '@type': descriptor.Optionitem
                       display_name: OPTIONS
                       id: OPTIONS
                       selected: false
-                    - '@type': furo.Optionitem
+                    - '@type': descriptor.Optionitem
                       display_name: HEAD
                       id: HEAD
                       selected: false
-                    - '@type': furo.Optionitem
+                    - '@type': descriptor.Optionitem
                       display_name: TRACE
                       id: TRACE
                       selected: false
