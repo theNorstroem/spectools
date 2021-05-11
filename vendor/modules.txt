@@ -16,8 +16,6 @@ github.com/fsnotify/fsnotify
 ## explicit
 # github.com/golang/protobuf v1.5.2
 ## explicit
-github.com/golang/protobuf/proto
-github.com/golang/protobuf/ptypes/any
 # github.com/google/uuid v1.1.2
 ## explicit
 github.com/google/uuid
@@ -78,7 +76,7 @@ github.com/spf13/pflag
 github.com/spf13/viper
 # github.com/subosito/gotenv v1.2.0
 github.com/subosito/gotenv
-# github.com/theNorstroem/FuroBaseSpecs v1.16.3
+# github.com/theNorstroem/FuroBaseSpecs v1.16.5
 ## explicit
 github.com/theNorstroem/FuroBaseSpecs/dist/pb/furo
 # golang.org/x/crypto v0.0.0-20200302210943-78000ba7a073
@@ -115,12 +113,10 @@ google.golang.org/protobuf/internal/set
 google.golang.org/protobuf/internal/strs
 google.golang.org/protobuf/internal/version
 google.golang.org/protobuf/proto
-google.golang.org/protobuf/reflect/protodesc
 google.golang.org/protobuf/reflect/protoreflect
 google.golang.org/protobuf/reflect/protoregistry
 google.golang.org/protobuf/runtime/protoiface
 google.golang.org/protobuf/runtime/protoimpl
-google.golang.org/protobuf/types/descriptorpb
 google.golang.org/protobuf/types/known/anypb
 # gopkg.in/ini.v1 v1.51.0
 gopkg.in/ini.v1

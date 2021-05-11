@@ -25,8 +25,8 @@ message FieldConstraint {
 // Metas for a field
 message FieldMeta {  
 
-    // Informative text which can be displayed on the ui
-    string label = 1;
+    // The default value as JSON string, this must match with the data structure of your type
+    string default = 3;
 
     // Informative text which can be displayed on the ui
     string placeholder = 8;
@@ -34,17 +34,17 @@ message FieldMeta {
     // A hint
     string hint = 2;
 
-    // The default value as JSON string, this must match with the data structure of your type
-    string default = 3;
+    // Informative text which can be displayed on the ui
+    string label = 1;
+
+    // Fieldoptions
+    furo.Fieldoption options = 6;
 
     // Marks the field as readonly. Used for validations.
     bool readonly = 4;
 
     // repeated
     bool repeated = 5;
-
-    // Fieldoptions
-    furo.Fieldoption options = 6;
 
     // Put in type specific metas for your fields here
     google.protobuf.Any typespecific = 7;

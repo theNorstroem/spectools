@@ -6,13 +6,14 @@
 // 	protoc        v3.15.2
 // source: descriptor.proto
 
-package descriptorpb
+package specSpec
 
 import (
 	furo "github.com/theNorstroem/FuroBaseSpecs/dist/pb/furo"
+	"github.com/theNorstroem/spectools/pkg/orderedmap"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	anypb "google.golang.org/protobuf/types/known/anypb"
+	"google.golang.org/protobuf/types/known/anypb"
 	reflect "reflect"
 	sync "sync"
 )
@@ -107,18 +108,20 @@ type Field struct {
 	unknownFields protoimpl.UnknownFields
 
 	// the field type, https://developers.google.com/protocol-buffers/docs/proto3#scalar
-	Type string `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	Type string `protobuf:"bytes,2,opt,name=type,proto3" json:"type" yaml:"type"`
 	// the field description
-	Description string `protobuf:"bytes,1,opt,name=description,proto3" json:"description,omitempty"`
+	Description string `protobuf:"bytes,1,opt,name=description,proto3" json:"description" yaml:"description"`
 	// information for the proto generator, like number, type
-	XProto *Fieldproto  `protobuf:"bytes,6,opt,name=__proto,json=Proto,proto3" json:"__proto,omitempty"`
-	XUi    *Uiextension `protobuf:"bytes,7,opt,name=__ui,json=Ui,proto3" json:"__ui,omitempty"`
+	XProto *Fieldproto  `protobuf:"bytes,6,opt,name=__proto,json=Proto,proto3" json:"__proto" yaml:"__proto"`
+	XUi    *Uiextension `protobuf:"bytes,7,opt,name=__ui,json=Ui,proto3" json:"__ui" yaml:"__ui"`
 	// meta information for the client, like label, default, repeated, options...
-	Meta *furo.FieldMeta `protobuf:"bytes,3,opt,name=meta,proto3" json:"meta,omitempty"`
+	Meta *furo.FieldMeta `protobuf:"bytes,3,opt,name=meta,proto3" json:"meta" yaml:"meta"`
+
 	// constraints for a field, like min{}, max{}, step{}
-	Constraints map[string]*furo.FieldConstraint `protobuf:"bytes,4,rep,name=constraints,proto3" json:"constraints,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Constraints map[string]*furo.FieldConstraint `protobuf:"bytes,4,rep,name=constraints,proto3" json:"constraints" json:"yaml" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// Custom extension
-	Extensions map[string]*anypb.Any `protobuf:"bytes,5,rep,name=extensions,proto3" json:"extensions,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	//original was: Extensions map[string]*anypb.Any `protobuf:"bytes,5,rep,name=extensions,proto3" json:"extensions,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Extensions *orderedmap.OrderedMap `json:"extensions,omitempty"  yaml:"extensions,omitempty"`
 }
 
 func (x *Field) Reset() {
@@ -195,7 +198,7 @@ func (x *Field) GetConstraints() map[string]*furo.FieldConstraint {
 	return nil
 }
 
-func (x *Field) GetExtensions() map[string]*anypb.Any {
+func (x *Field) GetExtensions() *orderedmap.OrderedMap {
 	if x != nil {
 		return x.Extensions
 	}
@@ -209,9 +212,9 @@ type Fieldproto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// The field numbers are used to identify your fields in the message binary format, and should not be changed once your message type is in use.
-	Number int32 `protobuf:"varint,2,opt,name=number,proto3" json:"number,omitempty"`
+	Number int32 `protobuf:"varint,2,opt,name=number,proto3" json:"number"`
 	// Assign field to a protobuf oneof group.
-	Oneof string `protobuf:"bytes,3,opt,name=oneof,proto3" json:"oneof,omitempty"`
+	Oneof string `protobuf:"bytes,3,opt,name=oneof,proto3" json:"oneof,omitempty" yaml:"oneof,omitempty"`
 }
 
 func (x *Fieldproto) Reset() {
@@ -327,15 +330,17 @@ type Rpc struct {
 	// the service description
 	Description string `protobuf:"bytes,1,opt,name=description,proto3" json:"description,omitempty"`
 	// RPC name https://developers.google.com/protocol-buffers/docs/proto3#services
-	RpcName string `protobuf:"bytes,2,opt,name=rpc_name,json=rpcName,proto3" json:"rpc_name,omitempty"`
+	RpcName string `protobuf:"bytes,2,opt,name=rpc_name,json=rpcName,proto3" json:"rpc_name,omitempty"  yaml:"rpc_name,omitempty"`
 	// This data is needed for...
 	Deeplink *Servicedeeplink `protobuf:"bytes,5,opt,name=deeplink,proto3" json:"deeplink,omitempty"`
 	// Request and response types for the service
 	Data *Servicereqres `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
 	// Query params, it is recomended to use string types
-	Query map[string]*Queryparam `protobuf:"bytes,4,rep,name=query,proto3" json:"query,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	// original was: Query map[string]*Queryparam `protobuf:"bytes,4,rep,name=query,proto3" json:"query,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Query *orderedmap.OrderedMap `protobuf:"bytes,4,rep,name=query,proto3" json:"query,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// Custom extension
-	Extensions map[string]*anypb.Any `protobuf:"bytes,6,rep,name=extensions,proto3" json:"extensions,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	// original was: Extensions map[string]*anypb.Any `protobuf:"bytes,6,rep,name=extensions,proto3" json:"extensions,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Extensions *orderedmap.OrderedMap `json:"extensions,omitempty"  yaml:"extensions,omitempty"`
 }
 
 func (x *Rpc) Reset() {
@@ -398,14 +403,14 @@ func (x *Rpc) GetData() *Servicereqres {
 	return nil
 }
 
-func (x *Rpc) GetQuery() map[string]*Queryparam {
+func (x *Rpc) GetQuery() *orderedmap.OrderedMap {
 	if x != nil {
 		return x.Query
 	}
 	return nil
 }
 
-func (x *Rpc) GetExtensions() map[string]*anypb.Any {
+func (x *Rpc) GetExtensions() *orderedmap.OrderedMap {
 	if x != nil {
 		return x.Extensions
 	}
@@ -419,19 +424,21 @@ type Service struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Describe the rpcs or so
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name" yaml:"name"`
 	// The version number, use semver
-	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version" yaml:"version"`
 	// Describe the rpcs or so
-	Description string `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	Description string `protobuf:"bytes,2,opt,name=description,proto3" json:"description" yaml:"description"`
 	// todo replace with lc type
-	Lifecycle *Lifecycle `protobuf:"bytes,4,opt,name=lifecycle,proto3" json:"lifecycle,omitempty"`
+	Lifecycle *Lifecycle `protobuf:"bytes,4,opt,name=lifecycle,proto3" json:"lifecycle" yaml:"lifecycle"`
 	// information for the proto generator, should be removed for the client spec
-	XProto *Typeproto `protobuf:"bytes,5,opt,name=__proto,json=Proto,proto3" json:"__proto,omitempty"`
+	XProto *Typeproto `protobuf:"bytes,5,opt,name=__proto,json=Proto,proto3" json:"__proto" yaml:"__proto"`
 	// RPCs for the service
-	Services map[string]*Rpc `protobuf:"bytes,6,rep,name=services,proto3" json:"services,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	// Original entry:  Services map[string]*Rpc `protobuf:"bytes,6,rep,name=services,proto3" json:"services,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Services *orderedmap.OrderedMap `protobuf:"bytes,6,rep,name=services,proto3" json:"services" yaml:"services" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// Custom extension
-	Extensions map[string]*anypb.Any `protobuf:"bytes,7,rep,name=extensions,proto3" json:"extensions,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	//original was: Extensions map[string]*anypb.Any `protobuf:"bytes,7,rep,name=extensions,proto3" json:"extensions,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Extensions *orderedmap.OrderedMap `json:"extensions,omitempty"  yaml:"extensions,omitempty"`
 }
 
 func (x *Service) Reset() {
@@ -501,14 +508,14 @@ func (x *Service) GetXProto() *Typeproto {
 	return nil
 }
 
-func (x *Service) GetServices() map[string]*Rpc {
+func (x *Service) GetServices() *orderedmap.OrderedMap {
 	if x != nil {
 		return x.Services
 	}
 	return nil
 }
 
-func (x *Service) GetExtensions() map[string]*anypb.Any {
+func (x *Service) GetExtensions() *orderedmap.OrderedMap {
 	if x != nil {
 		return x.Extensions
 	}
@@ -608,7 +615,7 @@ type Servicereqres struct {
 	// NOTE: the referred field must be present at the top-level of the request
 	// message type.
 	//
-	Bodyfield string `protobuf:"bytes,3,opt,name=bodyfield,proto3" json:"bodyfield,omitempty"`
+	Bodyfield string `protobuf:"bytes,3,opt,name=response,proto3" json:"bodyfield" yaml:"bodyfield"`
 }
 
 func (x *Servicereqres) Reset() {
@@ -671,17 +678,19 @@ type Type struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Name of the type
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name" yaml:"name"`
 	// the type
-	Type string `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	Type string `protobuf:"bytes,2,opt,name=type,proto3" json:"type" yaml:"type"`
 	// the type description
-	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description" yaml:"description"`
 	// information for the proto generator, should be removed for the client spec
-	XProto *Typeproto `protobuf:"bytes,4,opt,name=__proto,json=Proto,proto3" json:"__proto,omitempty"`
+	XProto *Typeproto `protobuf:"bytes,4,opt,name=__proto,json=Proto,proto3" json:"__proto" yaml:"__proto"`
 	// fields of a type
-	Fields map[string]*Field `protobuf:"bytes,5,rep,name=fields,proto3" json:"fields,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	// original was: Fields map[string]*Field `protobuf:"bytes,5,rep,name=fields,proto3" json:"fields,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Fields *orderedmap.OrderedMap `protobuf:"bytes,5,rep,name=fields,proto3" json:"fields,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// Custom extension
-	Extensions map[string]*anypb.Any `protobuf:"bytes,6,rep,name=extensions,proto3" json:"extensions,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	//original was: Extensions map[string]*anypb.Any `protobuf:"bytes,6,rep,name=extensions,proto3" json:"extensions,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Extensions *orderedmap.OrderedMap `json:"extensions,omitempty"  yaml:"extensions,omitempty"`
 }
 
 func (x *Type) Reset() {
@@ -744,14 +753,14 @@ func (x *Type) GetXProto() *Typeproto {
 	return nil
 }
 
-func (x *Type) GetFields() map[string]*Field {
+func (x *Type) GetFields() *orderedmap.OrderedMap {
 	if x != nil {
 		return x.Fields
 	}
 	return nil
 }
 
-func (x *Type) GetExtensions() map[string]*anypb.Any {
+func (x *Type) GetExtensions() *orderedmap.OrderedMap {
 	if x != nil {
 		return x.Extensions
 	}
@@ -765,13 +774,13 @@ type Typeproto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// the package this type belogs to
-	Package string `protobuf:"bytes,1,opt,name=package,proto3" json:"package,omitempty"`
+	Package string `protobuf:"bytes,1,opt,name=package,proto3" json:"package" yaml:"package"`
 	// the target proto file for this type
-	Targetfile string `protobuf:"bytes,3,opt,name=targetfile,proto3" json:"targetfile,omitempty"`
+	Targetfile string `protobuf:"bytes,3,opt,name=targetfile,proto3" json:"targetfile" yaml:"targetfile"`
 	// needed imports like [ "spec/descriptor.proto", "google/protobuf/empty.proto" ]
-	Imports []string `protobuf:"bytes,2,rep,name=imports,proto3" json:"imports,omitempty"`
+	Imports []string `protobuf:"bytes,2,rep,name=imports,proto3" json:"imports" yaml:"imports"`
 	// Proto options Todo: find a solution for boolean options
-	Options map[string]string `protobuf:"bytes,4,rep,name=options,proto3" json:"options,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Options map[string]string `protobuf:"bytes,4,rep,name=options,proto3" json:"options" yaml:"options" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
 func (x *Typeproto) Reset() {

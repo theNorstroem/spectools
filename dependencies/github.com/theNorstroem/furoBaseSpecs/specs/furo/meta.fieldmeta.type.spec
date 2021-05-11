@@ -15,22 +15,22 @@ __proto:
         java_package: pro.furo
         objc_class_prefix: FPB
 fields:
-    label:
+    default:
         type: string
-        description: Informative text which can be displayed on the ui
+        description: The default value as JSON string, this must match with the data structure of your type
         __proto:
-            number: 1
+            number: 3
             oneof: ""
         __ui: null
         meta:
             default: ""
-            hint: Usualy used to label the input field
-            label: Label
+            hint: ""
+            label: Default value
             options: null
             readonly: false
             repeated: false
             typespecific: null
-        constraints: {}
+        constraints: { }
     placeholder:
         type: string
         description: Informative text which can be displayed on the ui
@@ -63,17 +63,33 @@ fields:
             repeated: false
             typespecific: null
         constraints: {}
-    default:
+    label:
         type: string
-        description: The default value as JSON string, this must match with the data structure of your type
+        description: Informative text which can be displayed on the ui
         __proto:
-            number: 3
+            number: 1
+            oneof: ""
+        __ui: null
+        meta:
+            default: ""
+            hint: Usualy used to label the input field
+            label: Label
+            options: null
+            readonly: false
+            repeated: false
+            typespecific: null
+        constraints: {}
+    options:
+        type: furo.Fieldoption
+        description: Fieldoptions
+        __proto:
+            number: 6
             oneof: ""
         __ui: null
         meta:
             default: ""
             hint: ""
-            label: Default value
+            label: options
             options: null
             readonly: false
             repeated: false
@@ -106,22 +122,6 @@ fields:
             default: ""
             hint: ""
             label: repeated
-            options: null
-            readonly: false
-            repeated: false
-            typespecific: null
-        constraints: {}
-    options:
-        type: furo.Fieldoption
-        description: Fieldoptions
-        __proto:
-            number: 6
-            oneof: ""
-        __ui: null
-        meta:
-            default: ""
-            hint: ""
-            label: options
             options: null
             readonly: false
             repeated: false

@@ -6,6 +6,7 @@ __proto:
     targetfile: descriptor.proto
     imports:
         - furo/furo.proto
+        - google/protobuf/any.proto
     options:
         cc_enable_arenas: "true"
         go_package: github.com/theNorstroem/spectools/pkg/descriptor;descriptorpb
@@ -91,34 +92,21 @@ fields:
         __proto:
             number: 3
         __ui: null
-        meta:
-            default: ""
-            placeholder: ""
-            hint: ""
-            label: meta
-            options: null
-            readonly: false
-            repeated: false
-            typespecific: null
+        meta: null
         constraints: {}
     constraints:
         type: map<string,furo.FieldConstraint>
         description: constraints for a field, like min{}, max{}, step{}
         __proto:
             number: 4
-        __ui:
-            component: ""
-            flags:
-                - full
-            noinit: false
-            noskip: false
-        meta:
-            default: ""
-            placeholder: ""
-            hint: ""
-            label: constraints
-            options: null
-            readonly: false
-            repeated: false
-            typespecific: null
+        __ui: null
+        meta: null
+        constraints: {}
+    extensions:
+        type: map<string,google.protobuf.Any>
+        description: Custom extension
+        __proto:
+            number: 5
+        __ui: null
+        meta: null
         constraints: {}

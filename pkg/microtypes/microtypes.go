@@ -3,10 +3,10 @@ package microtypes
 import (
 	"fmt"
 	"github.com/spf13/viper"
+	furo "github.com/theNorstroem/FuroBaseSpecs/dist/pb/furo"
 	"github.com/theNorstroem/spectools/pkg/ast/typeAst"
 	"github.com/theNorstroem/spectools/pkg/orderedmap"
 	"github.com/theNorstroem/spectools/pkg/specSpec"
-	"github.com/theNorstroem/spectools/pkg/specSpec/furo"
 	"github.com/theNorstroem/spectools/pkg/util"
 	"path"
 	"regexp"

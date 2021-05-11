@@ -4,7 +4,7 @@ version: "v1.0.0"
 specDir: "./pkg/descriptor/specs"
 specFormat: "yaml" #set to yaml or json
 dependencies:
-  - "git@github.com:theNorstroem/furoBaseSpecs.git v1.16.3" # The importer looks for all **/*.type.spec files recursive The importer looks for all **/*.service.spec files recursive
+  - "git@github.com:theNorstroem/furoBaseSpecs.git v1.16.4" # The importer looks for all **/*.type.spec files recursive The importer looks for all **/*.service.spec files recursive
 dependenciesDir: "./dependencies"
 commands: #camelCase is not allowed, command scripts can only be executed from a flow
   buf_generate: "./scripts/buf_generate.sh"

@@ -59,7 +59,7 @@ func updateAndStoreMicroServices(serviceItems map[string]*UTshadowNode) {
 					reqType.TypeSpec.Fields.Map(func(iKey interface{}, iValue interface{}) {
 						f := iValue.(*specSpec.Field) //*string:1 # A * before the type means required
 						// ignore the Body field
-						if rpc.Data.BodyField != iKey.(string) {
+						if rpc.Data.Bodyfield != iKey.(string) {
 							fieldline := []string{}
 
 							// maybe one day we want more on the query paramy??

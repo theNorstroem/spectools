@@ -4,7 +4,8 @@ description: Defines a service
 __proto:
     package: descriptor
     targetfile: descriptor.proto
-    imports: []
+    imports:
+        - google/protobuf/any.proto
     options:
         cc_enable_arenas: "true"
         go_package: github.com/theNorstroem/spectools/pkg/descriptor;descriptorpb
@@ -82,7 +83,7 @@ fields:
         constraints: {}
     lifecycle:
         type: descriptor.Lifecycle
-        description: todo replace with lc type
+        description: Service lifecycle information
         __proto:
             number: 4
         __ui:
@@ -103,7 +104,7 @@ fields:
             typespecific: null
         constraints: {}
     __proto:
-        type: descriptor.Protoextension
+        type: descriptor.Typeproto
         description: information for the proto generator, should be removed for the client spec
         __proto:
             number: 5
@@ -145,4 +146,12 @@ fields:
             readonly: false
             repeated: false
             typespecific: null
+        constraints: {}
+    extensions:
+        type: map<string,google.protobuf.Any>
+        description: Custom extension
+        __proto:
+            number: 7
+        __ui: null
+        meta: null
         constraints: {}

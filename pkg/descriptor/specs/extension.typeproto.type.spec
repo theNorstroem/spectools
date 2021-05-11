@@ -1,5 +1,5 @@
-name: protoextension
-type: Protoextension
+name: typeproto
+type: Typeproto
 description: Main proto for a type
 __proto:
     package: descriptor

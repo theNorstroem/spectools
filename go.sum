@@ -263,6 +263,10 @@ github.com/subosito/gotenv v1.2.0 h1:Slr1R9HxAlEKefgq5jn9U+DnETlIUa6HfgEzj0g5d7s
 github.com/subosito/gotenv v1.2.0/go.mod h1:N0PQaV/YGNqwC0u51sEeR/aUtSLEXKX9iv69rRypqCw=
 github.com/theNorstroem/FuroBaseSpecs v1.16.3 h1:sfCoHAqD7MQtAuDoFsmsXwi3lUXVbu1A7qoMQnaUu1Y=
 github.com/theNorstroem/FuroBaseSpecs v1.16.3/go.mod h1:5agi7AM0Te58qeTMmiv56Ducy8yhQiganpp2Ra6ZnFY=
+github.com/theNorstroem/FuroBaseSpecs v1.16.4 h1:zxIGKXRxXl+Bp/vn8NMe5YjjEzE5EHuW2ClAmv4zkbQ=
+github.com/theNorstroem/FuroBaseSpecs v1.16.4/go.mod h1:5agi7AM0Te58qeTMmiv56Ducy8yhQiganpp2Ra6ZnFY=
+github.com/theNorstroem/FuroBaseSpecs v1.16.5 h1:sHjt5tYg79M87zkkMq4TzV2MQiGWjLoEfHw9FpMILKM=
+github.com/theNorstroem/FuroBaseSpecs v1.16.5/go.mod h1:5agi7AM0Te58qeTMmiv56Ducy8yhQiganpp2Ra6ZnFY=
 github.com/theNorstroem/spectools v1.0.1 h1:VoX38JYfakHWzzzKXnAvRsMNPCqXy3nuhxT0cazjGdY=
 github.com/theNorstroem/spectools v1.0.1/go.mod h1:5g8gTQxvJ2Tgb0f/JbnZpVZj2U6tBXqm/LVCSrctoUc=
 github.com/theNorstroem/spectools v1.0.2 h1:HjQw0yK/SHNvdjt70rvym6MiFH2jIfX0YpHHIdHtPss=

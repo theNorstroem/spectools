@@ -151,13 +151,13 @@ func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist,
 			targetRPC.Description = sourceRPC.Description
 
 			// set body to data if not defined
-			if targetRPC.Data.BodyField == "" {
-				targetRPC.Data.BodyField = "body"
+			if targetRPC.Data.Bodyfield == "" {
+				targetRPC.Data.Bodyfield = "body"
 			}
 
 			// make Request Type
 			fields := orderedmap.New()
-			fields.Set(targetRPC.Data.BodyField, "."+targetRPC.Data.Request+":1 #Body with "+targetRPC.Data.Request)
+			fields.Set(targetRPC.Data.Bodyfield, "."+targetRPC.Data.Request+":1 #Body with "+targetRPC.Data.Request)
 
 			if sourceRPC.Query.Len() > 0 {
 				number := 1

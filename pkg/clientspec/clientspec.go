@@ -1,9 +1,9 @@
 package clientspec
 
 import (
+	furo "github.com/theNorstroem/FuroBaseSpecs/dist/pb/furo"
 	"github.com/theNorstroem/spectools/pkg/orderedmap"
 	"github.com/theNorstroem/spectools/pkg/specSpec"
-	"github.com/theNorstroem/spectools/pkg/specSpec/furo"
 )
 
 func CreateClientTypeFromAstType(ast *specSpec.Type) (t *Type) {
@@ -41,7 +41,7 @@ func CreateServiceFromAstService(ast *specSpec.Service, fullname string) (t *Ser
 			Data: &specSpec.Servicereqres{
 				Request:   resolveFullQualifiedTypename(astField.Data.Request, fullname),
 				Response:  resolveFullQualifiedTypename(astField.Data.Response, fullname),
-				BodyField: astField.Data.BodyField,
+				Bodyfield: astField.Data.Bodyfield,
 			},
 			Deeplink: &Deeplink{
 				Href:   astField.Deeplink.Href,

@@ -4,7 +4,8 @@ description: Defines a type in the furo spec
 __proto:
     package: descriptor
     targetfile: descriptor.proto
-    imports: []
+    imports:
+        - google/protobuf/any.proto
     options:
         cc_enable_arenas: "true"
         go_package: github.com/theNorstroem/spectools/pkg/descriptor;descriptorpb
@@ -81,7 +82,7 @@ fields:
             typespecific: null
         constraints: {}
     __proto:
-        type: descriptor.Protoextension
+        type: descriptor.Typeproto
         description: information for the proto generator, should be removed for the client spec
         __proto:
             number: 4
@@ -124,4 +125,12 @@ fields:
             readonly: false
             repeated: false
             typespecific: null
+        constraints: {}
+    extensions:
+        type: map<string,google.protobuf.Any>
+        description: Custom extension
+        __proto:
+            number: 6
+        __ui: null
+        meta: null
         constraints: {}

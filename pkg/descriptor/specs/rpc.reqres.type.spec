@@ -57,3 +57,21 @@ fields:
             repeated: false
             typespecific: null
         constraints: {}
+    bodyfield:
+        type: string
+        description: |
+            Define the body field in request the type
+            The name of the request field whose value is mapped to the HTTP request
+            body, or `*` for mapping all request fields not captured by the path
+            pattern to the HTTP body, or omitted for not having any HTTP request body.
+            NOTE: the referred field must be present at the top-level of the request
+            message type.
+        __proto:
+            number: 3
+        __ui:
+            component: ""
+            flags: []
+            noinit: false
+            noskip: false
+        meta: null
+        constraints: {}

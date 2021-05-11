@@ -4,7 +4,8 @@ description: Defines a rpc for a service
 __proto:
     package: descriptor
     targetfile: descriptor.proto
-    imports: []
+    imports:
+        - google/protobuf/any.proto
     options:
         cc_enable_arenas: "true"
         go_package: github.com/theNorstroem/spectools/pkg/descriptor;descriptorpb
@@ -107,21 +108,14 @@ fields:
         description: Query params, it is recomended to use string types
         __proto:
             number: 4
-        __ui:
-            component: ""
-            flags:
-                - full
-            noinit: false
-            noskip: false
-        meta:
-            default: ""
-            placeholder: ""
-            hint: ""
-            label: Query params
-            options:
-                flags: []
-                list: []
-            readonly: false
-            repeated: false
-            typespecific: null
+        __ui: null
+        meta: null
+        constraints: {}
+    extensions:
+        type: map<string,google.protobuf.Any>
+        description: Custom extension
+        __proto:
+            number: 6
+        __ui: null
+        meta: null
         constraints: {}

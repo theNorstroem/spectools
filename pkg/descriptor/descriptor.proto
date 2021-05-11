@@ -9,6 +9,7 @@ option java_package = "pro.furo.descriptor";
 option objc_class_prefix = "FPB";
 
 import "furo/furo.proto";
+import "google/protobuf/any.proto";
 
 
 // Defines a queryparam field (for rpc type)
@@ -47,6 +48,9 @@ message Field {
 
     // constraints for a field, like min{}, max{}, step{}
     map<string,furo.FieldConstraint> constraints = 4;
+
+    // Custom extension
+    map<string,google.protobuf.Any> extensions = 5;
 }
 
 // Proto options for a field
@@ -69,22 +73,6 @@ message Lifecycle {
     string info = 2;
 }
 
-// Main proto for a type
-message Protoextension {  
-
-    // the package this type belogs to
-    string package = 1;
-
-    // the target proto file for this type
-    string targetfile = 3;
-
-    // needed imports like [ "spec/descriptor.proto", "google/protobuf/empty.proto" ]
-    repeated string imports = 2;
-
-    // Proto options Todo: find a solution for boolean options
-    map<string,string> options = 4;
-}
-
 // Defines a rpc for a service
 message Rpc {  
 
@@ -102,6 +90,9 @@ message Rpc {
 
     // Query params, it is recomended to use string types
     map<string,descriptor.Queryparam> query = 4;
+
+    // Custom extension
+    map<string,google.protobuf.Any> extensions = 6;
 }
 
 // Defines a service
@@ -120,10 +111,13 @@ message Service {
     descriptor.Lifecycle lifecycle = 4;
 
     // information for the proto generator, should be removed for the client spec
-    descriptor.Protoextension __proto = 5;
+    descriptor.Typeproto __proto = 5;
 
     // RPCs for the service
     map<string,descriptor.Rpc> services = 6;
+
+    // Custom extension
+    map<string,google.protobuf.Any> extensions = 7;
 }
 
 // URL information for the service
@@ -150,6 +144,15 @@ message Servicereqres {
 
     // Define the response type, leave this field empty if not needed
     string response = 2;
+
+    // Define the body field in request the type
+// The name of the request field whose value is mapped to the HTTP request
+// body, or `*` for mapping all request fields not captured by the path
+// pattern to the HTTP body, or omitted for not having any HTTP request body.
+// NOTE: the referred field must be present at the top-level of the request
+// message type.
+// 
+    string bodyfield = 3;
 }
 
 // Defines a type in the furo spec
@@ -165,10 +168,29 @@ message Type {
     string description = 3;
 
     // information for the proto generator, should be removed for the client spec
-    descriptor.Protoextension __proto = 4;
+    descriptor.Typeproto __proto = 4;
 
     // fields of a type
     map<string,descriptor.Field> fields = 5;
+
+    // Custom extension
+    map<string,google.protobuf.Any> extensions = 6;
+}
+
+// Main proto for a type
+message Typeproto {  
+
+    // the package this type belogs to
+    string package = 1;
+
+    // the target proto file for this type
+    string targetfile = 3;
+
+    // needed imports like [ "spec/descriptor.proto", "google/protobuf/empty.proto" ]
+    repeated string imports = 2;
+
+    // Proto options Todo: find a solution for boolean options
+    map<string,string> options = 4;
 }
 
 // ui hints for a field
