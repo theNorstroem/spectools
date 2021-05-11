@@ -29,15 +29,15 @@ type Queryparam struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+	// constraints for a field, like min{}, max{}, step{}. Not used at the moment
+	Constraints map[string]*FieldConstraint `protobuf:"bytes,4,rep,name=constraints,proto3" json:"constraints,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 
-	// the field type, https://developers.google.com/protocol-buffers/docs/proto3#scalar
-	Type string `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
 	// the field description
 	Description string `protobuf:"bytes,1,opt,name=description,proto3" json:"description,omitempty"`
 	// meta information for the client, like label, default, repeated, options...
 	Meta *FieldMeta `protobuf:"bytes,3,opt,name=meta,proto3" json:"meta,omitempty"`
-	// constraints for a field, like min{}, max{}, step{}. Not used at the moment
-	Constraints map[string]*FieldConstraint `protobuf:"bytes,4,rep,name=constraints,proto3" json:"constraints,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	// the field type, https://developers.google.com/protocol-buffers/docs/proto3#scalar
+	Type string `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
 }
 
 func (x *Queryparam) Reset() {
@@ -283,7 +283,7 @@ type FieldMeta struct {
 	// repeated
 	Repeated bool `protobuf:"varint,5,opt,name=repeated,proto3" json:"repeated"`
 	// Put in type specific metas for your fields here => is google.type.Any
-	Typespecific *anypb.Any `protobuf:"bytes,7,opt,name=typespecific,proto3" json:"typespecific,omitempty" yaml:"typespecific,omitempty"`
+	Typespecific *map[string]interface{} `protobuf:"bytes,7,opt,name=typespecific,proto3" json:"typespecific" yaml:"typespecific"`
 }
 
 func (x *FieldMeta) Reset() {
@@ -367,7 +367,7 @@ func (x *FieldMeta) GetRepeated() bool {
 	return false
 }
 
-func (x *FieldMeta) GetTypespecific() *anypb.Any {
+func (x *FieldMeta) GetTypespecific() *map[string]interface{} { // modded
 	if x != nil {
 		return x.Typespecific
 	}
@@ -383,9 +383,9 @@ type Fieldoption struct {
 	// Add flags for your field. This can be something like "searchable".
 	// //The flags can be used by generators, ui components,...
 	//
-	Flags []string `protobuf:"bytes,2,rep,name=flags,proto3" json:"flags" yaml:"flags"`
+	Flags []string `protobuf:"bytes,2,rep,name=flags,proto3" json:"flags,omitempty" yaml:"flags"`
 	// a list with options, use descriptor.Optionitem or your own
-	List []*anypb.Any `protobuf:"bytes,1,rep,name=list,proto3" json:"list" yaml:"list"`
+	List []*anypb.Any `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty" yaml:"list"`
 }
 
 func (x *Fieldoption) Reset() {
@@ -625,15 +625,15 @@ type Rpc struct {
 
 	// the service description
 	Description string `protobuf:"bytes,1,opt,name=description,proto3" json:"description,omitempty"`
-	// RPC name https://developers.google.com/protocol-buffers/docs/proto3#services
-	RpcName string `protobuf:"bytes,2,opt,name=rpc_name,json=rpcName,proto3" json:"rpc_name,omitempty"  yaml:"rpc_name,omitempty"`
-	// This data is needed for...
-	Deeplink *Servicedeeplink `protobuf:"bytes,5,opt,name=deeplink,proto3" json:"deeplink,omitempty"`
 	// Request and response types for the service
 	Data *Servicereqres `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
+	// This data is needed for...
+	Deeplink *Servicedeeplink `protobuf:"bytes,5,opt,name=deeplink,proto3" json:"deeplink,omitempty"`
 	// Query params, it is recomended to use string types
 	// original was: Query map[string]*Queryparam `protobuf:"bytes,4,rep,name=query,proto3" json:"query,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	Query *orderedmap.OrderedMap `protobuf:"bytes,4,rep,name=query,proto3" json:"query,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	// RPC name https://developers.google.com/protocol-buffers/docs/proto3#services
+	RpcName string `protobuf:"bytes,2,opt,name=rpc_name,json=rpcName,proto3" json:"rpc_name,omitempty"  yaml:"rpc_name,omitempty"`
 	// Custom extension
 	// original was: Extensions map[string]*anypb.Any `protobuf:"bytes,6,rep,name=extensions,proto3" json:"extensions,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	Extensions *orderedmap.OrderedMap `json:"extensions,omitempty"  yaml:"extensions,omitempty"`
@@ -826,12 +826,12 @@ type Servicedeeplink struct {
 
 	// Describe the query params
 	Description string `protobuf:"bytes,1,opt,name=description,proto3" json:"description,omitempty"`
-	// the relationship
-	Rel string `protobuf:"bytes,2,opt,name=rel,proto3" json:"rel,omitempty"`
-	// method of curl
-	Method string `protobuf:"bytes,3,opt,name=method,proto3" json:"method,omitempty"`
 	// The link pattern, like /api/xxx/{qp}/yyy
 	Href string `protobuf:"bytes,4,opt,name=href,proto3" json:"href,omitempty"`
+	// method of curl
+	Method string `protobuf:"bytes,3,opt,name=method,proto3" json:"method,omitempty"`
+	// the relationship
+	Rel string `protobuf:"bytes,2,opt,name=rel,proto3" json:"rel,omitempty"`
 }
 
 func (x *Servicedeeplink) Reset() {
