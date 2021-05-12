@@ -36,28 +36,33 @@ fields:
             repeated: false
             typespecific: null
         constraints: {}
-    rel:
+    href:
         type: string
-        description: the relationship
+        description: The link pattern, like /api/xxx/{qp}/yyy
         __proto:
-            number: 2
+            number: 4
         __ui:
             component: ""
-            flags: []
+            flags:
+                - double
+                - condensed
             noinit: false
             noskip: false
         meta:
             default: ""
             placeholder: ""
-            hint: like create, update, custommethod
-            label: rel
+            hint: The link pattern, like /api/xxx/{qp}/yyy
+            label: href
             options:
                 flags: []
                 list: []
             readonly: false
             repeated: false
             typespecific: null
-        constraints: {}
+        constraints:
+            required:
+                is: "true"
+                message: ""
     method:
         type: string
         description: method of curl
@@ -112,30 +117,27 @@ fields:
             repeated: false
             typespecific: null
         constraints: {}
-    href:
+    rel:
         type: string
-        description: The link pattern, like /api/xxx/{qp}/yyy
+        description: the relationship
         __proto:
-            number: 4
+            number: 2
         __ui:
             component: ""
-            flags:
-                - double
-                - condensed
+            flags: []
             noinit: false
             noskip: false
         meta:
             default: ""
             placeholder: ""
-            hint: The link pattern, like /api/xxx/{qp}/yyy
-            label: href
+            hint: like create, update, custommethod
+            label: rel
             options:
                 flags: []
                 list: []
             readonly: false
             repeated: false
             typespecific: null
-        constraints:
-            required:
-                is: "true"
-                message: ""
+        constraints: {}
+
+

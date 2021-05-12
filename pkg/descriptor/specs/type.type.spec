@@ -81,6 +81,28 @@ fields:
             repeated: false
             typespecific: null
         constraints: {}
+    lifecycle:
+        type: descriptor.Lifecycle
+        description: Type lifecycle information, setting deprecated to true will log a warning when running spectools
+        __proto:
+            number: 7
+        __ui:
+            component: ""
+            flags: []
+            noinit: false
+            noskip: false
+        meta:
+            default: ""
+            placeholder: ""
+            hint: ""
+            label: ""
+            options:
+                flags: []
+                list: []
+            readonly: false
+            repeated: false
+            typespecific: null
+        constraints: {}
     __proto:
         type: descriptor.Typeproto
         description: information for the proto generator, should be removed for the client spec

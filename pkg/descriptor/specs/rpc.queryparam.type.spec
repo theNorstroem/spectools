@@ -13,22 +13,27 @@ __proto:
         java_package: pro.furo.descriptor
         objc_class_prefix: FPB
 fields:
-    type:
-        type: string
-        description: the field type, https://developers.google.com/protocol-buffers/docs/proto3#scalar
+    constraints:
+        type: map<string,descriptor.FieldConstraint>
+        description: constraints for a field, like min{}, max{}, step{}. Not used at the moment
         __proto:
-            number: 2
-        __ui: null
+            number: 4
+        __ui:
+            component: ""
+            flags:
+                - full
+            noinit: false
+            noskip: false
         meta:
             default: ""
             placeholder: ""
-            hint: Use a scalar type or a already defined one
-            label: type
+            hint: ""
+            label: constraints
             options: null
             readonly: false
             repeated: false
             typespecific: null
-        constraints: {}
+        constraints: { }
     description:
         type: string
         description: the field description
@@ -66,22 +71,17 @@ fields:
             repeated: false
             typespecific: null
         constraints: {}
-    constraints:
-        type: map<string,descriptor.FieldConstraint>
-        description: constraints for a field, like min{}, max{}, step{}. Not used at the moment
+    type:
+        type: string
+        description: the field type, https://developers.google.com/protocol-buffers/docs/proto3#scalar
         __proto:
-            number: 4
-        __ui:
-            component: ""
-            flags:
-                - full
-            noinit: false
-            noskip: false
+            number: 2
+        __ui: null
         meta:
             default: ""
             placeholder: ""
-            hint: ""
-            label: constraints
+            hint: Use a scalar type or a already defined one
+            label: type
             options: null
             readonly: false
             repeated: false

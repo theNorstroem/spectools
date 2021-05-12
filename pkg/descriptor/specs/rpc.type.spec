@@ -37,11 +37,11 @@ fields:
             repeated: false
             typespecific: null
         constraints: {}
-    rpc_name:
-        type: string
-        description: RPC name https://developers.google.com/protocol-buffers/docs/proto3#services
+    data:
+        type: descriptor.Servicereqres
+        description: Request and response types for the service
         __proto:
-            number: 2
+            number: 3
         __ui:
             component: ""
             flags: []
@@ -50,8 +50,8 @@ fields:
         meta:
             default: ""
             placeholder: ""
-            hint: The rpc name
-            label: rpc name
+            hint: ""
+            label: proto
             options:
                 flags: []
                 list: []
@@ -81,11 +81,19 @@ fields:
             repeated: false
             typespecific: null
         constraints: {}
-    data:
-        type: descriptor.Servicereqres
-        description: Request and response types for the service
+    query:
+        type: map<string,descriptor.Queryparam>
+        description: Query params, it is recomended to use string types
         __proto:
-            number: 3
+            number: 4
+        __ui: null
+        meta: null
+        constraints: {}
+    rpc_name:
+        type: string
+        description: RPC name https://developers.google.com/protocol-buffers/docs/proto3#services
+        __proto:
+            number: 2
         __ui:
             component: ""
             flags: []
@@ -94,22 +102,14 @@ fields:
         meta:
             default: ""
             placeholder: ""
-            hint: ""
-            label: proto
+            hint: The rpc name
+            label: rpc name
             options:
                 flags: []
                 list: []
             readonly: false
             repeated: false
             typespecific: null
-        constraints: {}
-    query:
-        type: map<string,descriptor.Queryparam>
-        description: Query params, it is recomended to use string types
-        __proto:
-            number: 4
-        __ui: null
-        meta: null
         constraints: {}
     extensions:
         type: map<string,google.protobuf.Any>

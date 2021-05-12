@@ -14,8 +14,8 @@ import "google/protobuf/any.proto";
 // Defines a queryparam field (for rpc type)
 message Queryparam {  
 
-    // the field type, https://developers.google.com/protocol-buffers/docs/proto3#scalar
-    string type = 2;
+    // constraints for a field, like min{}, max{}, step{}. Not used at the moment
+    map<string,descriptor.FieldConstraint> constraints = 4;
 
     // the field description
     string description = 1;
@@ -23,8 +23,8 @@ message Queryparam {
     // meta information for the client, like label, default, repeated, options...
     descriptor.FieldMeta meta = 3;
 
-    // constraints for a field, like min{}, max{}, step{}. Not used at the moment
-    map<string,descriptor.FieldConstraint> constraints = 4;
+    // the field type, https://developers.google.com/protocol-buffers/docs/proto3#scalar
+    string type = 2;
 }
 
 // Defines a field in the furo spec
@@ -141,17 +141,17 @@ message Rpc {
     // the service description
     string description = 1;
 
-    // RPC name https://developers.google.com/protocol-buffers/docs/proto3#services
-    string rpc_name = 2;
+    // Request and response types for the service
+    descriptor.Servicereqres data = 3;
 
     // This data is needed for...
     descriptor.Servicedeeplink deeplink = 5;
 
-    // Request and response types for the service
-    descriptor.Servicereqres data = 3;
-
     // Query params, it is recomended to use string types
     map<string,descriptor.Queryparam> query = 4;
+
+    // RPC name https://developers.google.com/protocol-buffers/docs/proto3#services
+    string rpc_name = 2;
 
     // Custom extension
     map<string,google.protobuf.Any> extensions = 6;
@@ -188,14 +188,14 @@ message Servicedeeplink {
     // Describe the query params
     string description = 1;
 
-    // the relationship
-    string rel = 2;
+    // The link pattern, like /api/xxx/{qp}/yyy
+    string href = 4;
 
     // method of curl
     string method = 3;
 
-    // The link pattern, like /api/xxx/{qp}/yyy
-    string href = 4;
+    // the relationship
+    string rel = 2;
 }
 
 // Repuest and response types for services, used in service.type
@@ -228,6 +228,9 @@ message Type {
 
     // the type description
     string description = 3;
+
+    // Type lifecycle information, setting deprecated to true will log a warning when running spectools
+    descriptor.Lifecycle lifecycle = 7;
 
     // information for the proto generator, should be removed for the client spec
     descriptor.Typeproto __proto = 4;
