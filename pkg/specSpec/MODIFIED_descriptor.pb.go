@@ -384,8 +384,8 @@ type Fieldoption struct {
 	// //The flags can be used by generators, ui components,...
 	//
 	Flags []string `protobuf:"bytes,2,rep,name=flags,proto3" json:"flags,omitempty" yaml:"flags"`
-	// a list with options, use descriptor.Optionitem or your own
-	List []*anypb.Any `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty" yaml:"list"`
+	// a list with options, use furo.optionitem or your own
+	List []*map[string]interface{} `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty" yaml:"list"`
 }
 
 func (x *Fieldoption) Reset() {
@@ -427,7 +427,7 @@ func (x *Fieldoption) GetFlags() []string {
 	return nil
 }
 
-func (x *Fieldoption) GetList() []*anypb.Any {
+func (x *Fieldoption) GetList() []*map[string]interface{} {
 	if x != nil {
 		return x.List
 	}
