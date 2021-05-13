@@ -8,6 +8,7 @@ import (
 	"github.com/theNorstroem/spectools/pkg/ast/typeAst"
 	"github.com/theNorstroem/spectools/pkg/specSpec"
 	"github.com/theNorstroem/spectools/pkg/util"
+	"path"
 )
 
 func Run(cmd *cobra.Command, args []string) {
@@ -45,23 +46,33 @@ func Run(cmd *cobra.Command, args []string) {
 
 	}
 
-	// check every type in typelist and servicelist
-
+	// check for deprecated types in the project types
 	for tname, ast := range Typelist.TypesByName {
 		ast.TypeSpec.Fields.Map(func(iKey interface{}, iValue interface{}) {
 			f := iValue.(*specSpec.Field) //*string:1 # A * before the type means required
 			if allTypes[f.Type].Lifecycle != nil && allTypes[f.Type].Lifecycle.Deprecated {
-				fmt.Println("WARNING: field", iKey.(string), "in type", tname, "uses deprecated type", f.Type)
+				fmt.Println(util.ScanForStringPosition(f.Type, path.Join(viper.GetString("specDir"), ast.Path, ast.FileName))+":WARNING: field", iKey.(string), "in type", tname, "uses deprecated type", f.Type)
 				fmt.Println(allTypes[f.Type].Lifecycle.Info)
 			}
 		})
 	}
-	for sname, _ := range Servicelist.ServicesByName {
 
-		if 1 == 2 {
-			fmt.Println(sname)
-		}
+	// check for deprecated types in the project services
+	for sname, ast := range Servicelist.ServicesByName {
+		ast.ServiceSpec.Services.Map(func(iKey interface{}, iValue interface{}) {
+			method := iValue.(*specSpec.Rpc)
+			if allTypes[method.Data.Request].Lifecycle != nil && allTypes[method.Data.Request].Lifecycle.Deprecated {
 
-		//fmt.Println(ast)
+				fmt.Println(util.ScanForStringPosition(method.Data.Request, path.Join(viper.GetString("specDir"), ast.Path, ast.FileName))+":WARNING: request type on method", iKey.(string), "in service", sname, "uses deprecated type", method.Data.Request)
+				fmt.Println(allTypes[method.Data.Request].Lifecycle.Info)
+
+			}
+			if allTypes[method.Data.Response].Lifecycle != nil && allTypes[method.Data.Response].Lifecycle.Deprecated {
+				fmt.Println(util.ScanForStringPosition(method.Data.Response, path.Join(viper.GetString("specDir"), ast.Path, ast.FileName))+":WARNING: response type on method", iKey.(string), "in service", sname, "uses deprecated type", method.Data.Response)
+				fmt.Println(allTypes[method.Data.Response].Lifecycle.Info)
+			}
+
+		})
 	}
+
 }
