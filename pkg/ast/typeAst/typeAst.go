@@ -177,6 +177,9 @@ func (l *Typelist) SaveAllTypeSpecsToDir(specDir string) {
 
 //
 func (l *Typelist) ResolveProtoImportForType(typeName string, pkg string) (imp string, typeFound bool) {
+	if strings.HasPrefix(typeName, "stream ") {
+		typeName = typeName[7:]
+	}
 	if strings.HasPrefix(typeName, "[] ") {
 		typeName = typeName[3:]
 	}

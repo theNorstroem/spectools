@@ -185,7 +185,7 @@ func (ast ServiceAst) UpdateImports(typelist *typeAst.Typelist) {
 				} else {
 
 					fmt.Println(util.ScanForStringPosition(qp.Type,
-						path.Join(viper.GetString("specDir"), ast.FileName)), ":Import",
+						path.Join(viper.GetString("specDir"), ast.Path, ast.FileName)), ":Import",
 						qp.Type, "not found in Service",
 						ast.ServiceSpec.Name, "on param", qkey.(string))
 				}
@@ -201,7 +201,7 @@ func (ast ServiceAst) UpdateImports(typelist *typeAst.Typelist) {
 			} else {
 
 				fmt.Println(util.ScanForStringPosition(rpc.Data.Request,
-					path.Join(viper.GetString("specDir"), ast.FileName)), ":Import",
+					path.Join(viper.GetString("specDir"), ast.Path, ast.FileName)), ":Import",
 					rpc.Data.Request, "not found in Service",
 					ast.ServiceSpec.Name, "on param", rpc.RpcName)
 			}
@@ -217,7 +217,7 @@ func (ast ServiceAst) UpdateImports(typelist *typeAst.Typelist) {
 			} else {
 
 				fmt.Println(util.ScanForStringPosition(rpc.Data.Response,
-					path.Join(viper.GetString("specDir"), ast.FileName)), ":Import",
+					path.Join(viper.GetString("specDir"), ast.Path, ast.FileName)), ":Import",
 					rpc.Data.Response, "not found in Service",
 					ast.ServiceSpec.Name, "on param", rpc.RpcName)
 			}
