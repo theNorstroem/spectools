@@ -75,4 +75,12 @@ func Run(cmd *cobra.Command, args []string) {
 		})
 	}
 
+	// check installed services
+	for sname, ast := range Servicelist.InstalledServicesByName {
+		if ast.ServiceSpec.Lifecycle != nil && ast.ServiceSpec.Lifecycle.Deprecated {
+			fmt.Println("WARNING: Deprecated service installed (" + sname + "). If you don't use it, you can ignore this message.")
+			fmt.Println(ast.ServiceSpec.Lifecycle.Info)
+		}
+	}
+
 }
