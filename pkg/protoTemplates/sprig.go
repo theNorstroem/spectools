@@ -6,6 +6,7 @@ import (
 	"github.com/theNorstroem/spectools/pkg/specSpec"
 	"html/template"
 	"regexp"
+	"strings"
 )
 
 type FieldMap struct {
@@ -107,6 +108,22 @@ func requestParamsFromRpc(rpc *specSpec.Rpc) []Qparams {
 	return params
 }
 
+// builds the request for the rpc
+// rpc {{$method.RpcName}} ({{$method | rpcRequest}}) returns ({{$method.Data.Response}}){
+func rpcRequest(method *specSpec.Rpc) string {
+	if strings.HasPrefix(method.Data.Request, "stream ") {
+		return method.Data.Request
+	}
+	return method.RpcName + "Request"
+}
+
+func isNotStream(method *specSpec.Rpc) bool {
+	if strings.HasPrefix(method.Data.Request, "stream ") {
+		return false
+	}
+	return true
+}
+
 func GetSprigFuncs() template.FuncMap {
 	fn := sprig.FuncMap()
 	fn["noescape"] = noescape
@@ -114,5 +131,7 @@ func GetSprigFuncs() template.FuncMap {
 	fn["fieldpairs"] = fieldpairs
 	fn["rpcmap"] = rpcmap
 	fn["requestParamsFromRpc"] = requestParamsFromRpc
+	fn["rpcRequest"] = rpcRequest
+	fn["isNotStream"] = isNotStream
 	return fn
 }

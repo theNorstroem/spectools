@@ -151,7 +151,7 @@ func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist,
 			targetRPC.Description = sourceRPC.Description
 
 			// set body to data if not defined
-			if targetRPC.Data.Bodyfield == "" {
+			if targetRPC.Data.Bodyfield == "" && !strings.HasPrefix(targetRPC.Data.Request, "stream ") {
 				targetRPC.Data.Bodyfield = "body"
 			}
 
@@ -175,13 +175,16 @@ func (l *MicroServiceList) UpateServicelist(servicelist *serviceAst.Servicelist,
 				})
 
 			}
-
-			requestType := &microtypes.MicroType{
-				Type:   microServiceAst.Package + "." + targetRPC.RpcName + "Request #request message for " + targetRPC.RpcName,
-				Fields: fields,
-				Target: "reqmsgs.proto",
+			// create a request type only request is not a stream
+			// maybe this is incorrect, if someone needs streams with query params
+			if !strings.HasPrefix(targetRPC.Data.Request, "stream ") {
+				requestType := &microtypes.MicroType{
+					Type:   microServiceAst.Package + "." + targetRPC.RpcName + "Request #request message for " + targetRPC.RpcName,
+					Fields: fields,
+					Target: "reqmsgs.proto",
+				}
+				microTypelist.MicroTypes = append(microTypelist.MicroTypes, requestType)
 			}
-			microTypelist.MicroTypes = append(microTypelist.MicroTypes, requestType)
 
 			AstService.ServiceSpec.Services.Set(rpcname, targetRPC)
 
@@ -234,7 +237,7 @@ func (mt MicroService) ToMicroServiceAst() *MicroServiceAst {
 	// build the map
 	for _, def := range mt.Methods {
 		// "List: GET /auth/{user} request.Type, response.Type #List eds with pagination"
-		regex := regexp.MustCompile(`^([^:]+):\s?([A-Z]*)\s?([^\s]*) ?([^,\s]*)\s?,\s?([^#]*)\s?#?(?s:(.*))$`)
+		regex := regexp.MustCompile(`^([^:]+):\s?([A-Z]*)\s?([^\s]*)\s?([^#]*)\s?,\s?([^#]*)\s?#?(?s:(.*))$`)
 		matches := regex.FindStringSubmatch(def.Md)
 		if len(matches) == 0 {
 			fmt.Println("typeline not parseable", def.Md)

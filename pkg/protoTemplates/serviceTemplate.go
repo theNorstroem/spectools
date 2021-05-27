@@ -15,7 +15,7 @@ service {{$serviceName}} {
 {{- $rpcmap := $Service.Services | rpcmap}}
 {{range $rpckey, $method := $rpcmap}}
   {{if $method.Description}}// {{$method.Description | replace "\n" "\n// " | noescape}}{{end}}
-  rpc {{$method.RpcName}} ({{$method.RpcName}}Request) returns ({{$method.Data.Response}}){
+  rpc {{$method.RpcName}} ({{$method | rpcRequest}}) returns ({{$method.Data.Response}}){
 	{{if $method.Deeplink.Description}}//{{$method.Deeplink.Description | replace "\n" "\n// "}}{{else}}// developer was to lazy to describe the rpc, sorry{{end}}
 	option (google.api.http) = {
 		{{ lower $method.Deeplink.Method}}: "{{$method.Deeplink.Href}}"{{ if $method.Data.Request}}
