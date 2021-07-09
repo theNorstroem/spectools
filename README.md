@@ -1,3 +1,7 @@
+> spectools is now being further developed under the wing of Eclipse. In the course of the transfer, we have simplified the naming. spectools is now Furo!
+
+**The theNorstroem/spectools repo has been migrated to https://github.com/eclipse/eclipsefuro**
+
 ## spectools
 
 The furo spec toolkit
